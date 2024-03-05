@@ -1,9 +1,9 @@
-import { CarIcon, ShoppingBagIcon, ShoppingCartIcon } from "lucide-react";
+import Header from "@/components/Header/Header";
 
 export default function Home() {
   return (
     <main className="">
-      <h1 className="text-2xl">Abacaxiaudghayudghayfbyabduahduhuasd</h1>
+      <Header />
     </main>
   );
 }

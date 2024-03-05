@@ -1,0 +1,12 @@
+header {
+  backdrop-filter: blur(0.5rem);
+  -webkit-backdrop-filter: blur(0.5rem);
+
+  li {
+    transition: 0.3s;
+
+    &:hover {
+      color: #f2b6c1;
+    }
+  }
+}
