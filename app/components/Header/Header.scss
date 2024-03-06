@@ -1,6 +1,7 @@
 header {
   backdrop-filter: blur(0.5rem);
   -webkit-backdrop-filter: blur(0.5rem);
+  background-color: #28304000;
 
   li {
     transition: 0.3s;
@@ -9,4 +10,10 @@ header {
       color: #f2b6c1;
     }
   }
+}
+
+.content {
+  backdrop-filter: blur(0.8rem);
+  -webkit-backdrop-filter: blur(0.8rem);
+  background-color: #28304000;
 }
