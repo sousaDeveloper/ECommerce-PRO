@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "NextWave Store",
+  title: "Next Store",
 };
 
 export default function RootLayout({

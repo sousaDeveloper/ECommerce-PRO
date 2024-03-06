@@ -1,6 +1,6 @@
 "use client";
 
-import HomePage from "@/pages/home/home.page";
+import HomePage from "./pages/home/home.page";
 import { Route } from "react-router-dom";
 import { BrowserRouter, Routes } from "react-router-dom";
 
