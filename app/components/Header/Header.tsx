@@ -1,8 +1,12 @@
-import { MenuIcon, ShoppingCartIcon } from "lucide-react";
-import "./Header.scss";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
+
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
+import { MenuIcon, ShoppingCartIcon } from "lucide-react";
+
+// Styles
+import "./Header.scss";
 
 export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -21,9 +25,11 @@ export default function Header() {
 
   return (
     <header className="p-4 px-7 flex items-center justify-between font-bold text-white top-0 sticky mb-2">
-      <h1 className="text-2xl">Next Store</h1>
+      <h1 className="text-2xl cursor-default">
+        <Link to="/">Next Store</Link>
+      </h1>
 
-      {windowWidth <= 645 ? (
+      {windowWidth <= 785 ? (
         <Sheet>
           <SheetTrigger asChild>
             <MenuIcon size={25} />
@@ -33,8 +39,12 @@ export default function Header() {
               <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
             </SheetHeader>
             <nav className="p-5 flex flex-col gap-3">
-              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Login</Button>
-              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Registrar</Button>
+              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                <Link to="/login">Login</Link>
+              </Button>
+              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                <Link to="/register">Registrar</Link>
+              </Button>
               <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Ver Carrinho</Button>
             </nav>
           </SheetContent>
@@ -43,8 +53,12 @@ export default function Header() {
         <nav>
           <ul className="flex gap-6 p-2">
             <li className="cursor-pointer">Explorar</li>
-            <li className="cursor-pointer">Login</li>
-            <li className="cursor-pointer">Registrar</li>
+            <li className="cursor-pointer">
+              <Link to="/login">Login</Link>
+            </li>
+            <li className="cursor-pointer">
+              <Link to="/register">Registrar</Link>
+            </li>
             <Sheet>
               <SheetTrigger>
                 {" "}
