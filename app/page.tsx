@@ -1,15 +1,8 @@
 "use client";
 
-import HomePage from "./pages/home/home.page";
-import { Route } from "react-router-dom";
-import { BrowserRouter, Routes } from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
+import router from "./router.js";
 
 export default function Page() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-      </Routes>
-    </BrowserRouter>
-  );
+  return <RouterProvider router={router} />;
 }
