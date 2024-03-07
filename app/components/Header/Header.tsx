@@ -33,9 +33,9 @@ export default function Header() {
               <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
             </SheetHeader>
             <nav className="p-5 flex flex-col gap-3">
-              <Button className="font-bold bg-[#283040]">Login</Button>
-              <Button className="font-bold bg-[#283040]">Registrar</Button>
-              <Button className="font-bold bg-[#283040]">Ver Carrinho</Button>
+              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Login</Button>
+              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Registrar</Button>
+              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Ver Carrinho</Button>
             </nav>
           </SheetContent>
         </Sheet>
@@ -53,7 +53,7 @@ export default function Header() {
                   <p className="ml-1">5</p>
                 </li>
               </SheetTrigger>
-              <SheetContent className="p-0 text-white">
+              <SheetContent className="p-0 text-white content">
                 <SheetHeader className="border-b border-slate-800 p-5">
                   <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Carrinho</SheetTitle>
                 </SheetHeader>
