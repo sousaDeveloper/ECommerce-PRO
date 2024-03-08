@@ -1,3 +1,6 @@
+import { useForm } from "react-hook-form";
+import validator from "validator";
+
 // Components
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
@@ -6,8 +9,6 @@ import CustomInputContainer from "../../components/CustomInputContainer/CustomIn
 
 // Utilities
 import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import validator from "validator";
 
 interface LoginForm {
   email: string;
@@ -79,7 +80,7 @@ export default function LoginPage() {
             Ou entre com seu e-mail
           </h1>
 
-          <CustomInputContainer label="Email">
+          <CustomInputContainer label="Email" htmlFor="email">
             <CustomInput
               func={{
                 ...register("email", {
@@ -93,10 +94,12 @@ export default function LoginPage() {
               placeholder="email"
               type="email"
             />
+
             {errors?.email?.type === "required" && <InputErrorMessage>O email é obrigatório.</InputErrorMessage>}
             {errors?.email?.type === "validate" && <InputErrorMessage>Insira um email válido.</InputErrorMessage>}
           </CustomInputContainer>
-          <CustomInputContainer label="Senha">
+
+          <CustomInputContainer label="Senha" htmlFor="password">
             <CustomInput
               func={{ ...register("password", { required: true }) }}
               id="password"

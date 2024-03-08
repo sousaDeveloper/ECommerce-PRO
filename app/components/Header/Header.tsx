@@ -24,7 +24,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="p-4 px-7 flex items-center justify-between font-bold text-white top-0 sticky mb-2">
+    <header className="p-4 px-7 flex items-center justify-between font-bold text-white top-0 z-50 sticky mb-2">
       <h1 className="text-2xl cursor-default">
         <Link to="/">Next Store</Link>
       </h1>

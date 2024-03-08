@@ -1,3 +1,8 @@
+import validator from "validator";
+import { useForm } from "react-hook-form";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { addDoc, collection } from "firebase/firestore";
+
 // Components
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
@@ -6,11 +11,10 @@ import CustomInput from "../../components/CustomInputContainer/CustomInput";
 
 // Utilities
 import { Link } from "react-router-dom";
-import validator from "validator";
-import { useForm } from "react-hook-form";
+import { auth, db } from "../../config/firebase.config";
 
 interface SignUpform {
-  name: string;
+  firstName: string;
   lastName: string;
   email: string;
   password: string;
@@ -25,8 +29,19 @@ export default function SignUpPage() {
     watch,
   } = useForm<SignUpform>();
 
-  const handleSubmitPress = (data: SignUpform) => {
-    console.log({ data });
+  const handleSubmitPress = async (data: SignUpform) => {
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(auth, data.email, data.password);
+
+      await addDoc(collection(db, "users"), {
+        id: userCredentials.user.uid,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        email: userCredentials.user.email,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const watchPassword = watch("password");
@@ -46,11 +61,11 @@ export default function SignUpPage() {
             Crie a sua conta
           </h2>
 
-          <CustomInputContainer label="Nome">
-            <CustomInput func={{ ...register("name", { required: true }) }} id="name" placeholder="name" type="name" />
-            {errors?.name?.type === "required" && <InputErrorMessage>O nome é obrigatório.</InputErrorMessage>}
+          <CustomInputContainer label="Nome" htmlFor="name">
+            <CustomInput func={{ ...register("firstName", { required: true }) }} id="name" placeholder="name" type="name" />
+            {errors?.firstName?.type === "required" && <InputErrorMessage>O nome é obrigatório.</InputErrorMessage>}
           </CustomInputContainer>
-          <CustomInputContainer label="Sobrenome">
+          <CustomInputContainer label="Sobrenome" htmlFor="lastName">
             <CustomInput
               func={{ ...register("lastName", { required: true }) }}
               id="lastName"
@@ -59,7 +74,7 @@ export default function SignUpPage() {
             />
             {errors?.lastName?.type === "required" && <InputErrorMessage>O sobrenome é obrigatório.</InputErrorMessage>}
           </CustomInputContainer>
-          <CustomInputContainer label="Email">
+          <CustomInputContainer label="Email" htmlFor="email">
             <CustomInput
               func={{
                 ...register("email", {
@@ -76,7 +91,7 @@ export default function SignUpPage() {
             {errors?.email?.type === "required" && <InputErrorMessage>O email é obrigatório.</InputErrorMessage>}
             {errors?.email?.type === "validate" && <InputErrorMessage>Insira um email válido.</InputErrorMessage>}
           </CustomInputContainer>
-          <CustomInputContainer label="Senha">
+          <CustomInputContainer label="Senha" htmlFor="password">
             <CustomInput
               func={{ ...register("password", { required: true }) }}
               id="password"
@@ -85,7 +100,7 @@ export default function SignUpPage() {
             />
             {errors?.password?.type === "required" && <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>}
           </CustomInputContainer>
-          <CustomInputContainer label="Confirmar Senha">
+          <CustomInputContainer label="Confirmar Senha" htmlFor="confirmPassword">
             <CustomInput
               func={{
                 ...register("confirmPassword", {
@@ -97,7 +112,7 @@ export default function SignUpPage() {
               }}
               id="confirmPassword"
               placeholder="confirmPassword"
-              type="confirmPassword"
+              type="password"
             />
             {errors?.confirmPassword?.type === "required" && (
               <InputErrorMessage>A confirmação da senha é obrigatória.</InputErrorMessage>

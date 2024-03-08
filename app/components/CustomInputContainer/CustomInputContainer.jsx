@@ -1,4 +1,4 @@
-const CustomInputContainer = ({ children, label }) => {
+const CustomInputContainer = ({ children, label, htmlFor }) => {
   return (
     <div className="relative">
       {children}
