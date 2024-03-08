@@ -1,9 +1,13 @@
-import { Link } from "react-router-dom";
+// Components
 import Header from "../../components/Header/Header";
-import validator from "validator";
-
-import { useForm } from "react-hook-form";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
+
+// Utilities
+import { Link } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
+import CustomInput from "../../components/CustomInputContainer/CustomInput";
+import validator from "validator";
 
 export default function LoginPage() {
   const {
@@ -22,7 +26,7 @@ export default function LoginPage() {
       <div className="grid place-content-center place-items-center mt-9 p-5">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out" }}
-          className=" max-w-[30rem] rounded shadow-2xl overflow-hidden p-8 space-y-8 "
+          className="max-w-[30rem] rounded shadow-2xl overflow-hidden p-8 space-y-8 "
         >
           <h2 style={{ animation: "appear 2s ease-out" }} className="text-center text-4xl font-extrabold text-[#8C3A60]">
             Entre com sua conta
@@ -70,46 +74,33 @@ export default function LoginPage() {
             Ou entre com seu e-mail
           </h1>
 
-          <div className="relative">
-            <input
-              placeholder="john@example.com"
-              {...register("email", {
-                required: true,
-                validate: (value) => {
-                  return validator.isEmail(value);
-                },
-              })}
-              className="peer h-10 w-full border-b-2 border-gray-300 text-white bg-transparent placeholder-transparent focus:outline-none focus:border-[#F2B6C1]"
+          <CustomInputContainer label="Email">
+            <CustomInput
+              func={{
+                ...register("email", {
+                  required: true,
+                  validate: (value) => {
+                    return validator.isEmail(value);
+                  },
+                }),
+              }}
               id="email"
-              name="email"
+              placeholder="email"
               type="email"
             />
             {errors?.email?.type === "required" && <InputErrorMessage>O email é obrigatório.</InputErrorMessage>}
             {errors?.email?.type === "validate" && <InputErrorMessage>Insira um email válido.</InputErrorMessage>}
-            <label
-              className="absolute left-0 -top-3.5 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#F2B6C1] peer-focus:text-sm"
-              htmlFor="email"
-            >
-              Email
-            </label>
-          </div>
-          <div className="relative">
-            <input
-              {...register("password", { required: true })}
-              placeholder="Password"
-              className="peer h-10 w-full border-b-2 border-gray-300 text-white bg-transparent placeholder-transparent focus:outline-none focus:border-[#F2B6C1]"
+          </CustomInputContainer>
+          <CustomInputContainer label="Senha">
+            <CustomInput
+              func={{ ...register("password", { required: true }) }}
               id="password"
-              name="password"
+              placeholder="password"
               type="password"
             />
             {errors?.password?.type === "required" && <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>}
-            <label
-              className="absolute left-0 -top-3.5 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#F2B6C1] peer-focus:text-sm"
-              htmlFor="password"
-            >
-              Senha
-            </label>
-          </div>
+            {errors?.password?.type === "validate" && <InputErrorMessage>Insira uma senha válida.</InputErrorMessage>}
+          </CustomInputContainer>
           <div className="flex items-center justify-between">
             <label className="flex items-center text-sm text-gray-200">
               <input className="form-checkbox h-4 w-4 text-purple-600 bg-gray-800 border-gray-300 rounded" type="checkbox" />
@@ -122,7 +113,7 @@ export default function LoginPage() {
           >
             Fazer Login
           </button>
-          <div className="text-center text-gray-300">
+          <div className="text-center text-gray-300 flex justify-center gap-2">
             Não tem uma conta?{" "}
             <p className="text-[#F2B6C1] hover:underline font-bold">
               <Link to="/register">Registrar </Link>
