@@ -1,22 +1,27 @@
 // Components
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
+import CustomInput from "../../components/CustomInputContainer/CustomInput";
+import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
 
 // Utilities
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
-import CustomInput from "../../components/CustomInputContainer/CustomInput";
 import validator from "validator";
+
+interface LoginForm {
+  email: string;
+  password: string;
+}
 
 export default function LoginPage() {
   const {
     register,
     formState: { errors },
     handleSubmit,
-  } = useForm();
+  } = useForm<LoginForm>();
 
-  const handleSubmitPress = (data: any) => {
+  const handleSubmitPress = (data: LoginForm) => {
     console.log({ data });
   };
 
