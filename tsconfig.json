@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/InputErrorMessage/InputErrorMessage.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/components/InputErrorMessage/InputErrorMessage.tsx", "app/components/CustomInputContainer/CustomInputContainer.jsx"],
   "exclude": ["node_modules"]
 }
