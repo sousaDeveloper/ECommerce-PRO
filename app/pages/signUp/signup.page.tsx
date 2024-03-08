@@ -1,6 +1,6 @@
 import validator from "validator";
 import { useForm } from "react-hook-form";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { AuthError, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 
 // Components
@@ -27,6 +27,7 @@ export default function SignUpPage() {
     formState: { errors },
     handleSubmit,
     watch,
+    setError,
   } = useForm<SignUpform>();
 
   const handleSubmitPress = async (data: SignUpform) => {
@@ -40,7 +41,11 @@ export default function SignUpPage() {
         email: userCredentials.user.email,
       });
     } catch (error) {
-      console.log(error);
+      const _error = error as AuthError;
+
+      if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
+        return setError("email", { type: "alreadyInUse" });
+      }
     }
   };
 
@@ -89,22 +94,29 @@ export default function SignUpPage() {
               type="email"
             />
             {errors?.email?.type === "required" && <InputErrorMessage>O email é obrigatório.</InputErrorMessage>}
+            {errors?.email?.type === "alreadyInUse" && (
+              <InputErrorMessage>Este email já está sendo usado.</InputErrorMessage>
+            )}
             {errors?.email?.type === "validate" && <InputErrorMessage>Insira um email válido.</InputErrorMessage>}
           </CustomInputContainer>
           <CustomInputContainer label="Senha" htmlFor="password">
             <CustomInput
-              func={{ ...register("password", { required: true }) }}
+              func={{ ...register("password", { required: true, minLength: 6 }) }}
               id="password"
               placeholder="password"
               type="password"
             />
             {errors?.password?.type === "required" && <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>}
+            {errors?.password?.type === "minLength" && (
+              <InputErrorMessage>A senha não pode conter menos de 6 caracteres.</InputErrorMessage>
+            )}
           </CustomInputContainer>
           <CustomInputContainer label="Confirmar Senha" htmlFor="confirmPassword">
             <CustomInput
               func={{
                 ...register("confirmPassword", {
                   required: true,
+                  minLength: 6,
                   validate: (value) => {
                     return value === watchPassword;
                   },
