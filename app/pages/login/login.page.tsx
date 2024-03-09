@@ -4,7 +4,6 @@ import validator from "validator";
 // Components
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
-import CustomInput from "../../components/CustomInputContainer/CustomInput";
 import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
 
 // Utilities
@@ -31,83 +30,39 @@ export default function LoginPage() {
       <Header />
       <div className="grid place-content-center place-items-center mt-9 p-5">
         <div
-          style={{ animation: "slideInFromLeft 1s ease-out" }}
-          className="max-w-[30rem] rounded shadow-2xl overflow-hidden p-8 space-y-8 "
+          style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
+          className="max-w-[30rem] rounded overflow-hidden p-8 space-y-8"
         >
           <h2 style={{ animation: "appear 2s ease-out" }} className="text-center text-4xl font-extrabold text-[#8C3A60]">
             Entre com sua conta
           </h2>
-          <button className="flex items-center justify-center py-2 gap-2 font-bold bg-[#8C3A60] w-full rounded text-white hover:bg-[#F2B8C1] hover:text-black transition duration-300 shadow-lg">
-            <svg
-              xmlBase="preserve"
-              viewBox="0 0 512 512"
-              y="0px"
-              x="0px"
-              xmlSpace="http://www.w3.org/1999/xlink"
-              xmlns="http://www.w3.org/2000/svg"
-              id="Layer_1"
-              width="20"
-              version="1.1"
-            >
-              <path
-                d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256
-	c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456
-	C103.821,274.792,107.225,292.797,113.47,309.408z"
-                style={{ fill: "#FBBB00" }}
-              ></path>
-              <path
-                d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451
-	c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.727l-10.338-64.535
-	c29.932-17.554,53.324-45.025,65.646-77.911h-136.89V208.176h138.887L507.527,208.176L507.527,208.176z"
-                style={{ fill: "#518EF8" }}
-              ></path>
-              <path
-                d="M416.253,455.624l0.014,0.014C372.396,490.901,316.666,512,256,512
-	c-97.491,0-182.252-54.491-225.491-134.681l82.961-67.91c21.619,57.698,77.278,98.771,142.53,98.771
-	c28.047,0,54.323-7.582,76.87-20.818L416.253,455.624z"
-                style={{ fill: "#28B446" }}
-              ></path>
-              <path
-                d="M419.404,58.936l-82.933,67.896c-23.335-14.586-50.919-23.012-80.471-23.012
-	c-66.729,0-123.429,42.957-143.965,102.724l-83.397-68.276h-0.014C71.23,56.123,157.06,0,256,0
-	C318.115,0,375.068,22.126,419.404,58.936z"
-                style={{ fill: "#F14336" }}
-              ></path>
-            </svg>
-            Google
-          </button>
-          <h1 className="text-center font-bold text-[#F2B6C1] border-b border-solid border-[#f2B6C1] pb-2">
-            Ou entre com seu e-mail
-          </h1>
 
-          <CustomInputContainer label="Email" htmlFor="email">
-            <CustomInput
-              func={{
-                ...register("email", {
-                  required: true,
-                  validate: (value) => {
-                    return validator.isEmail(value);
-                  },
-                }),
-              }}
-              id="email"
-              placeholder="email"
-              type="email"
-            />
-
+          <CustomInputContainer
+            label="Email"
+            type="text"
+            func={{
+              ...register("email", {
+                required: true,
+                validate: (value) => {
+                  return validator.isEmail(value);
+                },
+              }),
+            }}
+          >
             {errors?.email?.type === "required" && <InputErrorMessage>O email é obrigatório.</InputErrorMessage>}
             {errors?.email?.type === "validate" && <InputErrorMessage>Insira um email válido.</InputErrorMessage>}
           </CustomInputContainer>
 
-          <CustomInputContainer label="Senha" htmlFor="password">
-            <CustomInput
-              func={{ ...register("password", { required: true }) }}
-              id="password"
-              placeholder="password"
-              type="password"
-            />
+          <CustomInputContainer
+            label="Senha"
+            type="password"
+            func={{ ...register("password", { required: true, minLength: 6 }) }}
+          >
             {errors?.password?.type === "required" && <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>}
             {errors?.password?.type === "validate" && <InputErrorMessage>Insira uma senha válida.</InputErrorMessage>}
+            {errors?.password?.type === "minLength" && (
+              <InputErrorMessage>A senha não pode conter menos de 6 caracteres.</InputErrorMessage>
+            )}
           </CustomInputContainer>
           <div className="flex items-center justify-between">
             <label className="flex items-center text-sm text-gray-200">
@@ -116,11 +71,49 @@ export default function LoginPage() {
             </label>
           </div>
           <button
-            className="w-full py-2 px-4 bg-[#8C3A60] hover:bg-[#F2B8C1] hover:text-black rounded shadow-lg text-white font-semibold transition duration-300"
+            className="w-full py-2 px-4 bg-[#8C3A60] hover:bg-[#F2B6C1] hover:text-black rounded shadow-lg text-white font-semibold transition duration-300"
             onClick={() => handleSubmit(handleSubmitPress)()}
           >
             Fazer Login
           </button>
+          <div className="flex gap-2 justify-center items-center p-2 bg-white font-bold rounded cursor-pointer hover:bg-[#F2B6C1] transition duration-300">
+            <svg
+              stroke="currentColor"
+              fill="currentColor"
+              stroke-width="0"
+              version="1.1"
+              x="0px"
+              y="0px"
+              className="google-icon"
+              viewBox="0 0 48 48"
+              height="1.5em"
+              width="1.5em"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fill="#FFC107"
+                d="M43.611,20.083H42V20H24v8h11.303c-1.649,4.657-6.08,8-11.303,8c-6.627,0-12-5.373-12-12
+	c0-6.627,5.373-12,12-12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657C34.046,6.053,29.268,4,24,4C12.955,4,4,12.955,4,24
+	c0,11.045,8.955,20,20,20c11.045,0,20-8.955,20-20C44,22.659,43.862,21.35,43.611,20.083z"
+              ></path>
+              <path
+                fill="#FF3D00"
+                d="M6.306,14.691l6.571,4.819C14.655,15.108,18.961,12,24,12c3.059,0,5.842,1.154,7.961,3.039l5.657-5.657
+	C34.046,6.053,29.268,4,24,4C16.318,4,9.656,8.337,6.306,14.691z"
+              ></path>
+              <path
+                fill="#4CAF50"
+                d="M24,44c5.166,0,9.86-1.977,13.409-5.192l-6.19-5.238C29.211,35.091,26.715,36,24,36
+	c-5.202,0-9.619-3.317-11.283-7.946l-6.522,5.025C9.505,39.556,16.227,44,24,44z"
+              ></path>
+              <path
+                fill="#1976D2"
+                d="M43.611,20.083H42V20H24v8h11.303c-0.792,2.237-2.231,4.166-4.087,5.571
+	c0.001-0.001,0.002-0.001,0.003-0.002l6.19,5.238C36.971,39.205,44,34,44,24C44,22.659,43.862,21.35,43.611,20.083z"
+              ></path>
+            </svg>
+            <span>Login com o Google</span>
+          </div>
           <div className="text-center text-gray-300 flex justify-center gap-2">
             Não tem uma conta?{" "}
             <p className="text-[#F2B6C1] hover:underline font-bold">

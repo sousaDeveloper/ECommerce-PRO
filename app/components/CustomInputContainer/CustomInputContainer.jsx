@@ -1,13 +1,11 @@
-const CustomInputContainer = ({ children, label, htmlFor }) => {
+import "./CustomInputContainer.scss";
+
+const CustomInputContainer = ({ children, label, type, func }) => {
   return (
-    <div className="relative">
+    <div className="input-group">
+      <input required="true" type={type} name="text" autocomplete="off" className="input w-full" {...func} />
+      <label className="user-label font-bold rounded">{label}</label>
       {children}
-      <label
-        className="absolute left-0 -top-3.5 text-gray-500 text-sm transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-gray-400 peer-placeholder-shown:top-2 peer-focus:-top-3.5 peer-focus:text-[#F2B6C1] peer-focus:text-sm"
-        htmlFor="email"
-      >
-        {label}
-      </label>
     </div>
   );
 };
