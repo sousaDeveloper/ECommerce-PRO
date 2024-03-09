@@ -1,8 +1,9 @@
 import { useForm } from "react-hook-form";
 import validator from "validator";
-import { AuthError, AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../config/firebase.config";
+import { AuthError, AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
+import { auth, db, googleProvider } from "../../config/firebase.config";
 import { Link } from "react-router-dom";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 // Components
 import Header from "../../components/Header/Header";
@@ -37,6 +38,30 @@ export default function LoginPage() {
         return setError("email", { type: "notFound" });
       }
       console.log({ error });
+    }
+  };
+
+  const handleSignInGooglePress = async () => {
+    try {
+      const userCredentials = await signInWithPopup(auth, googleProvider);
+
+      const querySnapshot = await getDocs(query(collection(db, "users"), where("id", "==", userCredentials.user.uid)));
+
+      const user = querySnapshot.docs[0]?.data();
+
+      if (!user) {
+        const firstName = userCredentials.user.displayName?.split(" ")[0];
+        const lastName = userCredentials.user.displayName?.split(" ")[1];
+        await addDoc(collection(db, "users"), {
+          id: userCredentials.user.uid,
+          email: userCredentials.user.email,
+          firstName,
+          lastName,
+          provider: "google",
+        });
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -86,7 +111,10 @@ export default function LoginPage() {
           >
             Fazer Login
           </button>
-          <div className="flex gap-2 justify-center items-center p-2 bg-white font-bold rounded cursor-pointer hover:bg-[#F2B6C1] transition duration-300">
+          <div
+            className="flex gap-2 justify-center items-center p-2 bg-white font-bold rounded cursor-pointer hover:bg-[#F2B6C1] transition duration-300"
+            onClick={handleSignInGooglePress}
+          >
             <svg
               stroke="currentColor"
               fill="currentColor"

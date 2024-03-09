@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
-
 interface SignUpform {
   firstName: string;
   lastName: string;
@@ -36,6 +35,7 @@ export default function SignUpPage() {
         firstName: data.firstName,
         lastName: data.lastName,
         email: userCredentials.user.email,
+        provider: "firebase",
       });
     } catch (error) {
       const _error = error as AuthError;
