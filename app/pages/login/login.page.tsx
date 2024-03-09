@@ -1,14 +1,13 @@
 import { useForm } from "react-hook-form";
 import validator from "validator";
+import { AuthError, AuthErrorCodes, signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../config/firebase.config";
+import { Link } from "react-router-dom";
 
 // Components
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
-
-// Utilities
-import { Link } from "react-router-dom";
-
 interface LoginForm {
   email: string;
   password: string;
@@ -19,10 +18,26 @@ export default function LoginPage() {
     register,
     formState: { errors },
     handleSubmit,
+    setError,
   } = useForm<LoginForm>();
 
-  const handleSubmitPress = (data: LoginForm) => {
-    console.log({ data });
+  const handleSubmitPress = async (data: LoginForm) => {
+    try {
+      const userCredentials = await signInWithEmailAndPassword(auth, data.email, data.password);
+
+      console.log({ userCredentials });
+    } catch (error) {
+      const _error = error as AuthError;
+
+      if (_error.code === AuthErrorCodes.INVALID_PASSWORD) {
+        return setError("password", { type: "mismatch" });
+      }
+
+      if (_error.code === AuthErrorCodes.USER_DELETED) {
+        return setError("email", { type: "notFound" });
+      }
+      console.log({ error });
+    }
   };
 
   return (
@@ -51,18 +66,13 @@ export default function LoginPage() {
           >
             {errors?.email?.type === "required" && <InputErrorMessage>O email é obrigatório.</InputErrorMessage>}
             {errors?.email?.type === "validate" && <InputErrorMessage>Insira um email válido.</InputErrorMessage>}
+            {errors?.email?.type === "notFound" && <InputErrorMessage>Email não encontrado.</InputErrorMessage>}
           </CustomInputContainer>
 
-          <CustomInputContainer
-            label="Senha"
-            type="password"
-            func={{ ...register("password", { required: true, minLength: 6 }) }}
-          >
+          <CustomInputContainer label="Senha" type="password" func={{ ...register("password", { required: true }) }}>
             {errors?.password?.type === "required" && <InputErrorMessage>A senha é obrigatória.</InputErrorMessage>}
             {errors?.password?.type === "validate" && <InputErrorMessage>Insira uma senha válida.</InputErrorMessage>}
-            {errors?.password?.type === "minLength" && (
-              <InputErrorMessage>A senha não pode conter menos de 6 caracteres.</InputErrorMessage>
-            )}
+            {errors?.password?.type === "mismatch" && <InputErrorMessage>Senha incorreta.</InputErrorMessage>}
           </CustomInputContainer>
           <div className="flex items-center justify-between">
             <label className="flex items-center text-sm text-gray-200">
@@ -80,7 +90,7 @@ export default function LoginPage() {
             <svg
               stroke="currentColor"
               fill="currentColor"
-              stroke-width="0"
+              strokeWidth="0"
               version="1.1"
               x="0px"
               y="0px"

@@ -2,15 +2,13 @@ import validator from "validator";
 import { useForm } from "react-hook-form";
 import { AuthError, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
+import { auth, db } from "../../config/firebase.config";
+import { Link } from "react-router-dom";
 
 // Components
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
-
-// Utilities
-import { Link } from "react-router-dom";
-import { auth, db } from "../../config/firebase.config";
 
 interface SignUpform {
   firstName: string;

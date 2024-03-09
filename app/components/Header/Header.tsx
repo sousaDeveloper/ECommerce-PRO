@@ -7,6 +7,8 @@ import { MenuIcon, ShoppingCartIcon } from "lucide-react";
 
 // Styles
 import "./Header.scss";
+import { signOut } from "firebase/auth";
+import { auth } from "../../config/firebase.config";
 
 export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -58,6 +60,14 @@ export default function Header() {
             </li>
             <li className="cursor-pointer">
               <Link to="/register">Registrar</Link>
+            </li>
+            <li
+              className="cursor-pointer"
+              onClick={() => {
+                signOut(auth);
+              }}
+            >
+              Sair
             </li>
             <Sheet>
               <SheetTrigger>
