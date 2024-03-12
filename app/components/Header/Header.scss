@@ -10,6 +10,9 @@ header {
       color: #f2b6c1;
     }
   }
+  ul:hover li:not(:hover) {
+    filter: blur(1.2px);
+  }
 }
 
 .content {

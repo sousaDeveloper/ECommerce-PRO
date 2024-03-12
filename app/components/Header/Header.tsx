@@ -1,16 +1,20 @@
 import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { signOut } from "firebase/auth";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
-import { Button } from "../ui/button";
+// Utilities
+import { auth } from "../../config/firebase.config";
+import { UserContext } from "../../contexts/user.context";
+
 import { MenuIcon, ShoppingCartIcon } from "lucide-react";
 
 // Styles
 import "./Header.scss";
-import { signOut } from "firebase/auth";
-import { auth } from "../../config/firebase.config";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Button } from "../ui/button";
 
 export default function Header() {
+  const { isAuthenticated } = useContext(UserContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -55,20 +59,26 @@ export default function Header() {
         <nav>
           <ul className="flex gap-6 p-2">
             <li className="cursor-pointer">Explorar</li>
-            <li className="cursor-pointer">
-              <Link to="/login">Login</Link>
-            </li>
-            <li className="cursor-pointer">
-              <Link to="/register">Registrar</Link>
-            </li>
-            <li
-              className="cursor-pointer"
-              onClick={() => {
-                signOut(auth);
-              }}
-            >
-              Sair
-            </li>
+
+            {isAuthenticated ? (
+              <li
+                className="cursor-pointer"
+                onClick={() => {
+                  signOut(auth);
+                }}
+              >
+                Sair
+              </li>
+            ) : (
+              <>
+                <li className="cursor-pointer">
+                  <Link to="/login">Login</Link>
+                </li>
+                <li className="cursor-pointer">
+                  <Link to="/register">Registrar</Link>
+                </li>
+              </>
+            )}
             <Sheet>
               <SheetTrigger>
                 {" "}
