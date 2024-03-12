@@ -2,8 +2,8 @@ import validator from "validator";
 import { useForm } from "react-hook-form";
 import { AuthError, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
-import { auth, db } from "../../config/firebase.config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect } from "react";
 
 // Components
 import Header from "../../components/Header/Header";
@@ -17,7 +17,20 @@ interface SignUpform {
   confirmPassword: string;
 }
 
+// Utilities
+import { UserContext } from "../../contexts/user.context";
+import { auth, db } from "../../config/firebase.config";
+
 export default function SignUpPage() {
+  const { isAuthenticated } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
+
   const {
     register,
     formState: { errors },

@@ -1,20 +1,33 @@
 import { useForm } from "react-hook-form";
 import validator from "validator";
 import { AuthError, AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { auth, db, googleProvider } from "../../config/firebase.config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
+import { useContext, useEffect } from "react";
 
 // Components
 import Header from "../../components/Header/Header";
 import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
+
+// Utilities
+import { auth, db, googleProvider } from "../../config/firebase.config";
+import { UserContext } from "../../contexts/user.context";
 interface LoginForm {
   email: string;
   password: string;
 }
 
 export default function LoginPage() {
+  const { isAuthenticated } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated]);
+
   const {
     register,
     formState: { errors },
