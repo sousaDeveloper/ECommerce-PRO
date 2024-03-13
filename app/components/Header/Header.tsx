@@ -12,7 +12,6 @@ import { MenuIcon, ShoppingCartIcon } from "lucide-react";
 import "./Header.scss";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
-import { toast } from "sonner";
 
 export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
