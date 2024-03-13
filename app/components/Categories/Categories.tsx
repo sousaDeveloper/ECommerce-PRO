@@ -1,32 +1,14 @@
-import { useEffect, useState } from "react";
-import { getDocs, collection } from "firebase/firestore";
+import { useContext, useEffect } from "react";
+import { CategoriesContext } from "../../contexts/categories.context";
 
-// Utilities
-import Category from "../../types/category.types";
-import { db } from "../../config/firebase.config";
-import { categoryConverter } from "../../converters/firestore.converters";
+// Components
 import CategoryItem from "./Category-Item/Category-Item";
 
 // Styles
 import "./Categories.scss";
 
 export default function Categories() {
-  const [categories, setCategories] = useState<Category[]>([]);
-
-  const fetchCategories = async () => {
-    try {
-      const categoriesFromFirestore: Category[] = [];
-      const querySnapshot = await getDocs(collection(db, "categories").withConverter(categoryConverter));
-
-      querySnapshot.forEach((doc) => {
-        categoriesFromFirestore.push(doc.data());
-      });
-
-      setCategories(categoriesFromFirestore);
-    } catch (error) {
-      console.log({ error });
-    }
-  };
+  const { categories, fetchCategories } = useContext(CategoriesContext);
 
   useEffect(() => {
     fetchCategories();
