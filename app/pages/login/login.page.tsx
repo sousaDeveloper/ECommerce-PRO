@@ -4,6 +4,7 @@ import { AuthError, AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup 
 import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect } from "react";
+import { toast } from "sonner";
 
 // Components
 import Header from "../../components/Header/Header";
@@ -13,6 +14,7 @@ import CustomInputContainer from "../../components/CustomInputContainer/CustomIn
 // Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
 import { UserContext } from "../../contexts/user.context";
+
 interface LoginForm {
   email: string;
   password: string;
@@ -24,6 +26,7 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
+      toast.success("Login realizado com sucesso.");
       navigate("/");
     }
   }, [isAuthenticated]);

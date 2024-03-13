@@ -12,6 +12,7 @@ import { MenuIcon, ShoppingCartIcon } from "lucide-react";
 import "./Header.scss";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
+import { toast } from "sonner";
 
 export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
@@ -45,12 +46,21 @@ export default function Header() {
               <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
             </SheetHeader>
             <nav className="p-5 flex flex-col gap-3">
-              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                <Link to="/login">Login</Link>
-              </Button>
-              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                <Link to="/register">Registrar</Link>
-              </Button>
+              {!isAuthenticated ? (
+                <>
+                  <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                    <Link to="/login">Login</Link>
+                  </Button>
+                  <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                    <Link to="/register">Registrar</Link>
+                  </Button>
+                </>
+              ) : (
+                <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={() => signOut(auth)}>
+                  Sair
+                </Button>
+              )}
+
               <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Ver Carrinho</Button>
             </nav>
           </SheetContent>

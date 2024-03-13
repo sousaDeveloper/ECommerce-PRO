@@ -4,6 +4,7 @@ import { AuthError, createUserWithEmailAndPassword, AuthErrorCodes } from "fireb
 import { addDoc, collection } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect } from "react";
+import { toast } from "sonner";
 
 // Components
 import Header from "../../components/Header/Header";
@@ -27,6 +28,7 @@ export default function SignUpPage() {
 
   useEffect(() => {
     if (isAuthenticated) {
+      toast.success("Cadastro realizado com sucesso.");
       navigate("/");
     }
   }, [isAuthenticated]);
