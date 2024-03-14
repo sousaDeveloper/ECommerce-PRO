@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 import { CategoriesContext } from "../../contexts/categories.context";
 
 // Components
-import CategoryItem from "./Category-Item/Category-Item";
+import CategoryItem from "./CategoryItem/CategoryItem";
 
 // Styles
 import "./Categories.scss";
