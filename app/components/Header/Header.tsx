@@ -59,7 +59,9 @@ export default function Header() {
                   Sair
                 </Button>
               )}
-
+              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                <Link to="/explore">Explorar</Link>
+              </Button>
               <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Ver Carrinho</Button>
             </nav>
           </SheetContent>
@@ -67,7 +69,9 @@ export default function Header() {
       ) : (
         <nav>
           <ul className="flex gap-6 p-2">
-            <li className="cursor-pointer">Explorar</li>
+            <li className="cursor-pointer">
+              <Link to="/explore">Explorar</Link>
+            </li>
 
             {isAuthenticated ? (
               <li
