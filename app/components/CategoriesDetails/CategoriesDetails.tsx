@@ -62,7 +62,7 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
         ) : (
-          <div className="flex flex-wrap p-4 gap-8 gap-4">
+          <div className="flex flex-wrap p-4 gap-8">
             {category?.products.map((product) => (
               <ProductItem product={product} key={product.id} />
             ))}
