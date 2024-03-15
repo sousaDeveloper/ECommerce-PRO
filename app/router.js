@@ -1,10 +1,11 @@
 const { createBrowserRouter } = require("react-router-dom");
 
-import ExplorePage from "./pages/explore/explore.page";
 // Pages
 import HomePage from "./pages/home/home.page";
 import LoginPage from "./pages/login/login.page";
 import SignUpPage from "./pages/signUp/signup.page";
+import ExplorePage from "./pages/explore/explore.page";
+import CategoryDetailsPage from "./pages/categoryDetails/categoryDetails.page";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: "explore",
     element: <ExplorePage />,
+  },
+  {
+    path: "category/:id",
+    element: <CategoryDetailsPage />,
   },
 ]);
 
