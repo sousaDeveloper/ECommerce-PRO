@@ -1,17 +1,14 @@
 header {
-  backdrop-filter: blur(0.5rem);
-  -webkit-backdrop-filter: blur(0.5rem);
-  background-color: #28304000;
+  backdrop-filter: blur(0.3rem);
+  -webkit-backdrop-filter: blur(0.3rem);
+  background-color: #283040d9;
 
   li {
     transition: 0.3s;
 
     &:hover {
-      color: #f2b6c1;
+      color: #F2B6C1;
     }
-  }
-  ul:hover li:not(:hover) {
-    filter: blur(1.2px);
   }
 }
 
