@@ -4,6 +4,7 @@ import "./globals.css";
 import UserContextProvider from "./contexts/user.context";
 import { Toaster } from "./components/ui/sonner";
 import CategoriesContextProvider from "./contexts/categories.context";
+import CardContextProvider from "./contexts/cart.context";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,7 +30,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <UserContextProvider>
-          <CategoriesContextProvider>{children}</CategoriesContextProvider>
+          <CategoriesContextProvider>
+            <CardContextProvider>{children}</CardContextProvider>
+          </CategoriesContextProvider>
         </UserContextProvider>
         <Toaster />
       </body>
