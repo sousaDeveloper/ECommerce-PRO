@@ -6,7 +6,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "../../config/firebase.config";
 import { UserContext } from "../../contexts/user.context";
 
-import { MenuIcon, ShoppingCartIcon } from "lucide-react";
+import { LogInIcon, LogOutIcon, MenuIcon, ShoppingCartIcon } from "lucide-react";
 
 // Styles
 import "./Header.scss";
@@ -36,36 +36,58 @@ export default function Header() {
       </h1>
 
       {windowWidth <= 785 ? (
-        <Sheet>
-          <SheetTrigger asChild>
-            <MenuIcon size={25} />
-          </SheetTrigger>
-          <SheetContent className="p-0 text-white content">
-            <SheetHeader className="border-b border-slate-800 p-5 ">
-              <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
-            </SheetHeader>
-            <nav className="p-5 flex flex-col gap-3">
-              {!isAuthenticated ? (
-                <>
-                  <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                    <Link to="/login">Login</Link>
+        <div className="flex gap-4 items-center">
+          <Sheet>
+            <SheetTrigger>
+              {" "}
+              <li className="cursor-pointer flex items-center mb-1">
+                <ShoppingCartIcon />
+                <p className="ml-1">5</p>
+              </li>
+            </SheetTrigger>
+            <SheetContent className="p-0 text-white content">
+              <SheetHeader className="border-b border-slate-800 p-5">
+                <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Carrinho</SheetTitle>
+              </SheetHeader>
+            </SheetContent>
+          </Sheet>
+          <Sheet>
+            <SheetTrigger asChild>
+              <MenuIcon size={25} />
+            </SheetTrigger>
+            <SheetContent className="p-0 text-white content">
+              <SheetHeader className="border-b border-slate-800 p-5 ">
+                <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
+              </SheetHeader>
+              <nav className="p-5 flex flex-col gap-3">
+                {!isAuthenticated ? (
+                  <>
+                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                      <Link to="/login" className="flex items-center gap-2">
+                        <LogInIcon />
+                        Login
+                      </Link>
+                    </Button>
+                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                      <Link to="/register">Registrar</Link>
+                    </Button>
+                  </>
+                ) : (
+                  <Button
+                    className="flex gap-2 items-center font-bold bg-[#283040] hover:bg-[#8C3A60]"
+                    onClick={() => signOut(auth)}
+                  >
+                    <LogOutIcon />
+                    Sair
                   </Button>
-                  <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                    <Link to="/register">Registrar</Link>
-                  </Button>
-                </>
-              ) : (
-                <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={() => signOut(auth)}>
-                  Sair
+                )}
+                <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
+                  <Link to="/explore">Explorar</Link>
                 </Button>
-              )}
-              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                <Link to="/explore">Explorar</Link>
-              </Button>
-              <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">Ver Carrinho</Button>
-            </nav>
-          </SheetContent>
-        </Sheet>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       ) : (
         <nav>
           <ul className="flex gap-6 p-2">
@@ -75,11 +97,12 @@ export default function Header() {
 
             {isAuthenticated ? (
               <li
-                className="cursor-pointer"
+                className="cursor-pointer flex gap-2 items-center"
                 onClick={() => {
                   signOut(auth);
                 }}
               >
+                <LogOutIcon />
                 Sair
               </li>
             ) : (

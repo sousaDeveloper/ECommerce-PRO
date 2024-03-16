@@ -1,12 +1,16 @@
 import { useEffect, useState } from "react";
-import Category from "../../types/category.types";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { db } from "../../config/firebase.config";
-import { categoryConverter } from "../../converters/firestore.converters";
-import { Link } from "react-router-dom";
 import { ChevronLeftIcon } from "lucide-react";
-import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import { Link } from "react-router-dom";
+import { collection, getDocs, query, where } from "firebase/firestore";
+
+// Utilties
+import { db } from "../../config/firebase.config";
+import Category from "../../types/category.types";
+import { categoryConverter } from "../../converters/firestore.converters";
+
+// Components
 import ProductItem from "../CategoryOverview/ProductItem/ProductItem";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 interface ICategoryDetailsProps {
   categoryId: string;
