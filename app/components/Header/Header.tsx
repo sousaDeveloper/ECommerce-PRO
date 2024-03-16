@@ -1,17 +1,19 @@
 import { Link } from "react-router-dom";
-import { useContext, useEffect, useState } from "react";
 import { signOut } from "firebase/auth";
+import { useContext, useEffect, useState } from "react";
+import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
 
 // Utilities
 import { auth } from "../../config/firebase.config";
 import { UserContext } from "../../contexts/user.context";
 
-import { LogInIcon, LogOutIcon, MenuIcon, ShoppingCartIcon } from "lucide-react";
+// Components
+import Cart from "../cart/Cart";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Button } from "../ui/button";
 
 // Styles
 import "./Header.scss";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
-import { Button } from "../ui/button";
 
 export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
@@ -37,20 +39,7 @@ export default function Header() {
 
       {windowWidth <= 785 ? (
         <div className="flex gap-4 items-center">
-          <Sheet>
-            <SheetTrigger>
-              {" "}
-              <li className="cursor-pointer flex items-center mb-1">
-                <ShoppingCartIcon />
-                <p className="ml-1">5</p>
-              </li>
-            </SheetTrigger>
-            <SheetContent className="p-0 text-white content">
-              <SheetHeader className="border-b border-slate-800 p-5">
-                <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Carrinho</SheetTitle>
-              </SheetHeader>
-            </SheetContent>
-          </Sheet>
+          <Cart />
           <Sheet>
             <SheetTrigger asChild>
               <MenuIcon size={25} />
@@ -115,20 +104,7 @@ export default function Header() {
                 </li>
               </>
             )}
-            <Sheet>
-              <SheetTrigger>
-                {" "}
-                <li className="cursor-pointer flex items-center">
-                  <ShoppingCartIcon />
-                  <p className="ml-1">5</p>
-                </li>
-              </SheetTrigger>
-              <SheetContent className="p-0 text-white content">
-                <SheetHeader className="border-b border-slate-800 p-5">
-                  <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Carrinho</SheetTitle>
-                </SheetHeader>
-              </SheetContent>
-            </Sheet>
+            <Cart />
           </ul>
         </nav>
       )}
