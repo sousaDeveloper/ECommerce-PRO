@@ -11,12 +11,13 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../u
 export default function Cart() {
   const { products } = useContext(CardContext);
 
-  const formatPrice = products.reduce((accum, sum) => accum + sum.price, 0);
+  const totalItemsInCart = products.reduce((accum, num) => accum + num.quantity, 0);
 
+  const totalPrice = products.reduce((accum, num) => accum + num.price * num.quantity, 0);
   const formattedPrice = Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format(formatPrice);
+  }).format(totalPrice);
 
   return (
     <Sheet>
@@ -24,7 +25,7 @@ export default function Cart() {
         {" "}
         <li className="cursor-pointer flex items-center mb-1">
           <ShoppingCartIcon />
-          <p className="ml-1">{products.length}</p>
+          <p className="ml-1">{totalItemsInCart}</p>
         </li>
       </SheetTrigger>
       <SheetContent className="p-0 text-white content" style={{ overflowY: "auto" }}>
