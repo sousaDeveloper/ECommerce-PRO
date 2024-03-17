@@ -12,3 +12,16 @@
 body {
   background-color: #283040;
 }
+
+/* Para navegadores WebKit (Chrome, Safari) */
+::-webkit-scrollbar {
+  width: 0.9rem; /* largura do scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #f2b6c1; /* cor de fundo do track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #8c3a60; /* cor do thumb (a barra em si) */
+}
