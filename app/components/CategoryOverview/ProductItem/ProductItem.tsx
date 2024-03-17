@@ -1,15 +1,23 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Image from "next/image";
+import { toast } from "sonner";
 
 // Utilities
 import Product from "../../../types/product.types";
+import { CardContext } from "../../../contexts/cart.context";
 
 interface IProductProps {
   product: Product;
 }
 
 export default function ProductItem({ product }: IProductProps) {
+  const { addProductToCart } = useContext(CardContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const addProductToCartClick = () => {
+    toast.success("Produto adicionado ao carrinho.");
+    return addProductToCart(product);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -49,7 +57,10 @@ export default function ProductItem({ product }: IProductProps) {
       </div>
       <div className="flex justify-between items-center p-6 pt-0">
         <span className="font-bold">R${product.price}</span>
-        <button className="bg-[#fff] hover:bg-[#283040] hover:text-[#F2B6C1] transition duration-300 text-[#283040] rounded p-2 font-bold">
+        <button
+          className="bg-[#fff] hover:bg-[#283040] hover:text-[#F2B6C1] transition duration-300 text-[#283040] rounded p-2 font-bold"
+          onClick={addProductToCartClick}
+        >
           Adicionar ao carrinho
         </button>
       </div>
