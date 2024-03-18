@@ -23,7 +23,7 @@ interface ICartItemProps {
 }
 
 export default function CartItem({ product }: ICartItemProps) {
-  const { addProductToCart, removeProductInCart } = useContext(CardContext);
+  const { addProductToCart, removeProductInCart, decreaseProductQuantity } = useContext(CardContext);
 
   const addProcuctToCartClick = () => {
     return addProductToCart(product);
@@ -32,6 +32,10 @@ export default function CartItem({ product }: ICartItemProps) {
   const removeProductInCartClick = () => {
     toast.success("Item removido do carrinho.");
     return removeProductInCart(product.id);
+  };
+
+  const decreaseProductQuantityClick = () => {
+    return decreaseProductQuantity(product.id);
   };
 
   return (
@@ -51,7 +55,12 @@ export default function CartItem({ product }: ICartItemProps) {
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="cursor-pointer text-xl hover:text-[#8C3A60] transition duration-300">-</span>
+            <span
+              className="cursor-pointer text-xl hover:text-[#8C3A60] transition duration-300"
+              onClick={decreaseProductQuantityClick}
+            >
+              -
+            </span>
             <span className="mt-1 text-lg">{product.quantity}</span>
             <span
               className="cursor-pointer text-xl hover:text-[#8C3A60] transition duration-300"
@@ -67,12 +76,14 @@ export default function CartItem({ product }: ICartItemProps) {
           <AlertDialogTrigger>X</AlertDialogTrigger>
           <AlertDialogContent>
             <AlertDialogHeader>
-              <AlertDialogTitle>Deseja realmente excluir esse item do carrinho?</AlertDialogTitle>
+              <AlertDialogTitle className="text-white">Deseja realmente excluir esse item do carrinho?</AlertDialogTitle>
               <AlertDialogDescription></AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel>Cancelar</AlertDialogCancel>
-              <AlertDialogAction onClick={removeProductInCartClick}>Excluir</AlertDialogAction>
+              <AlertDialogCancel className="font-bold">Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={removeProductInCartClick} className="font-bold">
+                Excluir
+              </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>

@@ -8,12 +8,14 @@ interface ICardContext {
   products: CartProduct[];
   addProductToCart: (product: Product) => void;
   removeProductInCart: (productId: string) => void;
+  decreaseProductQuantity: (productId: string) => void;
 }
 
 export const CardContext = createContext<ICardContext>({
   products: [],
   addProductToCart: () => {},
   removeProductInCart: () => {},
+  decreaseProductQuantity: () => {},
 });
 
 export default function CardContextProvider({ children }: any) {
@@ -35,5 +37,17 @@ export default function CardContextProvider({ children }: any) {
     return setProducts(products.filter((item) => item.id !== productId));
   };
 
-  return <CardContext.Provider value={{ products, addProductToCart, removeProductInCart }}>{children}</CardContext.Provider>;
+  const decreaseProductQuantity = (productId: string) => {
+    return setProducts((product) =>
+      product
+        .map((product) => (product.id === productId ? { ...product, quantity: product.quantity - 1 } : product))
+        .filter((product) => product.quantity > 0)
+    );
+  };
+
+  return (
+    <CardContext.Provider value={{ products, addProductToCart, removeProductInCart, decreaseProductQuantity }}>
+      {children}
+    </CardContext.Provider>
+  );
 }
