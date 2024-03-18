@@ -1,5 +1,5 @@
 import { ShoppingCartIcon } from "lucide-react";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 
 // Utilities
 import { CardContext } from "../../contexts/cart.context";
@@ -11,7 +11,7 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../u
 export default function Cart() {
   const { products, productsTotalPrice } = useContext(CardContext);
 
-  const totalItemsInCart = products.reduce((accum, num) => accum + num.quantity, 0);
+  const totalItemsInCart = useMemo(() => products.reduce((accum, num) => accum + num.quantity, 0), [products]);
 
   const formattedPrice = Intl.NumberFormat("pt-BR", {
     style: "currency",
