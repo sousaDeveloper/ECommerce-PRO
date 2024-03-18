@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useMemo, useState } from "react";
+import { createContext, useEffect, useMemo, useState } from "react";
 import CartProduct from "../types/cart.types";
 import Product from "../types/product.types";
 
@@ -22,6 +22,20 @@ export const CardContext = createContext<ICardContext>({
 
 export default function CardContextProvider({ children }: any) {
   const [products, setProducts] = useState<CartProduct[]>([]);
+
+  useEffect(() => {
+    const productsFromLocalStorage = localStorage.getItem("cartProducts");
+
+    if (productsFromLocalStorage) {
+      return setProducts(JSON.parse(productsFromLocalStorage));
+    }
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      localStorage.setItem("cartProducts", JSON.stringify(products));
+    }, 0);
+  }, [products]);
 
   const productsTotalPrice = useMemo(() => products.reduce((accum, num) => accum + num.price * num.quantity, 0), [products]);
 
