@@ -1,11 +1,12 @@
 "use client";
 
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 import CartProduct from "../types/cart.types";
 import Product from "../types/product.types";
 
 interface ICardContext {
   products: CartProduct[];
+  productsTotalPrice: number;
   addProductToCart: (product: Product) => void;
   removeProductInCart: (productId: string) => void;
   decreaseProductQuantity: (productId: string) => void;
@@ -13,6 +14,7 @@ interface ICardContext {
 
 export const CardContext = createContext<ICardContext>({
   products: [],
+  productsTotalPrice: 0,
   addProductToCart: () => {},
   removeProductInCart: () => {},
   decreaseProductQuantity: () => {},
@@ -20,6 +22,8 @@ export const CardContext = createContext<ICardContext>({
 
 export default function CardContextProvider({ children }: any) {
   const [products, setProducts] = useState<CartProduct[]>([]);
+
+  const productsTotalPrice = useMemo(() => products.reduce((accum, num) => accum + num.price * num.quantity, 0), [products]);
 
   const addProductToCart = (product: Product) => {
     const productIsAlreadyInCart = products.some((item) => item.id === product.id);
@@ -46,7 +50,9 @@ export default function CardContextProvider({ children }: any) {
   };
 
   return (
-    <CardContext.Provider value={{ products, addProductToCart, removeProductInCart, decreaseProductQuantity }}>
+    <CardContext.Provider
+      value={{ products, addProductToCart, removeProductInCart, decreaseProductQuantity, productsTotalPrice }}
+    >
       {children}
     </CardContext.Provider>
   );

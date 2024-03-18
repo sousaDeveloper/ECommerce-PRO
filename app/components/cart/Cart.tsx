@@ -9,15 +9,14 @@ import CartItem from "../CartItem/CartItem";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 
 export default function Cart() {
-  const { products } = useContext(CardContext);
+  const { products, productsTotalPrice } = useContext(CardContext);
 
   const totalItemsInCart = products.reduce((accum, num) => accum + num.quantity, 0);
 
-  const totalPrice = products.reduce((accum, num) => accum + num.price * num.quantity, 0);
   const formattedPrice = Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "BRL",
-  }).format(totalPrice);
+  }).format(productsTotalPrice);
 
   return (
     <Sheet>
