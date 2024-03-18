@@ -15,7 +15,7 @@ export default function ProductItem({ product }: IProductProps) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const addProductToCartClick = () => {
-    toast.success("Produto adicionado ao carrinho.");
+    toast.success("Item adicionado ao carrinho.");
     return addProductToCart(product);
   };
 

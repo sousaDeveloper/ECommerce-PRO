@@ -7,11 +7,13 @@ import Product from "../types/product.types";
 interface ICardContext {
   products: CartProduct[];
   addProductToCart: (product: Product) => void;
+  removeProductInCart: (productId: string) => void;
 }
 
 export const CardContext = createContext<ICardContext>({
   products: [],
   addProductToCart: () => {},
+  removeProductInCart: () => {},
 });
 
 export default function CardContextProvider({ children }: any) {
@@ -29,5 +31,9 @@ export default function CardContextProvider({ children }: any) {
     return setProducts((prevState) => [...prevState, { ...product, quantity: 1 }]);
   };
 
-  return <CardContext.Provider value={{ products, addProductToCart }}>{children}</CardContext.Provider>;
+  const removeProductInCart = (productId: string) => {
+    return setProducts(products.filter((item) => item.id !== productId));
+  };
+
+  return <CardContext.Provider value={{ products, addProductToCart, removeProductInCart }}>{children}</CardContext.Provider>;
 }

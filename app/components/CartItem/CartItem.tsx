@@ -1,13 +1,39 @@
 import Image from "next/image";
+import { useContext } from "react";
 
 // Utilities
 import CartProduct from "../../types/cart.types";
+import { CardContext } from "../../contexts/cart.context";
 
+// Components
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "../ui/alert-dialog";
+import { toast } from "sonner";
 interface ICartItemProps {
   product: CartProduct;
 }
 
 export default function CartItem({ product }: ICartItemProps) {
+  const { addProductToCart, removeProductInCart } = useContext(CardContext);
+
+  const addProcuctToCartClick = () => {
+    return addProductToCart(product);
+  };
+
+  const removeProductInCartClick = () => {
+    toast.success("Item removido do carrinho.");
+    return removeProductInCart(product.id);
+  };
+
   return (
     <div className="flex justify-between gap-3 mb-3 border border-solid border-[#283040] rounded p-1">
       <div className="flex gap-2">
@@ -27,11 +53,30 @@ export default function CartItem({ product }: ICartItemProps) {
           <div className="flex items-center gap-2">
             <span className="cursor-pointer text-xl hover:text-[#8C3A60] transition duration-300">-</span>
             <span className="mt-1 text-lg">{product.quantity}</span>
-            <span className="cursor-pointer text-xl hover:text-[#8C3A60] transition duration-300">+</span>
+            <span
+              className="cursor-pointer text-xl hover:text-[#8C3A60] transition duration-300"
+              onClick={addProcuctToCartClick}
+            >
+              +
+            </span>
           </div>
         </div>
       </div>
-      <span className="text-xl text-end cursor-pointer hover:text-[#8C3A60] transition duration-300 max-h-1">X</span>
+      <span className="text-xl text-end cursor-pointer hover:text-[#8C3A60] transition duration-300 max-h-1">
+        <AlertDialog>
+          <AlertDialogTrigger>X</AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Deseja realmente excluir esse item do carrinho?</AlertDialogTitle>
+              <AlertDialogDescription></AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={removeProductInCartClick}>Excluir</AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      </span>
     </div>
   );
 }
