@@ -6,6 +6,7 @@ import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
 // Utilities
 import { auth } from "../../config/firebase.config";
 import { UserContext } from "../../contexts/user.context";
+import { CartContext } from "../../contexts/cart.context";
 
 // Components
 import Cart from "../cart/Cart";
