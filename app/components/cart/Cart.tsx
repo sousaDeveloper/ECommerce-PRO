@@ -22,7 +22,7 @@ export default function Cart() {
     <Sheet>
       <SheetTrigger>
         {" "}
-        <li className="cursor-pointer flex items-center mb-1">
+        <li className="cursor-pointer flex items-center">
           <ShoppingCartIcon />
           <p className="ml-1">{totalItemsInCart}</p>
         </li>

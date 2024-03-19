@@ -79,7 +79,7 @@ export default function Header() {
         </div>
       ) : (
         <nav>
-          <ul className="flex gap-6 p-2">
+          <ul className="flex items-center gap-6 p-2">
             <li className="cursor-pointer">
               <Link to="/explore">Explorar</Link>
             </li>
