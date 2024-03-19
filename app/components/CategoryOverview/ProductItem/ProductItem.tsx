@@ -1,10 +1,12 @@
 import { useContext, useEffect, useState } from "react";
-import Image from "next/image";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import Image from "next/image";
 
 // Utilities
 import Product from "../../../types/product.types";
 import { CardContext } from "../../../contexts/cart.context";
+import { UserContext } from "../../../contexts/user.context";
 
 interface IProductProps {
   product: Product;
@@ -12,11 +14,18 @@ interface IProductProps {
 
 export default function ProductItem({ product }: IProductProps) {
   const { addProductToCart } = useContext(CardContext);
+  const { isAuthenticated } = useContext(UserContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const navigate = useNavigate();
 
   const addProductToCartClick = () => {
-    toast.success("Item adicionado ao carrinho.");
-    return addProductToCart(product);
+    if (isAuthenticated === false) {
+      toast.info("Primeiro faça seu login.");
+      return navigate("/login");
+    } else {
+      toast.success("Item adicionado ao carrinho.");
+      return addProductToCart(product);
+    }
   };
 
   useEffect(() => {
