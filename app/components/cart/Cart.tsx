@@ -2,21 +2,17 @@ import { ShoppingCartIcon } from "lucide-react";
 import { useContext, useMemo } from "react";
 
 // Utilities
-import { CardContext } from "../../contexts/cart.context";
+import { CartContext } from "../../contexts/cart.context";
 
 // Components
 import CartItem from "../CartItem/CartItem";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
-  const { products, productsTotalPrice } = useContext(CardContext);
+  const { products, formattedPrice } = useContext(CartContext);
 
   const totalItemsInCart = useMemo(() => products.reduce((accum, num) => accum + num.quantity, 0), [products]);
-
-  const formattedPrice = Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: "BRL",
-  }).format(productsTotalPrice);
 
   return (
     <Sheet>
@@ -43,7 +39,7 @@ export default function Cart() {
             <div className="pt-5 font-bold">
               <h1>Total: {formattedPrice}</h1>
               <button className="flex gap-2 items-center justify-center w-full rounded bg-[#8C3A60] hover:bg-[#283040] hover:text-[#f2b6c1] transition duration-300 p-2">
-                <ShoppingCartIcon /> Ir para o checkout
+                <ShoppingCartIcon /> Ir para o pagamento
               </button>
             </div>
           </div>

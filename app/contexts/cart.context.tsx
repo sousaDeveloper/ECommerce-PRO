@@ -5,23 +5,23 @@ import { createContext, useEffect, useMemo, useState } from "react";
 import CartProduct from "../types/cart.types";
 import Product from "../types/product.types";
 
-interface ICardContext {
+interface ICartContext {
   products: CartProduct[];
-  productsTotalPrice: number;
+  formattedPrice: string;
   addProductToCart: (product: Product) => void;
   removeProductInCart: (productId: string) => void;
   decreaseProductQuantity: (productId: string) => void;
 }
 
-export const CardContext = createContext<ICardContext>({
+export const CartContext = createContext<ICartContext>({
   products: [],
-  productsTotalPrice: 0,
+  formattedPrice: "",
   addProductToCart: () => {},
   removeProductInCart: () => {},
   decreaseProductQuantity: () => {},
 });
 
-export default function CardContextProvider({ children }: any) {
+export default function CartContextProvider({ children }: any) {
   const [products, setProducts] = useState<CartProduct[]>([]);
 
   useEffect(() => {
@@ -39,6 +39,11 @@ export default function CardContextProvider({ children }: any) {
   }, [products]);
 
   const productsTotalPrice = useMemo(() => products.reduce((accum, num) => accum + num.price * num.quantity, 0), [products]);
+
+  const formattedPrice = Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(productsTotalPrice);
 
   const addProductToCart = (product: Product) => {
     const productIsAlreadyInCart = products.some((item) => item.id === product.id);
@@ -65,10 +70,10 @@ export default function CardContextProvider({ children }: any) {
   };
 
   return (
-    <CardContext.Provider
-      value={{ products, addProductToCart, removeProductInCart, decreaseProductQuantity, productsTotalPrice }}
+    <CartContext.Provider
+      value={{ products, addProductToCart, removeProductInCart, decreaseProductQuantity, formattedPrice }}
     >
       {children}
-    </CardContext.Provider>
+    </CartContext.Provider>
   );
 }

@@ -5,7 +5,7 @@ import Image from "next/image";
 
 // Utilities
 import Product from "../../../types/product.types";
-import { CardContext } from "../../../contexts/cart.context";
+import { CartContext } from "../../../contexts/cart.context";
 import { UserContext } from "../../../contexts/user.context";
 
 interface IProductProps {
@@ -13,7 +13,7 @@ interface IProductProps {
 }
 
 export default function ProductItem({ product }: IProductProps) {
-  const { addProductToCart } = useContext(CardContext);
+  const { addProductToCart } = useContext(CartContext);
   const { isAuthenticated } = useContext(UserContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const navigate = useNavigate();

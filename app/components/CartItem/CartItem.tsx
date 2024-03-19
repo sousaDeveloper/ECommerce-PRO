@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 // Utilities
 import CartProduct from "../../types/cart.types";
-import { CardContext } from "../../contexts/cart.context";
+import { CartContext } from "../../contexts/cart.context";
 
 // Components
 import {
@@ -23,7 +23,7 @@ interface ICartItemProps {
 }
 
 export default function CartItem({ product }: ICartItemProps) {
-  const { addProductToCart, removeProductInCart, decreaseProductQuantity } = useContext(CardContext);
+  const { addProductToCart, removeProductInCart, decreaseProductQuantity } = useContext(CartContext);
 
   const addProcuctToCartClick = () => {
     return addProductToCart(product);
@@ -46,7 +46,7 @@ export default function CartItem({ product }: ICartItemProps) {
           alt={product.name}
           width={150}
           height={0}
-          className="rounded object-cover max-h-32 min-h-32 max-w-32 min-w-32"
+          className="rounded object-cover max-h-full min-h-32 max-w-32 min-w-32"
         />
         <div className="flex flex-col gap-3 justify-center font-bold">
           <div className="flex flex-col">
