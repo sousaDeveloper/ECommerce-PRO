@@ -2,6 +2,8 @@ import { ShoppingCartIcon } from "lucide-react";
 import { useContext, useMemo, useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 // Utilities
 import { CartContext } from "../../contexts/cart.context";
@@ -9,24 +11,36 @@ import { CartContext } from "../../contexts/cart.context";
 // Components
 import CartItem from "../CartItem/CartItem";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { UserContext } from "../../contexts/user.context";
 
 export default function Cart() {
-  const { products, formattedPrice } = useContext(CartContext);
+  const { products, formattedPrice, clearCart } = useContext(CartContext);
+  const { isAuthenticated } = useContext(UserContext);
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const totalItemsInCart = useMemo(() => products.reduce((accum, num) => accum + num.quantity, 0), [products]);
 
   const handleFinishPurchaseClick = async () => {
     try {
       const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_KEY}/create-checkout-session`, { products });
+      if (!isAuthenticated) {
+        toast.info("Primeiro realize seu login.");
+        return navigate("/login");
+      }
       return (window.location.href = data.url);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleBookingSubmit = async () => {
-    setSubmitIsLoading(true);
+  const handleClearCartClick = () => {
+    toast.success("Carrinho limpo com sucesso.");
+    return clearCart();
+  };
+
+  const handleBookingSubmit = () => {
+    return setSubmitIsLoading(true);
   };
 
   return (
@@ -50,6 +64,9 @@ export default function Cart() {
             {products.map((product) => (
               <CartItem product={product} key={product.id} />
             ))}
+            <button onClick={handleClearCartClick} className="font-bold hover:text-[#8C3A60] transition duration-300">
+              Limpar Carrinho
+            </button>
 
             <div className="pt-5 font-bold">
               <h1>Total: {formattedPrice}</h1>

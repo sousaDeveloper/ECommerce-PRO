@@ -39,7 +39,7 @@ export default function CartItem({ product }: ICartItemProps) {
   };
 
   return (
-    <div className="flex justify-between gap-3 mb-3 border border-solid border-[#283040] rounded p-1">
+    <div className="flex justify-between gap-3 mt-2 border border-solid border-[#283040] rounded p-1">
       <div className="flex gap-2">
         <Image
           src={product.imageUrl}

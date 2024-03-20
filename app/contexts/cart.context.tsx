@@ -8,6 +8,7 @@ import Product from "../types/product.types";
 interface ICartContext {
   products: CartProduct[];
   formattedPrice: string;
+  clearCart: () => void;
   addProductToCart: (product: Product) => void;
   removeProductInCart: (productId: string) => void;
   decreaseProductQuantity: (productId: string) => void;
@@ -16,6 +17,7 @@ interface ICartContext {
 export const CartContext = createContext<ICartContext>({
   products: [],
   formattedPrice: "",
+  clearCart: () => {},
   addProductToCart: () => {},
   removeProductInCart: () => {},
   decreaseProductQuantity: () => {},
@@ -37,6 +39,10 @@ export default function CartContextProvider({ children }: any) {
       localStorage.setItem("cartProducts", JSON.stringify(products));
     }, 0);
   }, [products]);
+
+  const clearCart = () => {
+    return setProducts([]);
+  };
 
   const productsTotalPrice = useMemo(() => products.reduce((accum, num) => accum + num.price * num.quantity, 0), [products]);
 
@@ -71,7 +77,7 @@ export default function CartContextProvider({ children }: any) {
 
   return (
     <CartContext.Provider
-      value={{ products, addProductToCart, removeProductInCart, decreaseProductQuantity, formattedPrice }}
+      value={{ products, addProductToCart, removeProductInCart, decreaseProductQuantity, formattedPrice, clearCart }}
     >
       {children}
     </CartContext.Provider>

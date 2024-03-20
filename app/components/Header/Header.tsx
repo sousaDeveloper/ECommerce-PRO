@@ -19,6 +19,7 @@ import "./Header.scss";
 export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const { clearCart } = useContext(CartContext);
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,8 +68,10 @@ export default function Header() {
                     className="flex gap-2 items-center font-bold bg-[#283040] hover:bg-[#8C3A60]"
                     onClick={() => signOut(auth)}
                   >
-                    <LogOutIcon />
-                    Sair
+                    <p onClick={() => clearCart()} className="flex gap-2">
+                      <LogOutIcon />
+                      Sair
+                    </p>
                   </Button>
                 )}
                 <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
@@ -92,8 +95,10 @@ export default function Header() {
                   signOut(auth);
                 }}
               >
-                <LogOutIcon />
-                Sair
+                <p onClick={() => clearCart()} className="flex gap-2">
+                  <LogOutIcon />
+                  Sair
+                </p>
               </li>
             ) : (
               <>
