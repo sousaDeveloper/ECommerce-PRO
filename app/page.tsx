@@ -1,7 +1,7 @@
 "use client";
 
 import { RouterProvider } from "react-router-dom";
-import router from "./router.js";
+// import { router } from "./router";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 
@@ -10,6 +10,7 @@ import { auth, db } from "./config/firebase.config";
 import { UserContext } from "./contexts/user.context";
 import { useContext } from "react";
 import { userConverter } from "./converters/firestore.converters";
+import HomePage from "./pages/home/page";
 
 export default function Page() {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
@@ -32,5 +33,9 @@ export default function Page() {
     }
   });
 
-  return <RouterProvider router={router} />;
+  return (
+    <>
+      <HomePage />
+    </>
+  );
 }
