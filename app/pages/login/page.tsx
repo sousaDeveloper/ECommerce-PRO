@@ -6,7 +6,7 @@ import { AuthError, AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup 
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect } from "react";
 import { toast } from "sonner";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 // Components
 import Header from "../../components/Header/Header";
@@ -30,7 +30,7 @@ export default function LoginPage() {
   useEffect(() => {
     if (isAuthenticated) {
       toast.success("Login realizado com sucesso.");
-      return redirect("/");
+      return router.push("/");
     }
   }, [isAuthenticated]);
 
