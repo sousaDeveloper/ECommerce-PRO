@@ -1,3 +1,5 @@
+"use client";
+
 import { signOut } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
@@ -15,6 +17,7 @@ import { Button } from "../ui/button";
 
 // Styles
 import "./Header.scss";
+import { toast } from "sonner";
 
 export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
@@ -26,6 +29,11 @@ export default function Header() {
   const handleRouterSignUpClick = () => router.push("/pages/signUp");
   const handleRouterExploreClick = () => router.push("/pages/explore");
   const handleRouterBackClick = () => router.push("/");
+
+  const handleLogoutClick = () => {
+    toast.success("Você deslogou da sua conta com sucesso.");
+    return signOut(auth);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -70,7 +78,7 @@ export default function Header() {
                 ) : (
                   <Button
                     className="flex gap-2 items-center font-bold bg-[#283040] hover:bg-[#8C3A60]"
-                    onClick={() => signOut(auth)}
+                    onClick={handleLogoutClick}
                   >
                     <p onClick={() => clearCart()} className="flex gap-2">
                       <LogOutIcon />
@@ -93,12 +101,7 @@ export default function Header() {
             </li>
 
             {isAuthenticated ? (
-              <li
-                className="cursor-pointer flex gap-2 items-center"
-                onClick={() => {
-                  signOut(auth);
-                }}
-              >
+              <li className="cursor-pointer flex gap-2 items-center" onClick={handleLogoutClick}>
                 <p onClick={() => clearCart()} className="flex gap-2">
                   <LogOutIcon />
                   Sair
