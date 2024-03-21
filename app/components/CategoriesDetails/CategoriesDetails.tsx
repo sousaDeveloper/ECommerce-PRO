@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ChevronLeftIcon } from "lucide-react";
-import { Link } from "react-router-dom";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { useRouter } from "next/navigation";
 
 // Utilties
 import { db } from "../../config/firebase.config";
@@ -17,6 +17,8 @@ interface ICategoryDetailsProps {
 }
 
 export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
+  const router = useRouter();
+  const handleRouterBackClick = () => router.back();
   const [category, setCategory] = useState<Category | null>(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -49,10 +51,13 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
   return (
     <main className="px-5">
       <div className="text-white mb-5">
-        <Link to="/" className="flex gap-1 items-center hover:text-[#F2B6C1] transition duration-300">
+        <button
+          className="flex gap-1 items-center hover:text-[#F2B6C1] transition duration-300"
+          onClick={handleRouterBackClick}
+        >
           <ChevronLeftIcon size={25} />
           <h1 className="font-bold text-xl">Explorar {category?.displayName}</h1>
-        </Link>
+        </button>
       </div>
       <div className="flex flex-wrap justify-center gap-2 p-1 ">
         {windowWidth <= 874 ? (

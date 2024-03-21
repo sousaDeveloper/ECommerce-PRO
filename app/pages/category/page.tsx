@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useParams } from "next/navigation";
 
 // Components
 import CategoryDetails from "../../components/CategoriesDetails/CategoriesDetails";
@@ -9,10 +9,12 @@ export default function CategoryDetailsPage() {
 
   if (!id) return null;
 
+  const categoryId = Array.isArray(id) ? id[0] : id;
+
   return (
     <>
       <Header />
-      <CategoryDetails categoryId={id} />
+      <CategoryDetails categoryId={categoryId} />
     </>
   );
 }

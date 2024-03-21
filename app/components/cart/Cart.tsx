@@ -2,8 +2,8 @@ import { ShoppingCartIcon } from "lucide-react";
 import { useContext, useMemo, useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 // Utilities
 import { CartContext } from "../../contexts/cart.context";
@@ -17,7 +17,7 @@ export default function Cart() {
   const { products, formattedPrice, clearCart } = useContext(CartContext);
   const { isAuthenticated } = useContext(UserContext);
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
-  const navigate = useNavigate();
+  const router = useRouter();
 
   const totalItemsInCart = useMemo(() => products.reduce((accum, num) => accum + num.quantity, 0), [products]);
 
@@ -26,9 +26,10 @@ export default function Cart() {
       const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_KEY}/create-checkout-session`, { products });
       if (!isAuthenticated) {
         toast.info("Primeiro realize seu login.");
-        return navigate("/login");
+        return router.push("/pages/login");
+      } else {
+        return (window.location.href = data.url);
       }
-      return (window.location.href = data.url);
     } catch (error) {
       console.log(error);
     }

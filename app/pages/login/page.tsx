@@ -1,10 +1,12 @@
+"use client";
+
 import { useForm } from "react-hook-form";
 import validator from "validator";
 import { AuthError, AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
-import { Link, useNavigate } from "react-router-dom";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect } from "react";
 import { toast } from "sonner";
+import { redirect, useRouter } from "next/navigation";
 
 // Components
 import Header from "../../components/Header/Header";
@@ -22,12 +24,13 @@ interface LoginForm {
 
 export default function LoginPage() {
   const { isAuthenticated } = useContext(UserContext);
-  const navigate = useNavigate();
+  const router = useRouter();
+  const handleRouterSignUpClick = () => router.push("/pages/signUp");
 
   useEffect(() => {
     if (isAuthenticated) {
       toast.success("Login realizado com sucesso.");
-      navigate("/");
+      return redirect("/");
     }
   }, [isAuthenticated]);
 
@@ -170,8 +173,8 @@ export default function LoginPage() {
           </div>
           <div className="text-center text-gray-300 flex justify-center gap-2">
             Não tem uma conta?{" "}
-            <p className="text-[#F2B6C1] hover:underline font-bold">
-              <Link to="/register">Registrar </Link>
+            <p className="text-[#F2B6C1] hover:underline font-bold cursor-pointer" onClick={handleRouterSignUpClick}>
+              Registrar
             </p>
           </div>
         </div>

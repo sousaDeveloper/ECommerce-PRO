@@ -1,15 +1,15 @@
 "use client";
 
-import { RouterProvider } from "react-router-dom";
-// import { router } from "./router";
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
+import { useContext } from "react";
 
 // Utilities
 import { auth, db } from "./config/firebase.config";
 import { UserContext } from "./contexts/user.context";
-import { useContext } from "react";
 import { userConverter } from "./converters/firestore.converters";
+
+// Main Page
 import HomePage from "./pages/home/page";
 
 export default function Page() {

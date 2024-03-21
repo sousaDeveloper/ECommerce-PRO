@@ -1,8 +1,10 @@
+"use client";
+
 import validator from "validator";
 import { useForm } from "react-hook-form";
 import { AuthError, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
+import { redirect, useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { toast } from "sonner";
 
@@ -23,13 +25,14 @@ import { UserContext } from "../../contexts/user.context";
 import { auth, db } from "../../config/firebase.config";
 
 export default function SignUpPage() {
+  const router = useRouter();
+  const handleRouterLoginClick = () => router.push("/pages/login");
   const { isAuthenticated } = useContext(UserContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
       toast.success("Cadastro realizado com sucesso.");
-      navigate("/");
+      return redirect("/");
     }
   }, [isAuthenticated]);
 
@@ -142,8 +145,8 @@ export default function SignUpPage() {
           </button>
           <div className="text-center text-gray-300 flex justify-center gap-2">
             Já possui uma conta?{" "}
-            <p className="text-[#F2B6C1] hover:underline font-bold">
-              <Link to="/login">Login </Link>
+            <p className="text-[#F2B6C1] hover:underline font-bold cursor-pointer" onClick={handleRouterLoginClick}>
+              Login
             </p>
           </div>
         </div>

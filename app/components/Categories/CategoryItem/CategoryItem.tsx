@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { useRouter } from "next/navigation";
 import Category from "../../../types/category.types";
 
 interface CategoryItemsProps {
@@ -6,6 +6,9 @@ interface CategoryItemsProps {
 }
 
 export default function CategoryItem({ category }: CategoryItemsProps) {
+  const router = useRouter();
+  const handleRouterCategoryClick = () => router.push(`/pages/category/${category.id}`);
+
   return (
     <div
       className="flex gap-4 w-full h-full rounded justify-center items-center"
@@ -21,7 +24,7 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
         MozBoxShadow: "-9px 9px 18px 0px rgba(0, 0, 0, 0.75)",
       }}
     >
-      <Link to={`/category/${category.id}`}>
+      <button onClick={handleRouterCategoryClick}>
         <div
           className="category-name cursor-pointer bg-[#8C3A60] text-white rounded px-6 py-2 text-center transition duration-300 hover:text-[#203040]"
           style={{
@@ -33,7 +36,7 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
           <p className="font-bold text-xl">{category.displayName}</p>
           <p>Explorar</p>
         </div>
-      </Link>
+      </button>
     </div>
   );
 }

@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 // Utilities
 import { auth } from "../../config/firebase.config";
@@ -21,6 +21,12 @@ export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { clearCart } = useContext(CartContext);
 
+  const router = useRouter();
+  const handleRouterLoginClick = () => router.push("/pages/login");
+  const handleRouterSignUpClick = () => router.push("/pages/signUp");
+  const handleRouterExploreClick = () => router.push("/pages/explore");
+  const handleRouterBackClick = () => router.push("/");
+
   useEffect(() => {
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
@@ -35,8 +41,8 @@ export default function Header() {
 
   return (
     <header className="p-4 px-7 flex items-center justify-between font-bold text-white top-0 z-50 sticky mb-2">
-      <h1 className="text-2xl cursor-default">
-        <Link to="/">Next Store</Link>
+      <h1 className="text-2xl cursor-pointer" onClick={handleRouterBackClick}>
+        Next Store
       </h1>
 
       {windowWidth <= 785 ? (
@@ -53,14 +59,12 @@ export default function Header() {
               <nav className="p-5 flex flex-col gap-3">
                 {!isAuthenticated ? (
                   <>
-                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                      <Link to="/login" className="flex items-center gap-2">
-                        <LogInIcon />
-                        Login
-                      </Link>
+                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={handleRouterLoginClick}>
+                      <LogInIcon />
+                      Login
                     </Button>
-                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                      <Link to="/register">Registrar</Link>
+                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={handleRouterSignUpClick}>
+                      Registrar
                     </Button>
                   </>
                 ) : (
@@ -74,8 +78,8 @@ export default function Header() {
                     </p>
                   </Button>
                 )}
-                <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]">
-                  <Link to="/explore">Explorar</Link>
+                <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={handleRouterExploreClick}>
+                  Explorar
                 </Button>
               </nav>
             </SheetContent>
@@ -84,8 +88,8 @@ export default function Header() {
       ) : (
         <nav>
           <ul className="flex items-center gap-6 p-2">
-            <li className="cursor-pointer">
-              <Link to="/explore">Explorar</Link>
+            <li className="cursor-pointer" onClick={handleRouterExploreClick}>
+              Explorar
             </li>
 
             {isAuthenticated ? (
@@ -102,11 +106,11 @@ export default function Header() {
               </li>
             ) : (
               <>
-                <li className="cursor-pointer">
-                  <Link to="/login">Login</Link>
+                <li className="cursor-pointer" onClick={handleRouterLoginClick}>
+                  Login
                 </li>
-                <li className="cursor-pointer">
-                  <Link to="/register">Registrar</Link>
+                <li className="cursor-pointer" onClick={handleRouterSignUpClick}>
+                  Registrar
                 </li>
               </>
             )}
