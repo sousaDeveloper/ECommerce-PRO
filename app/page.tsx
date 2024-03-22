@@ -1,5 +1,7 @@
 "use client";
 
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useContext } from "react";
@@ -9,8 +11,10 @@ import { auth, db } from "./config/firebase.config";
 import { UserContext } from "./contexts/user.context";
 import { userConverter } from "./converters/firestore.converters";
 
-// Main Page
+// Pages
 import HomePage from "./pages/home/page";
+import CategoryDetailsPage from "./pages/category/page";
+import PaymentConfirmation from "./payment-confirmation/page";
 
 export default function Page() {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
@@ -35,7 +39,13 @@ export default function Page() {
 
   return (
     <>
-      <HomePage />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/category/:id" element={<CategoryDetailsPage />} />
+          <Route path="/payment-confirmation" element={<PaymentConfirmation />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
