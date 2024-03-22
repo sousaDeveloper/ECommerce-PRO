@@ -61,7 +61,7 @@ export default function Cart() {
         {products.length === 0 ? (
           <h1 className="p-5 font-bold text-xl">Carrinho vazio.</h1>
         ) : (
-          <div className="p-4">
+          <div className="p-4 text-start">
             {products.map((product) => (
               <CartItem product={product} key={product.id} />
             ))}
