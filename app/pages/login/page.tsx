@@ -9,13 +9,13 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 // Components
-import Header from "../../components/Header/Header";
-import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
-import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
+import Header from "@components/Header/Header";
+import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
+import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
 
 // Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
-import { UserContext } from "../../contexts/user.context";
+import { UserContext } from "@contexts/user.context";
 
 interface LoginForm {
   email: string;

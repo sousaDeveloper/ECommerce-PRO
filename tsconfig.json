@@ -21,7 +21,8 @@
     "paths": {
       "@/*": ["app/*"],
       "@contexts*": ["contexts/*"],
-      "@types*": ["types/*"]
+      "@types*": ["types/*"],
+      "@components*": ["components/*"]
     }
   },
   "include": [

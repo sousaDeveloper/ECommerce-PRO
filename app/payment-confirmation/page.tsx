@@ -7,8 +7,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { CartContext } from "@contexts/cart.context";
 
 // Components
-import Header from "../components/Header/Header";
-import PaymentConfirmed from "../components/PaymentConfirmed/PaymentConfirmed";
+import Header from "@components/Header/Header";
+import PaymentConfirmed from "@components/PaymentConfirmed/PaymentConfirmed";
 
 export default function PaymentConfirmation() {
   const router = useRouter();

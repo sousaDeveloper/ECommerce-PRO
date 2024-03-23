@@ -8,10 +8,16 @@ import { redirect, useRouter } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { toast } from "sonner";
 
+// Utilities
+import { UserContext } from "@contexts/user.context";
+import { auth, db } from "../../config/firebase.config";
+
 // Components
-import Header from "../../components/Header/Header";
-import InputErrorMessage from "../../components/InputErrorMessage/InputErrorMessage";
-import CustomInputContainer from "../../components/CustomInputContainer/CustomInputContainer";
+import Header from "@components/Header/Header";
+import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
+import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
+
+
 interface SignUpform {
   firstName: string;
   lastName: string;
@@ -20,9 +26,6 @@ interface SignUpform {
   confirmPassword: string;
 }
 
-// Utilities
-import { UserContext } from "../../contexts/user.context";
-import { auth, db } from "../../config/firebase.config";
 
 export default function SignUpPage() {
   const router = useRouter();
