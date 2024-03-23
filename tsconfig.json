@@ -22,7 +22,8 @@
       "@/*": ["app/*"],
       "@contexts*": ["contexts/*"],
       "@types*": ["types/*"],
-      "@components*": ["components/*"]
+      "@components*": ["components/*"],
+      "@converters*": ["converters/*"]
     }
   },
   "include": [

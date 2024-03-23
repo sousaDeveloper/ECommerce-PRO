@@ -2,7 +2,7 @@
 
 import { createContext, useState } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { categoryConverter } from "../converters/firestore.converters";
+import { categoryConverter } from "@converters/firestore.converters";
 
 // Utilities
 import Category from "@typescategory.types";

@@ -6,8 +6,8 @@ import { useContext } from "react";
 
 // Utilities
 import { auth, db } from "./config/firebase.config";
-import { UserContext } from "./contexts/user.context";
-import { userConverter } from "./converters/firestore.converters";
+import { UserContext } from "@contexts/user.context";
+import { userConverter } from "@converters/firestore.converters";
 
 // HomePage
 import HomePage from "./pages/home/page";
