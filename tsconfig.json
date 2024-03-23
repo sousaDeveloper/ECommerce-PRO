@@ -17,8 +17,10 @@
         "name": "next"
       }
     ],
+    "baseUrl": "app",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["app/*"],
+      "@contexts*": ["contexts/*"]
     }
   },
   "include": [
@@ -27,7 +29,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "app/components/InputErrorMessage/InputErrorMessage.tsx",
-    "app/components/CustomInputContainer/CustomInputContainer.jsx"
+    "app/components/CustomInputContainer/CustomInputContainer.jsx",
+    "app/pages/category/[id]/page.jsx"
   ],
   "exclude": ["node_modules"]
 }

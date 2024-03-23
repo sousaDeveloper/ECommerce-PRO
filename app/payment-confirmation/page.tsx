@@ -4,7 +4,7 @@ import { useContext, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 // Utilities
-import { CartContext } from "../contexts/cart.context";
+import { CartContext } from "@contexts/cart.context";
 
 // Components
 import Header from "../components/Header/Header";

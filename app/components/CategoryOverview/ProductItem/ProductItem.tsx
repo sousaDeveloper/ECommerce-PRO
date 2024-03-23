@@ -4,7 +4,7 @@ import Image from "next/image";
 
 // Utilities
 import Product from "../../../types/product.types";
-import { CartContext } from "../../../contexts/cart.context";
+import { CartContext } from "@contexts/cart.context";
 
 interface IProductProps {
   product: Product;

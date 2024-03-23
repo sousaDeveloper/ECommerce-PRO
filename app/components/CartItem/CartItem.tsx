@@ -3,7 +3,7 @@ import { useContext } from "react";
 
 // Utilities
 import CartProduct from "../../types/cart.types";
-import { CartContext } from "../../contexts/cart.context";
+import { CartContext } from "@contexts/cart.context";
 
 // Components
 import {

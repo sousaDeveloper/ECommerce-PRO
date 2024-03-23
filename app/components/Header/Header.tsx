@@ -4,11 +4,12 @@ import { signOut } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
 import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 // Utilities
 import { auth } from "../../config/firebase.config";
-import { UserContext } from "../../contexts/user.context";
-import { CartContext } from "../../contexts/cart.context";
+import { UserContext } from "@contexts/user.context";
+import { CartContext } from "@contexts/cart.context";
 
 // Components
 import Cart from "../cart/Cart";
@@ -17,7 +18,6 @@ import { Button } from "../ui/button";
 
 // Styles
 import "./Header.scss";
-import { toast } from "sonner";
 
 export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
@@ -26,7 +26,6 @@ export default function Header() {
 
   const router = useRouter();
   const handleRouterLoginClick = () => router.push("/pages/login");
-  const handleRouterSignUpClick = () => router.push("/pages/signUp");
   const handleRouterExploreClick = () => router.push("/pages/explore");
   const handleRouterBackClick = () => router.push("/");
 
@@ -69,10 +68,7 @@ export default function Header() {
                   <>
                     <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={handleRouterLoginClick}>
                       <LogInIcon />
-                      Login
-                    </Button>
-                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={handleRouterSignUpClick}>
-                      Registrar
+                      Entrar
                     </Button>
                   </>
                 ) : (
@@ -110,10 +106,7 @@ export default function Header() {
             ) : (
               <>
                 <li className="cursor-pointer" onClick={handleRouterLoginClick}>
-                  Login
-                </li>
-                <li className="cursor-pointer" onClick={handleRouterSignUpClick}>
-                  Registrar
+                  Entrar
                 </li>
               </>
             )}

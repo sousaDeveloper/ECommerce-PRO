@@ -1,4 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { useRouter } from "next/navigation";
+
+// Utilities
 import Category from "../../../types/category.types";
 
 interface CategoryItemsProps {
@@ -6,8 +8,8 @@ interface CategoryItemsProps {
 }
 
 export default function CategoryItem({ category }: CategoryItemsProps) {
-  const navigate = useNavigate();
-  const handleRouterCategoryClick = () => navigate(`/category/${category.id}`);
+  const router = useRouter();
+  const handleRouterCategoryClick = () => router.push(`/pages/category/${category.id}`);
 
   return (
     <div

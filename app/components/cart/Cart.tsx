@@ -6,12 +6,12 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
 // Utilities
-import { CartContext } from "../../contexts/cart.context";
+import { CartContext } from "@contexts/cart.context";
+import { UserContext } from "@contexts/user.context";
 
 // Components
 import CartItem from "../CartItem/CartItem";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
-import { UserContext } from "../../contexts/user.context";
 
 export default function Cart() {
   const { products, formattedPrice, clearCart } = useContext(CartContext);
