@@ -11,6 +11,7 @@ import { categoryConverter } from "@converters/firestore.converters";
 // Components
 import ProductItem from "../CategoryOverview/ProductItem/ProductItem";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
+import SkeletonLoading from "@componentsSkeletonLoading/SkeletonLoading";
 
 interface ICategoryDetailsProps {
   categoryId: string;
@@ -18,6 +19,7 @@ interface ICategoryDetailsProps {
 
 export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
   const router = useRouter();
+  const [skeletonLoading, setSkeletonLoading] = useState(true);
   const handleRouterBackClick = () => router.back();
   const [category, setCategory] = useState<Category | null>(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -43,9 +45,12 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
       const category = querySnapshot.docs[0]?.data();
 
       setCategory(category);
+      setSkeletonLoading(false);
     };
 
-    fetchCategories();
+    setTimeout(() => {
+      fetchCategories();
+    }, 1500);
   }, []);
 
   return (
@@ -59,25 +64,38 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
           <h1 className="font-bold text-xl">Explorar {category?.displayName}</h1>
         </button>
       </div>
-      <div className="flex flex-wrap justify-center gap-2 p-1 ">
-        {windowWidth <= 874 ? (
-          <ScrollArea className="rounded-md">
-            <div className="flex w-max space-x-4 p-4">
+      {skeletonLoading ? (
+        <div className="flex flex-wrap justify-center gap-2 p-1">
+          <div className="grid grid-cols-3 gap-8">
+            <SkeletonLoading />
+            <SkeletonLoading />
+            <SkeletonLoading />
+            <SkeletonLoading />
+            <SkeletonLoading />
+            <SkeletonLoading />
+          </div>
+        </div>
+      ) : (
+        <div className="flex flex-wrap justify-center gap-2 p-1">
+          {windowWidth <= 874 ? (
+            <ScrollArea className="rounded-md">
+              <div className="flex w-max space-x-4 p-4">
+                {category?.products.map((product) => (
+                  <ProductItem product={product} key={product.id} />
+                ))}
+              </div>
+
+              <ScrollBar orientation="horizontal" />
+            </ScrollArea>
+          ) : (
+            <div className="grid grid-cols-3 p-4 gap-8">
               {category?.products.map((product) => (
                 <ProductItem product={product} key={product.id} />
               ))}
             </div>
-
-            <ScrollBar orientation="horizontal" />
-          </ScrollArea>
-        ) : (
-          <div className="flex flex-wrap p-4 gap-8">
-            {category?.products.map((product) => (
-              <ProductItem product={product} key={product.id} />
-            ))}
-          </div>
-        )}
-      </div>
+          )}
+        </div>
+      )}
     </main>
   );
 }

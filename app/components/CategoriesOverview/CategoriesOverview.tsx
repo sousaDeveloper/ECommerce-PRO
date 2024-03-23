@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { CategoriesContext } from "../../contexts/categories.context";
+import { CategoriesContext } from "@contexts/categories.context";
 
 // Components
 import CategoryOverview from "../CategoryOverview/CategoryOverview";
