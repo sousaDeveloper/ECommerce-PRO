@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 
 // Utilities
-import Category from "../../../types/category.types";
+import Category from "@typescategory.types";
 
 interface CategoryItemsProps {
   category: Category;

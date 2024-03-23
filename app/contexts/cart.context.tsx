@@ -2,8 +2,8 @@
 import { createContext, useEffect, useMemo, useState } from "react";
 
 // Utilities
-import CartProduct from "../types/cart.types";
-import Product from "../types/product.types";
+import CartProduct from "@typescart.types";
+import Product from "@typesproduct.types";
 
 interface ICartContext {
   products: CartProduct[];

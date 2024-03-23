@@ -1,7 +1,7 @@
 "use client";
 
 import { createContext, useState } from "react";
-import User from "../types/user.types";
+import User from "@typesuser.types";
 
 interface IUserContext {
   currentUser: User | null;

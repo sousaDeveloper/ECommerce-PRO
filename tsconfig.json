@@ -20,7 +20,8 @@
     "baseUrl": "app",
     "paths": {
       "@/*": ["app/*"],
-      "@contexts*": ["contexts/*"]
+      "@contexts*": ["contexts/*"],
+      "@types*": ["types/*"]
     }
   },
   "include": [

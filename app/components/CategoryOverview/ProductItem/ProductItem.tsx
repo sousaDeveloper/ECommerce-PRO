@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import Image from "next/image";
 
 // Utilities
-import Product from "../../../types/product.types";
+import Product from "@typesproduct.types";
 import { CartContext } from "@contexts/cart.context";
 
 interface IProductProps {

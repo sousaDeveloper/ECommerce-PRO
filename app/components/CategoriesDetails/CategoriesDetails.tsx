@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 // Utilties
 import { db } from "../../config/firebase.config";
-import Category from "../../types/category.types";
+import Category from "@typescategory.types";
 import { categoryConverter } from "../../converters/firestore.converters";
 
 // Components

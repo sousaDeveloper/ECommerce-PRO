@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useContext } from "react";
 
 // Utilities
-import CartProduct from "../../types/cart.types";
+import CartProduct from "@typescart.types";
 import { CartContext } from "@contexts/cart.context";
 
 // Components

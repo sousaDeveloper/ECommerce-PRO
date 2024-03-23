@@ -5,7 +5,7 @@ import ProductItem from "./ProductItem/ProductItem";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 // Utilities
-import Category from "../../types/category.types";
+import Category from "@typescategory.types";
 
 interface ICategoryProps {
   category: Category;

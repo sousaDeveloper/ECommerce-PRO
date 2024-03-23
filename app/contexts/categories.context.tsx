@@ -5,7 +5,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { categoryConverter } from "../converters/firestore.converters";
 
 // Utilities
-import Category from "../types/category.types";
+import Category from "@typescategory.types";
 import { db } from "../config/firebase.config";
 
 interface ICategoriesContext {

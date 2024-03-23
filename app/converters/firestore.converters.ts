@@ -1,6 +1,6 @@
 import { DocumentData, QueryDocumentSnapshot, SnapshotOptions } from "firebase/firestore";
-import Category from "../types/category.types";
-import User from "../types/user.types";
+import Category from "@typescategory.types";
+import User from "@typesuser.types";
 
 export const categoryConverter = {
   toFirestore(category: Category): DocumentData {
