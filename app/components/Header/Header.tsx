@@ -66,7 +66,10 @@ export default function Header() {
               <nav className="p-5 flex flex-col gap-3">
                 {!isAuthenticated ? (
                   <>
-                    <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={handleRouterLoginClick}>
+                    <Button
+                      className="flex gap-2 font-bold bg-[#283040] hover:bg-[#8C3A60]"
+                      onClick={handleRouterLoginClick}
+                    >
                       <LogInIcon />
                       Entrar
                     </Button>
@@ -76,7 +79,7 @@ export default function Header() {
                     className="flex gap-2 items-center font-bold bg-[#283040] hover:bg-[#8C3A60]"
                     onClick={handleLogoutClick}
                   >
-                    <p onClick={() => clearCart()} className="flex gap-2">
+                    <p onClick={() => clearCart()} className="flex items-center gap-2">
                       <LogOutIcon />
                       Sair
                     </p>
