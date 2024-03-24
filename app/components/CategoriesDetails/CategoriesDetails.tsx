@@ -57,11 +57,11 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
     <main className="px-5">
       <div className="text-white mb-5">
         <button
-          className="flex gap-1 items-center hover:text-[#F2B6C1] transition duration-300"
+          className="flex gap-1 items-center hover:text-[#F2B6C1] transition duration-300 animate__fadeInRight"
           onClick={handleRouterHomeClick}
         >
           <ChevronLeftIcon size={25} />
-          <h1 className="font-bold text-xl">Explorar {category?.displayName}</h1>
+          <h1 className="font-bold text-xl animate__animated">Explorar {category?.displayName}</h1>
         </button>
       </div>
       {skeletonLoading ? (

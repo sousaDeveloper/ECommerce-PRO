@@ -13,7 +13,7 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
 
   return (
     <div
-      className="flex gap-4 w-full h-full rounded justify-center items-center"
+      className="flex gap-4 w-full h-full rounded justify-center items-center animate__animated animate__fadeInUp"
       style={{
         backgroundImage: `url('${category.imageUrl}')`,
         backgroundRepeat: "no-repeat",

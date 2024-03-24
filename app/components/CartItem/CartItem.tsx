@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { useContext } from "react";
+import { toast } from "sonner";
 
 // Utilities
 import CartProduct from "@typescart.types";
@@ -17,7 +18,6 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
-import { toast } from "sonner";
 interface ICartItemProps {
   product: CartProduct;
 }
@@ -39,7 +39,7 @@ export default function CartItem({ product }: ICartItemProps) {
   };
 
   return (
-    <div className="flex justify-between gap-3 mt-2 border border-solid border-[#283040] rounded p-1">
+    <div className="flex justify-between gap-3 mt-2 border border-solid border-[#283040] rounded p-1 animate__animated animate__fadeInRight">
       <div className="flex gap-2">
         <Image
           src={product.imageUrl}

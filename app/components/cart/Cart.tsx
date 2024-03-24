@@ -1,3 +1,4 @@
+import "animate.css";
 import { ShoppingCartIcon } from "lucide-react";
 import { useContext, useMemo, useState } from "react";
 import axios from "axios";
@@ -53,9 +54,11 @@ export default function Cart() {
           <p className="ml-1">{totalItemsInCart}</p>
         </li>
       </SheetTrigger>
-      <SheetContent className="p-0 text-white content" style={{ overflowY: "auto" }}>
+      <SheetContent className="p-0 text-white" style={{ overflowY: "auto" }}>
         <SheetHeader className="border-b border-slate-800 p-5">
-          <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Seu Carrinho</SheetTitle>
+          <SheetTitle className="font-bold text-2xl text-start mt-1 text-white animate__animated animate__fadeInRight">
+            Seu Carrinho
+          </SheetTitle>
         </SheetHeader>
 
         {products.length === 0 ? (
@@ -65,11 +68,14 @@ export default function Cart() {
             {products.map((product) => (
               <CartItem product={product} key={product.id} />
             ))}
-            <button onClick={handleClearCartClick} className="font-bold hover:text-[#8C3A60] transition duration-300">
+            <button
+              onClick={handleClearCartClick}
+              className="font-bold hover:text-[#8C3A60] transition duration-300 animate__animated animate__fadeInRight"
+            >
               Limpar Carrinho
             </button>
 
-            <div className="pt-5 font-bold">
+            <div className="pt-5 font-bold animate__animated animate__fadeInRight">
               <h1>Total: {formattedPrice}</h1>
               <button
                 className="flex gap-2 items-center justify-center w-full rounded bg-[#8C3A60] hover:bg-[#283040] hover:text-[#f2b6c1] transition duration-300 p-2"
