@@ -1,4 +1,6 @@
 import { useContext, useEffect } from "react";
+
+// Utilties
 import { CategoriesContext } from "@contexts/categories.context";
 
 // Components

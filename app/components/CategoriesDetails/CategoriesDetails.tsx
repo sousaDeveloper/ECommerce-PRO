@@ -3,7 +3,7 @@ import { ChevronLeftIcon } from "lucide-react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useRouter } from "next/navigation";
 
-// Utilties
+// Utilities
 import { db } from "../../config/firebase.config";
 import Category from "@typescategory.types";
 import { categoryConverter } from "@converters/firestore.converters";
@@ -20,7 +20,7 @@ interface ICategoryDetailsProps {
 export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
   const router = useRouter();
   const [skeletonLoading, setSkeletonLoading] = useState(true);
-  const handleRouterBackClick = () => router.back();
+  const handleRouterHomeClick = () => router.push("/");
   const [category, setCategory] = useState<Category | null>(null);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -58,7 +58,7 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
       <div className="text-white mb-5">
         <button
           className="flex gap-1 items-center hover:text-[#F2B6C1] transition duration-300"
-          onClick={handleRouterBackClick}
+          onClick={handleRouterHomeClick}
         >
           <ChevronLeftIcon size={25} />
           <h1 className="font-bold text-xl">Explorar {category?.displayName}</h1>
