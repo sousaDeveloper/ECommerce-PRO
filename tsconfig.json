@@ -33,7 +33,8 @@
     ".next/types/**/*.ts",
     "app/components/InputErrorMessage/InputErrorMessage.tsx",
     "app/components/CustomInputContainer/CustomInputContainer.jsx",
-    "app/pages/category/[id]/page.jsx"
-  ],
+    "app/pages/category/[id]/page.jsx",
+    "app/components/Carousel/Carousel.jsx"
+, "app/components/SearchInput/SearchInput.tsx"  ],
   "exclude": ["node_modules"]
 }

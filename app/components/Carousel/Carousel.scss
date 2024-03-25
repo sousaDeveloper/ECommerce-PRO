@@ -1,0 +1,51 @@
+.swiper {
+  height: 45rem;
+}
+
+.firstImage,
+.secondImage,
+.thirdImage {
+  height: 100%;
+  object-fit: cover;
+}
+
+.swiper-pagination-bullet-active {
+  width: 1rem;
+  border-radius: 0.1rem;
+  height: 0.4rem;
+  background-color: #8c3a60;
+}
+
+.swiper-pagination-bullet-active-next,
+.swiper-pagination-bullet-active-prev {
+  width: 0.7rem;
+  border-radius: 0.1rem;
+}
+
+@media screen and (max-width: 1240px) {
+  .swiper {
+    height: 30rem;
+    object-fit: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .swiper {
+    height: 20rem;
+    object-fit: none;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .swiper {
+    height: 15rem;
+    object-fit: none;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .swiper {
+    height: 13rem;
+    object-fit: none;
+  }
+}
