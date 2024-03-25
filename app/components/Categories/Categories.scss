@@ -1,8 +1,7 @@
 .categories-content {
   grid-template-areas:
-    "a b"
-    "c c"
-    "d e";
+    "a b c"
+    "d b e";
   grid-gap: 15px;
 }
 
@@ -26,15 +25,24 @@
   grid-area: e;
 }
 
+@media screen and (max-width: 768px) {
+  .categories-content {
+    grid-template-areas:
+      "a c"
+      "b b"
+      "d e";
+    grid-gap: 15px;
+  }
+}
+
 @media screen and (max-width: 500px) {
   .categories-content {
     height: 40rem;
     grid-template-areas:
-      "a "
-      "b"
-      "c"
-      "d"
-      "e";
+      "a c"
+      "b c"
+      "b d"
+      "e e";
     grid-gap: 15px;
   }
 }
