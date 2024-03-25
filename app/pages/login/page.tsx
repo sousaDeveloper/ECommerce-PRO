@@ -90,7 +90,7 @@ export default function LoginPage() {
       <div className="grid place-content-center place-items-center mt-9 p-5">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
-          className="max-w-[30rem] rounded overflow-hidden p-8 space-y-8"
+          className="max-w-[30rem] rounded overflow-hidden p-8 space-y-8 bg-[#283040]"
         >
           <h2 style={{ animation: "appear 2s ease-out" }} className="text-center text-4xl font-extrabold text-[#8C3A60]">
             Entre com sua conta

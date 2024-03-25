@@ -47,7 +47,7 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="p-4 px-7 flex items-center justify-between font-bold text-white top-0 z-50 sticky mb-2">
+    <header className="p-4 px-7 flex items-center justify-between font-bold text-[#8C3A60] top-0 z-50 sticky">
       <h1 className="text-2xl cursor-pointer animate__animated animate__fadeInUp" onClick={handleRouterBackClick}>
         Next Store
       </h1>
@@ -57,10 +57,10 @@ export default function Header() {
           <Cart />
           <Sheet>
             <SheetTrigger asChild>
-              <MenuIcon size={25} />
+              <MenuIcon size={25} className="mt-1" />
             </SheetTrigger>
-            <SheetContent className="p-0 text-white content ">
-              <SheetHeader className="border-b border-slate-800 p-5 ">
+            <SheetContent className="p-0 text-white content">
+              <SheetHeader className="border-b border-slate-800 p-5">
                 <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
               </SheetHeader>
               <nav className="p-5 flex flex-col gap-3 animate__animated animate__fadeInRight">
@@ -93,7 +93,7 @@ export default function Header() {
           </Sheet>
         </div>
       ) : (
-        <nav className="animate__animated animate__fadeInUp">
+        <nav className="animate__animated animate__fadeInUp text-[#8c3a60]">
           <ul className="flex items-center gap-6 p-2 ">
             <li className="cursor-pointer" onClick={handleRouterExploreClick}>
               Explorar

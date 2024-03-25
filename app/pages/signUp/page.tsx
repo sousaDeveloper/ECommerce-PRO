@@ -17,7 +17,6 @@ import Header from "@components/Header/Header";
 import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
 
-
 interface SignUpform {
   firstName: string;
   lastName: string;
@@ -25,7 +24,6 @@ interface SignUpform {
   password: string;
   confirmPassword: string;
 }
-
 
 export default function SignUpPage() {
   const router = useRouter();
@@ -75,7 +73,7 @@ export default function SignUpPage() {
       <div className="grid place-content-center place-items-center mt-9 p-5">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
-          className=" max-w-[30rem] rounded overflow-hidden p-8 space-y-8 "
+          className=" max-w-[30rem] rounded overflow-hidden p-8 space-y-8 bg-[#283040]"
         >
           <h2
             style={{ animation: "appear 2s ease-out" }}
