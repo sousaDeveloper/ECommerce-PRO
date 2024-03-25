@@ -33,7 +33,7 @@ export default function ProductItem({ product }: IProductProps) {
 
   return (
     <div
-      className="max-w-[20rem] rounded bg-[#8C3A60] bg-clip-border text-white"
+      className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white"
       style={{
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       }}
@@ -53,12 +53,12 @@ export default function ProductItem({ product }: IProductProps) {
         />
       </div>
       <div className="p-6">
-        <h5 className="mb-2 text-xl font-bold">{product.name}</h5>
+        <h5 className="mb-2 text-xl font-bold overflow-hidden text-ellipsis whitespace-nowrap">{product.name}</h5>
       </div>
       <div className="flex justify-between items-center p-6 pt-0">
         <span className="font-bold">R${product.price}</span>
         <button
-          className="bg-[#fff] hover:bg-[#283040] hover:text-[#F2B6C1] transition duration-300 text-[#283040] rounded p-2 font-bold"
+          className="bg-[#8C3A60] transition duration-300 text-white rounded p-2 font-bold"
           onClick={addProductToCartClick}
         >
           Adicionar ao carrinho
