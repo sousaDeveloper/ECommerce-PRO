@@ -6,14 +6,12 @@ import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 
 // Utilities
 import Category from "@typescategory.types";
-import SkeletonLoading from "@componentsSkeletonLoading/SkeletonLoading";
 
 interface ICategoryProps {
   category: Category;
-  skeletonLoading?: boolean;
 }
 
-export default function CategoryOverview({ category, skeletonLoading }: ICategoryProps) {
+export default function CategoryOverview({ category }: ICategoryProps) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   useEffect(() => {
@@ -30,37 +28,28 @@ export default function CategoryOverview({ category, skeletonLoading }: ICategor
 
   return (
     <section className="mt-0">
-      <h1 className="font-bold text-3xl text-white mb-2 mt-9 px-10 animate__animated animate__fadeInRight">
+      <h1 className="font-bold text-3xl mb-2 mt-9 px-10 animate__animated animate__fadeInLeft text-[#8C3A60]">
         {category.displayName}
       </h1>
-      {skeletonLoading ? (
-        <div className="flex w-max space-x-4 p-4">
-          <SkeletonLoading />
-          <SkeletonLoading />
-          <SkeletonLoading />
-          <SkeletonLoading />
-        </div>
-      ) : (
-        <div className="flex flex-wrap justify-center gap-2 p-1 animate__animated animate__fadeInUp">
-          {windowWidth <= 874 ? (
-            <ScrollArea className="rounded-md">
-              <div className="flex w-max space-x-4 p-4">
-                {category.products.slice(0, 4).map((product) => (
-                  <ProductItem product={product} key={product.id} />
-                ))}
-              </div>
-
-              <ScrollBar orientation="horizontal" />
-            </ScrollArea>
-          ) : (
-            <div className="flex p-4 gap-4">
+      <div className="flex justify-center gap-2 p-1 animate__animated animate__fadeInUp">
+        {windowWidth <= 874 ? (
+          <ScrollArea className="rounded-md">
+            <div className="flex w-max space-x-4 p-4">
               {category.products.slice(0, 4).map((product) => (
                 <ProductItem product={product} key={product.id} />
               ))}
             </div>
-          )}
-        </div>
-      )}
+
+            <ScrollBar orientation="horizontal" />
+          </ScrollArea>
+        ) : (
+          <div className="flex flex-wrap p-4 gap-6">
+            {category.products.slice(0, 4).map((product) => (
+              <ProductItem product={product} key={product.id} />
+            ))}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
