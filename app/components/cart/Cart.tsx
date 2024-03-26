@@ -49,20 +49,22 @@ export default function Cart() {
     <Sheet>
       <SheetTrigger>
         {" "}
-        <li className="cursor-pointer flex items-center">
+        <li className="cursor-pointer relative flex items-center">
           <ShoppingCartIcon />
-          <p className="ml-1">{totalItemsInCart}</p>
+          <span className="absolute -top-1 -right-1 bg-[#304060] text-white rounded-full px-1 text-xs">
+            {totalItemsInCart}
+          </span>
         </li>
       </SheetTrigger>
       <SheetContent className="p-0 text-white" style={{ overflowY: "auto" }}>
         <SheetHeader className="border-b border-slate-800 p-5">
-          <SheetTitle className="font-bold text-2xl text-start mt-1 text-white animate__animated animate__fadeInRight">
+          <SheetTitle className="font-bold text-2xl mt-1 text-start text-white animate__animated animate__fadeInRight">
             Seu Carrinho
           </SheetTitle>
         </SheetHeader>
 
         {products.length === 0 ? (
-          <h1 className="p-5 font-bold text-xl">Carrinho vazio.</h1>
+          <h1 className="p-5 font-bold text-xl text-start">Carrinho vazio.</h1>
         ) : (
           <div className="p-4 text-start">
             {products.map((product) => (
@@ -76,7 +78,7 @@ export default function Cart() {
             </button>
 
             <div className="pt-5 font-bold animate__animated animate__fadeInRight">
-              <h1>Total: {formattedPrice}</h1>
+              <h1 className="text-start">Total: {formattedPrice}</h1>
               <button
                 className="flex gap-2 items-center justify-center w-full rounded bg-[#8C3A60] hover:bg-[#283040] hover:text-[#f2b6c1] transition duration-300 p-2"
                 onClick={handleFinishPurchaseClick}
