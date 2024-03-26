@@ -34,7 +34,9 @@
     "app/components/InputErrorMessage/InputErrorMessage.tsx",
     "app/components/CustomInputContainer/CustomInputContainer.jsx",
     "app/pages/category/[id]/page.jsx",
-    "app/components/Carousel/Carousel.jsx"
-, "app/components/SearchInput/SearchInput.tsx", "app/components/SlideContent/SlideContent.tsx"  ],
+    "app/pages/home/components/Carousel/Carousel.jsx",
+    "app/components/SearchInput/SearchInput.tsx",
+    "app/pages/home/components/SlideContent/SlideContent.tsx"
+  ],
   "exclude": ["node_modules"]
 }
