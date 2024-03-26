@@ -2,11 +2,12 @@
   height: 45rem;
 }
 
-.firstImage,
-.secondImage,
-.thirdImage {
+.imageCarousel {
   height: 100%;
+  margin: 0 auto;
   object-fit: cover;
+  width: 91%;
+  border-radius: 0.3rem;
 }
 
 .swiper-pagination-bullet-active {
@@ -27,12 +28,18 @@
     height: 30rem;
     object-fit: none;
   }
+  .imageCarousel {
+    width: 100%;
+  }
 }
 
 @media screen and (max-width: 768px) {
   .swiper {
     height: 20rem;
     object-fit: none;
+  }
+  .imageCarousel {
+    width: 100%;
   }
 }
 

@@ -25,13 +25,19 @@ export default function Carousel() {
         }}
       >
         <SwiperSlide>
-          <img src="firstImage.png" alt="firstImage" className="w-full firstImage" />
+          <img src="imageFour.png" alt="thirdImage" className="imageCarousel" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="secondImage.png" alt="secondImage" className="w-full secondImage" />
+          <img src="firstImage.png" alt="firstImage" className="imageCarousel" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="thirdImage.png" alt="thirdImage" className="w-full  thirdImage" />
+          <img src="secondImage.png" alt="secondImage" className="imageCarousel" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="thirdImage.png" alt="thirdImage" className="imageCarousel" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src="imageFive.png" alt="thirdImage" className="imageCarousel" />
         </SwiperSlide>
       </Swiper>
     </>
