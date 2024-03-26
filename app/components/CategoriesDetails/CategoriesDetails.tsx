@@ -55,9 +55,9 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
 
   return (
     <main className="px-5">
-      <div className="text-white mb-5">
+      <div className="mb-5">
         <button
-          className="flex gap-1 items-center hover:text-[#F2B6C1] transition duration-300 animate__fadeInRight"
+          className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300 animate__fadeInRight"
           onClick={handleRouterHomeClick}
         >
           <ChevronLeftIcon size={25} />

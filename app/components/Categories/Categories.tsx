@@ -17,7 +17,7 @@ export default function Categories() {
   }, []);
 
   return (
-    <div className="categories-container flex justify-center w-full h-full p-8">
+    <div className="categories-container flex justify-center w-full h-full mt-4 px-20">
       <div className="categories-content grid min-h-[40rem] w-[1920px]">
         {categories.map((category) => (
           <div key={category.id}>
