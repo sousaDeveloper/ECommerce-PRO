@@ -5,6 +5,7 @@ import { CategoriesContext } from "@contexts/categories.context";
 
 // Components
 import CategoryOverview from "../CategoryOverview/CategoryOverview";
+import Footer from "@componentsFooter/Footer";
 
 export default function CategoriesOverview() {
   const { categories, fetchCategories } = useContext(CategoriesContext);
@@ -16,10 +17,13 @@ export default function CategoriesOverview() {
   }, []);
 
   return (
-    <section className="pt-0 sm:p-0">
-      {categories.map((category) => (
-        <CategoryOverview category={category} key={category.id} />
-      ))}
-    </section>
+    <>
+      <section className="pt-0 sm:p-0">
+        {categories.map((category) => (
+          <CategoryOverview category={category} key={category.id} />
+        ))}
+      </section>
+      <Footer />
+    </>
   );
 }

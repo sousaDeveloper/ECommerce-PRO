@@ -9,6 +9,7 @@ import { CartContext } from "@contexts/cart.context";
 // Components
 import Header from "@components/Header/Header";
 import PaymentConfirmed from "@components/PaymentConfirmed/PaymentConfirmed";
+import Footer from "@componentsFooter/Footer";
 
 export default function PaymentConfirmation() {
   const router = useRouter();
@@ -31,6 +32,7 @@ export default function PaymentConfirmation() {
       <Header />
       <div className="grid place-content-center place-items-center">{status === "true" && <PaymentConfirmed />}</div>
       <h1>{status === "false" && "Compra Negada!"}</h1>
+      <Footer />
     </>
   );
 }
