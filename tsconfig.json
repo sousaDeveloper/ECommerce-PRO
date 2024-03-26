@@ -35,6 +35,6 @@
     "app/components/CustomInputContainer/CustomInputContainer.jsx",
     "app/pages/category/[id]/page.jsx",
     "app/components/Carousel/Carousel.jsx"
-, "app/components/SearchInput/SearchInput.tsx"  ],
+, "app/components/SearchInput/SearchInput.tsx", "app/components/SlideContent/SlideContent.tsx"  ],
   "exclude": ["node_modules"]
 }

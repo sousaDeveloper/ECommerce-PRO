@@ -1,0 +1,60 @@
+.slide-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.contentSlide {
+  animation: slide 20s linear infinite;
+}
+
+.slide-text {
+  display: inline-block;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(80%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+h1 {
+  text-align: center;
+}
+
+/* Estilos para partes específicas do título principal */
+h1 span {
+  position: relative;
+  display: inline-block;
+  height: 1.25em;
+  vertical-align: bottom;
+  overflow: hidden;
+}
+
+/* Estilos para animação de palavras no título principal */
+h1 span span {
+  display: block;
+  animation: animateWords 7s infinite ease;
+  animation-delay: 2s;
+}
+
+/* Animação de palavras no título principal */
+@keyframes animateWords {
+  100% {
+    transform: translateY(0%);
+  }
+  25% {
+    transform: translateY(-100%);
+  }
+  50% {
+    transform: translateY(-200%);
+  }
+  75% {
+    transform: translateY(-300%);
+  }
+  90% {
+    transform: translateY(-400%);
+  }
+}
