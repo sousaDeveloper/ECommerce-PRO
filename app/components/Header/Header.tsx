@@ -57,7 +57,7 @@ export default function Header() {
           <Cart />
           <Sheet>
             <SheetTrigger asChild>
-              <MenuIcon size={25} className="mt-1" />
+              <MenuIcon size={25} />
             </SheetTrigger>
             <SheetContent className="p-0 text-white content">
               <SheetHeader className="border-b border-slate-800 p-5">
