@@ -24,22 +24,24 @@ export default function ProductsWithDiscount({ categories }: IProductsWithDiscou
 
   return (
     <>
-      <h1 className="font-bold text-3xl mt-20 mb-4">Produtos com 20% OFF</h1>
+      <h1 className="font-bold text-3xl mt-20 mb-4 animate__animated animate__fadeInLeft">Semana 20% OFF</h1>
       {windowWidth <= 785 ? (
         <ScrollArea className="rounded-md">
           <div className="flex w-max space-x-4 p-4">
             {categories.map((category) =>
-              category.products.slice(1, 2).map((product) => <ProductWithDiscount product={product} />)
+              category.products.slice(1, 2).map((product) => <ProductWithDiscount product={product} key={product.id} />)
             )}
           </div>
 
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       ) : (
-        <div className="flex gap-4 flex-wrap justify-center mt-6">
-          {categories.map((category) =>
-            category.products.slice(1, 2).map((product) => <ProductWithDiscount product={product} />)
-          )}
+        <div className="mt-6 pb-9 bg-[#f2b6c1]">
+          <div className="flex gap-4 flex-wrap justify-center">
+            {categories.map((category) =>
+              category.products.slice(1, 2).map((product) => <ProductWithDiscount product={product} key={product.id} />)
+            )}
+          </div>
         </div>
       )}
     </>

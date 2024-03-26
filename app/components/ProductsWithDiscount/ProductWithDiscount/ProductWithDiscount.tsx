@@ -34,14 +34,22 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
 
   const discountPrice = product.price * 0.8;
 
+  const formattedPrice = Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(discountPrice);
+
   return (
     <div
-      className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white"
+      className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white animate__animated animate__fadeInUp"
       style={{
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       }}
       key={product.id}
     >
+      <h1 className="relative flex items-center">
+        <span className="absolute -top-3 -right-1 bg-red-500 text-white rounded-full px-1 pb-5 pt-2 text-xs">-20%</span>
+      </h1>
       <div className="mx-4 -mt-6 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
         <Image
           src={product.imageUrl}
@@ -58,10 +66,10 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
       <div className="p-6">
         <h5 className="mb-2 text-xl font-bold overflow-hidden text-ellipsis whitespace-nowrap">{product.name}</h5>
       </div>
-      <div className="flex justify-between items-center p-6 pt-0">
+      <div className="flex justify-between items-center p-6 pt-0 pb-4">
         <div className="flex flex-col">
-          <span className="font-bold line-through text-red-400">R${product.price}</span>
-          <span className="font-bold text-xl">R${discountPrice.toFixed(2)}</span>
+          <span className="font-bold line-through text-red-500">R${product.price}</span>
+          <span className="font-bold text-xl">{formattedPrice}</span>
         </div>
 
         <button
