@@ -2,6 +2,7 @@ import Categories from "@components/Categories/Categories";
 import Header from "@components/Header/Header";
 import Carousel from "@components/Carousel/Carousel";
 import SlideContent from "@components/SlideContent/SlideContent";
+import ProductsWithDiscountOverview from "@componentsProductsWithDiscountOverview/ProductsWithDiscountOverview";
 
 export default function HomePage() {
   return (
@@ -10,6 +11,7 @@ export default function HomePage() {
       <Carousel />
       <SlideContent />
       <Categories />
+      <ProductsWithDiscountOverview />
     </main>
   );
 }
