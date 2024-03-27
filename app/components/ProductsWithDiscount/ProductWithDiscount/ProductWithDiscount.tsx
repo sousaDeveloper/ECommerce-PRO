@@ -48,7 +48,9 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
       key={product.id}
     >
       <h1 className="relative flex items-center">
-        <span className="absolute -top-3 -right-1 bg-red-500 text-white rounded-full px-1 pb-5 pt-2 text-xs">-20%</span>
+        <span className="absolute font-bold -top-3 -right-1 bg-red-500 text-white rounded-full px-1 pb-5 pt-2 text-xs">
+          -20%
+        </span>
       </h1>
       <div className="mx-4 -mt-6 overflow-hidden rounded-xl bg-blue-gray-500 bg-clip-border text-white">
         <Image
@@ -66,14 +68,14 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
       <div className="p-6">
         <h5 className="mb-2 text-xl font-bold overflow-hidden text-ellipsis whitespace-nowrap">{product.name}</h5>
       </div>
-      <div className="flex justify-between items-center p-6 pt-0 pb-4">
+      <div className="flex justify-between gap-1 items-center pl-3 p-6 pt-0 pb-4">
         <div className="flex flex-col">
           <span className="font-bold line-through text-red-500">R${product.price}</span>
           <span className="font-bold text-xl text-green-700">{formattedPrice}</span>
         </div>
 
         <button
-          className="bg-[#8C3A60] hover:bg-[#f2b6c1] hover:text-[#283040] transition duration-300 text-white rounded p-2 font-bold"
+          className="bg-[#8C3A60] hover:bg-[#f2b6c1] hover:text-[#283040] transition duration-300 text-white rounded p-2 font-bold whitespace-nowrap"
           onClick={addProductToCartClick}
         >
           Adicionar ao carrinho
