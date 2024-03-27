@@ -81,7 +81,7 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
           <div className="flex flex-wrap justify-center gap-2 p-1">
             {windowWidth <= 874 ? (
               <ScrollArea className="rounded-md">
-                <div className="flex w-max space-x-4 p-4">
+                <div className="flex w-max space-x-4 p-4 pl-0">
                   {category?.products.map((product) => (
                     <ProductItem product={product} key={product.id} />
                   ))}
