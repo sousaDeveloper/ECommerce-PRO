@@ -8,6 +8,7 @@ import { useContext } from "react";
 import { auth, db } from "./config/firebase.config";
 import { UserContext } from "@contexts/user.context";
 import { userConverter } from "@converters/firestore.converters";
+import { NextUIProvider } from "@nextui-org/react";
 
 // HomePage
 import HomePage from "./pages/home/page";
@@ -35,7 +36,9 @@ export default function Page() {
 
   return (
     <>
-      <HomePage />
+      <NextUIProvider>
+        <HomePage />
+      </NextUIProvider>
     </>
   );
 }
