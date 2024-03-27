@@ -16,6 +16,7 @@ import { auth, db } from "../../config/firebase.config";
 import Header from "@components/Header/Header";
 import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
+import Footer from "@components/Footer/Footer";
 
 interface SignUpform {
   firstName: string;
@@ -152,6 +153,7 @@ export default function SignUpPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

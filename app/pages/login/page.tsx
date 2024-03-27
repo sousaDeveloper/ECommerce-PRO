@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Header from "@components/Header/Header";
 import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
+import Footer from "@components/Footer/Footer";
 
 // Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
@@ -87,7 +88,7 @@ export default function LoginPage() {
   return (
     <>
       <Header />
-      <div className="grid place-content-center place-items-center mt-9 p-5">
+      <div className="grid place-content-center place-items-center p-5 min-h-[79vh]">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
           className="max-w-[30rem] rounded overflow-hidden p-8 space-y-8 bg-[#283040]"
@@ -179,6 +180,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
