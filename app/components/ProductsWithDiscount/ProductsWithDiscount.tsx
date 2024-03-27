@@ -36,7 +36,7 @@ export default function ProductsWithDiscount({ categories }: IProductsWithDiscou
           <ScrollBar orientation="horizontal" />
         </ScrollArea>
       ) : (
-        <div className="mt-6 pb-9 bg-[#f2b6c1]">
+        <div className="mt-6">
           <div className="flex gap-4 flex-wrap justify-center">
             {categories.map((category) =>
               category.products.slice(1, 2).map((product) => <ProductWithDiscount product={product} key={product.id} />)
