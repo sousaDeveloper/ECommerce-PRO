@@ -1,8 +1,8 @@
-import "./PaymentConfirmed.scss";
+import "./PaymentStatus.scss";
 
-export default function PaymentConfirmed() {
+export default function PaymentStatus({ children }: any) {
   return (
-    <div className="card mt-60">
+    <div className="card mt-2">
       <div className="header">
         <div className="image">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -20,12 +20,9 @@ export default function PaymentConfirmed() {
             </g>
           </svg>
         </div>
-        <div className="content">
-          <span className="title font-bold text-2xl">Pedido feito.</span>
-          <p className="message font-bold text-lg">Obrigado pela preferência. Em breve o seu pedido será entregue!</p>
-        </div>
+        {children}
       </div>
-      <p className="font-bold mt-1 text-center text-white">Redirecionando à tela principal em instantes...</p>
+      <p className="font-bold mt-1 text-center ">Redirecionando à tela principal em instantes...</p>
     </div>
   );
 }
