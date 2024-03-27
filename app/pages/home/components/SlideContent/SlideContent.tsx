@@ -14,8 +14,8 @@ export default function SlideContent() {
             <span>Seja bem-vindo à Next Store</span>
             <span>Entrega grátis acima de R$500,00</span>
             <span>Entregamos para todo Brasil</span>
-            <span>Ganhe +20% OFF na primeira </span>
-            <span>compra com o cupom PRIMEIRA20</span>
+            <span>-20% OFF na primeira compra</span>
+            <span>com o cupom PRIMEIRA20</span>
             <span></span>
           </span>
         </h1>
@@ -25,7 +25,7 @@ export default function SlideContent() {
             <h1 className="slide-text font-bold text-2xl">Seja bem-vindo à Next Store</h1>
             <h1 className="slide-text font-bold text-2xl">Entrega grátis acima de R$500,00</h1>
             <h1 className="slide-text font-bold text-2xl">Entregamos para todo Brasil</h1>
-            <h1 className="slide-text font-bold text-2xl">Ganhe +20% OFF na primeira compra com o cupom PRIMEIRA20</h1>
+            <h1 className="slide-text font-bold text-2xl">Ganhe 20% OFF na primeira compra com o cupom PRIMEIRA20</h1>
           </div>
         </div>
       )}

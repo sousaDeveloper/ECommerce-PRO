@@ -34,28 +34,26 @@ h1 span {
   overflow: hidden;
 }
 
-/* Estilos para animação de palavras no título principal */
 h1 span span {
   display: block;
   animation: animateWords 7s infinite ease;
-  animation-delay: 2s;
+  animation-delay: 3s;
 }
 
-/* Animação de palavras no título principal */
 @keyframes animateWords {
   100% {
     transform: translateY(0%);
   }
-  25% {
+  20% {
     transform: translateY(-100%);
   }
-  50% {
+  40% {
     transform: translateY(-200%);
   }
-  75% {
+  60% {
     transform: translateY(-300%);
   }
-  90% {
+  80% {
     transform: translateY(-400%);
   }
 }
