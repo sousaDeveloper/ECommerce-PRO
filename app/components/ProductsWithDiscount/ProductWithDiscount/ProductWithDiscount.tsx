@@ -69,7 +69,7 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
       <div className="flex justify-between items-center p-6 pt-0 pb-4">
         <div className="flex flex-col">
           <span className="font-bold line-through text-red-500">R${product.price}</span>
-          <span className="font-bold text-xl">{formattedPrice}</span>
+          <span className="font-bold text-xl text-green-700">{formattedPrice}</span>
         </div>
 
         <button
