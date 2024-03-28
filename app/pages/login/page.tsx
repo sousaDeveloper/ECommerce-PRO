@@ -26,8 +26,14 @@ interface LoginForm {
 
 export default function LoginPage() {
   const { isAuthenticated } = useContext(UserContext);
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const handleRouterSignUpClick = () => router.push("/pages/signUp");
+  const handleRouterSignUpClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      return router.push("/pages/signUp");
+    }, 1000);
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -42,8 +48,6 @@ export default function LoginPage() {
     handleSubmit,
     setError,
   } = useForm<LoginForm>();
-
-  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmitPress = async (data: LoginForm) => {
     try {

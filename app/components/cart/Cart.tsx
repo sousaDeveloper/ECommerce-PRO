@@ -41,7 +41,7 @@ export default function Cart() {
     return clearCart();
   };
 
-  const handleBookingSubmit = () => {
+  const handlePaymentSubmit = () => {
     return setSubmitIsLoading(true);
   };
 
@@ -83,7 +83,7 @@ export default function Cart() {
                 className="flex gap-2 items-center justify-center w-full rounded bg-[#8C3A60] hover:bg-[#283040] hover:text-[#f2b6c1] transition duration-300 p-2"
                 onClick={handleFinishPurchaseClick}
               >
-                <p onClick={handleBookingSubmit} className="flex gap-2">
+                <p onClick={handlePaymentSubmit} className="flex gap-2">
                   <ShoppingCartIcon /> Ir para o pagamento
                 </p>
                 {submitIsLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}

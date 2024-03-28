@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { AuthError, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { redirect, useRouter } from "next/navigation";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 
 // Utilities
@@ -17,6 +17,7 @@ import Header from "@components/Header/Header";
 import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
 import Footer from "@components/Footer/Footer";
+import Loading from "@components/Loading/Loading";
 
 interface SignUpform {
   firstName: string;
@@ -28,9 +29,15 @@ interface SignUpform {
 
 export default function SignUpPage() {
   const { isAuthenticated } = useContext(UserContext);
-  
+  const [isLoading, setIsLoading] = useState(false);
+
   const router = useRouter();
-  const handleRouterLoginClick = () => router.push("/pages/login");
+  const handleRouterLoginClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      return router.push("/pages/login");
+    }, 1000);
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -47,8 +54,10 @@ export default function SignUpPage() {
     setError,
   } = useForm<SignUpform>();
 
+
   const handleSubmitPress = async (data: SignUpform) => {
     try {
+      setIsLoading(true);
       const userCredentials = await createUserWithEmailAndPassword(auth, data.email, data.password);
 
       await addDoc(collection(db, "users"), {
@@ -64,6 +73,8 @@ export default function SignUpPage() {
       if (_error.code === AuthErrorCodes.EMAIL_EXISTS) {
         return setError("email", { type: "alreadyInUse" });
       }
+    } finally {
+      setIsLoading(true);
     }
   };
 
@@ -72,6 +83,7 @@ export default function SignUpPage() {
   return (
     <>
       <Header />
+      {isLoading && <Loading />}
       <div className="grid place-content-center place-items-center mt-9 p-5">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}

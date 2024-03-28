@@ -16,6 +16,7 @@ import Cart from "../cart/Cart";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
 import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/react";
+import Loading from "@components/Loading/Loading";
 
 // Styles
 import "./Header.scss";
@@ -24,9 +25,15 @@ export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
   const { clearCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  const handleRouterClick = (path: string) => () => router.push(path);
+  const handleRouterClick = (path: string) => () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      return router.push(path);
+    }, 1000);
+  };
 
   const handleLogoutClick = () => {
     toast.success("Você deslogou da sua conta com sucesso.");
@@ -47,6 +54,7 @@ export default function Header() {
 
   return (
     <>
+      {isLoading && <Loading />}
       {windowWidth <= 785 ? (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold text-[#8c3a60]">
           <NavbarBrand>

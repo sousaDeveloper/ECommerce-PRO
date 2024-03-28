@@ -12,7 +12,8 @@ import { categoryConverter } from "@converters/firestore.converters";
 import ProductItem from "../CategoryOverview/ProductItem/ProductItem";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import SkeletonLoading from "@componentsSkeletonLoading/SkeletonLoading";
-import Footer from "@componentsFooter/Footer";
+import Footer from "@components/Footer/Footer";
+import Loading from "@components/Loading/Loading";
 
 interface ICategoryDetailsProps {
   categoryId: string;
@@ -22,9 +23,15 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
   const [category, setCategory] = useState<Category | null>(null);
   const [skeletonLoading, setSkeletonLoading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  const handleRouterHomeClick = () => router.push("/");
+  const handleRouterHomeClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      return router.push("/");
+    }, 1000);
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -61,6 +68,7 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
 
   return (
     <>
+      {isLoading && <Loading />}
       <main className="px-5">
         <div className="mb-5 mt-7">
           <button
