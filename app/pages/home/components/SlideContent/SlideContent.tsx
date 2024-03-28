@@ -20,12 +20,20 @@ export default function SlideContent() {
           </span>
         </h1>
       ) : (
-        <div className="slide-container bg-[#283040] p-2 mt-3">
-          <div className="contentSlide flex gap-32 text-[#8C3A60]">
-            <h1 className="slide-text font-bold text-2xl">Seja bem-vindo à Next Store</h1>
-            <h1 className="slide-text font-bold text-2xl">Entrega grátis acima de R$500,00</h1>
-            <h1 className="slide-text font-bold text-2xl">Entregamos para todo Brasil</h1>
-            <h1 className="slide-text font-bold text-2xl">Ganhe 20% OFF na primeira compra com o cupom PRIMEIRA20</h1>
+        <div className="brands-list bg-[#283040] text-[#8C3A60]">
+          <div className="wrapper">
+            <h1 className="font-bold text-2xl min-w-full">Seja bem-vindo à Next Store</h1>
+            <h1 className="font-bold text-2xl min-w-full">Entrega grátis acima de R$500,00</h1>
+            <h1 className="font-bold text-2xl min-w-full">Entregamos para todo Brasil</h1>
+            <h1 className="font-bold text-xl min-w-full">-20% OFF na primeira compra com o cupom PRIMEIRA20</h1>
+            <h1 className="font-bold text-2xl min-w-full">Seja bem-vindo à Next Store</h1>
+            <h1 className="font-bold text-2xl min-w-full">Entrega grátis acima de R$500,00</h1>
+            <h1 className="font-bold text-2xl min-w-full">Entregamos para todo Brasil</h1>
+            <h1 className="font-bold text-xl min-w-full">-20% OFF na primeira compra com o cupom PRIMEIRA20</h1>
+            <h1 className="font-bold text-2xl min-w-full">Seja bem-vindo à Next Store</h1>
+            <h1 className="font-bold text-2xl min-w-full">Entrega grátis acima de R$500,00</h1>
+            <h1 className="font-bold text-2xl min-w-full">Entregamos para todo Brasil</h1>
+            <h1 className="font-bold text-xl min-w-full">-20% OFF na primeira compra com o cupom PRIMEIRA20</h1>
           </div>
         </div>
       )}
