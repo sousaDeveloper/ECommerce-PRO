@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import validator from "validator";
 import { AuthError, AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -13,6 +13,7 @@ import Header from "@components/Header/Header";
 import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
 import Footer from "@components/Footer/Footer";
+import Loading from "@components/Loading/Loading";
 
 // Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
@@ -42,8 +43,11 @@ export default function LoginPage() {
     setError,
   } = useForm<LoginForm>();
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleSubmitPress = async (data: LoginForm) => {
     try {
+      setIsLoading(true);
       const userCredentials = await signInWithEmailAndPassword(auth, data.email, data.password);
 
       console.log({ userCredentials });
@@ -58,11 +62,14 @@ export default function LoginPage() {
         return setError("email", { type: "notFound" });
       }
       console.log({ error });
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleSignInGooglePress = async () => {
     try {
+      setIsLoading(true);
       const userCredentials = await signInWithPopup(auth, googleProvider);
 
       const querySnapshot = await getDocs(query(collection(db, "users"), where("id", "==", userCredentials.user.uid)));
@@ -82,12 +89,15 @@ export default function LoginPage() {
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
     <>
       <Header />
+      {isLoading && <Loading />}
       <div className="grid place-content-center place-items-center p-5 min-h-[79vh]">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
