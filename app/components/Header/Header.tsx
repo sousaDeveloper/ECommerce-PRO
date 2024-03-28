@@ -26,6 +26,9 @@ export default function Header() {
   const { clearCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoading, setIsLoading] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
+
+  const handleShowSidebarClick = () => setIsMenuOpen(!true);
 
   const router = useRouter();
   const handleRouterClick = (path: string) => () => {
@@ -62,37 +65,41 @@ export default function Header() {
               Next Store
             </p>
           </NavbarBrand>
-          <NavbarContent className="sm:flex gap-4 pl-5 py-5" justify="center">
+          <NavbarContent className="sm:flex gap-4 pl-5 py-5 animate__animated animate__fadeInUp" justify="center">
             <Cart />
             <Sheet>
               <SheetTrigger asChild>
                 <MenuIcon size={25} />
               </SheetTrigger>
-              <SheetContent className="p-0 text-white content">
-                <SheetHeader className="border-b border-slate-800 p-5">
-                  <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
-                </SheetHeader>
-                <nav className="p-5 flex flex-col gap-3 animate__animated animate__fadeInRight">
-                  {!isAuthenticated ? (
-                    <>
-                      <Button className="flex gap-2 font-bold buttonMobile" onClick={handleRouterClick("/pages/login")}>
-                        <LogInIcon />
-                        Entrar
+              {isMenuOpen && (
+                <SheetContent className="p-0 text-white content">
+                  <SheetHeader className="border-b border-slate-800 p-5">
+                    <SheetTitle className="font-bold text-2xl text-start mt-1 text-white">Menu</SheetTitle>
+                  </SheetHeader>
+                  <nav className="p-5 flex flex-col gap-3 animate__animated animate__fadeInRight">
+                    {!isAuthenticated ? (
+                      <>
+                        <Button className=" font-bold buttonMobile" onClick={handleRouterClick("/pages/login")}>
+                          <p className="flex gap-2" onClick={handleShowSidebarClick}>
+                            <LogInIcon />
+                            Entrar
+                          </p>
+                        </Button>
+                      </>
+                    ) : (
+                      <Button className="flex gap-2 items-center font-bold cursor-pointer" onClick={handleLogoutClick}>
+                        <p onClick={() => clearCart()} className="flex items-center gap-2">
+                          <LogOutIcon />
+                          Sair
+                        </p>
                       </Button>
-                    </>
-                  ) : (
-                    <Button className="flex gap-2 items-center font-bold cursor-pointer" onClick={handleLogoutClick}>
-                      <p onClick={() => clearCart()} className="flex items-center gap-2">
-                        <LogOutIcon />
-                        Sair
-                      </p>
+                    )}
+                    <Button className="font-bold buttonMobile" onClick={handleRouterClick("/pages/explore")}>
+                      <p onClick={handleShowSidebarClick}>Explorar</p>
                     </Button>
-                  )}
-                  <Button className="font-bold buttonMobile" onClick={handleRouterClick("/pages/explore")}>
-                    Explorar
-                  </Button>
-                </nav>
-              </SheetContent>
+                  </nav>
+                </SheetContent>
+              )}
             </Sheet>
           </NavbarContent>
         </Navbar>
@@ -104,7 +111,7 @@ export default function Header() {
             </p>
           </NavbarBrand>
           <NavbarContent className="hidden sm:flex gap-4 pl-7 py-4" justify="center">
-            <ul className="flex items-center gap-6 p-2">
+            <ul className="flex items-center gap-6 p-2 animate__animated animate__fadeInUp">
               <li className="cursor-pointer" onClick={handleRouterClick("/pages/explore")}>
                 Explorar
               </li>
