@@ -49,7 +49,7 @@ export default function Cart() {
     <Sheet>
       <SheetTrigger>
         {" "}
-        <li className="cursor-pointer relative flex items-center">
+        <li className="cursor-pointer relative flex items-center hover:text-[#fcd4be]">
           <ShoppingCartIcon />
           <span className="absolute -top-1 -right-1 bg-[#304060] text-white rounded-full px-1 text-xs">
             {totalItemsInCart}

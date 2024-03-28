@@ -27,7 +27,7 @@ export default function CategoryOverview({ category }: ICategoryProps) {
   }, []);
 
   return (
-    <section className="mt-0">
+    <section>
       <h1 className="font-bold text-3xl mb-2 mt-9 px-10 animate__animated animate__fadeInLeft text-[#8C3A60] text-start">
         {category.displayName}
       </h1>
