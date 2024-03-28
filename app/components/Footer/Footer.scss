@@ -1,5 +1,8 @@
 footer {
   display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
   padding: 20rem;
 }
 
@@ -7,5 +10,6 @@ footer {
   footer {
     display: flex;
     justify-content: center;
+    align-items: center;
   }
 }

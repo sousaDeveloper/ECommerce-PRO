@@ -27,9 +27,10 @@ interface SignUpform {
 }
 
 export default function SignUpPage() {
+  const { isAuthenticated } = useContext(UserContext);
+  
   const router = useRouter();
   const handleRouterLoginClick = () => router.push("/pages/login");
-  const { isAuthenticated } = useContext(UserContext);
 
   useEffect(() => {
     if (isAuthenticated) {

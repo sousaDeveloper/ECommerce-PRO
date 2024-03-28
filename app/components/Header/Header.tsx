@@ -15,20 +15,18 @@ import { CartContext } from "@contexts/cart.context";
 import Cart from "../cart/Cart";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
 import { Button } from "../ui/button";
-import { Navbar, NavbarBrand, NavbarContent, button } from "@nextui-org/react";
+import { Navbar, NavbarBrand, NavbarContent } from "@nextui-org/react";
 
 // Styles
 import "./Header.scss";
 
 export default function Header() {
   const { isAuthenticated } = useContext(UserContext);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const { clearCart } = useContext(CartContext);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const router = useRouter();
-  const handleRouterLoginClick = () => router.push("/pages/login");
-  const handleRouterExploreClick = () => router.push("/pages/explore");
-  const handleRouterBackClick = () => router.push("/");
+  const handleRouterClick = (path: string) => () => router.push(path);
 
   const handleLogoutClick = () => {
     toast.success("Você deslogou da sua conta com sucesso.");
@@ -52,7 +50,7 @@ export default function Header() {
       {windowWidth <= 785 ? (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold text-[#8c3a60]">
           <NavbarBrand>
-            <p className="text-2xl cursor-pointer animate__animated animate__fadeInUp" onClick={handleRouterBackClick}>
+            <p className="text-2xl cursor-pointer animate__animated animate__fadeInUp" onClick={handleRouterClick("/")}>
               Next Store
             </p>
           </NavbarBrand>
@@ -69,26 +67,20 @@ export default function Header() {
                 <nav className="p-5 flex flex-col gap-3 animate__animated animate__fadeInRight">
                   {!isAuthenticated ? (
                     <>
-                      <Button
-                        className="flex gap-2 font-bold bg-[#283040] hover:bg-[#8C3A60]"
-                        onClick={handleRouterLoginClick}
-                      >
+                      <Button className="flex gap-2 font-bold buttonMobile" onClick={handleRouterClick("/pages/login")}>
                         <LogInIcon />
                         Entrar
                       </Button>
                     </>
                   ) : (
-                    <Button
-                      className="flex gap-2 items-center font-bold bg-[#283040] hover:bg-[#8C3A60] cursor-pointer"
-                      onClick={handleLogoutClick}
-                    >
+                    <Button className="flex gap-2 items-center font-bold cursor-pointer" onClick={handleLogoutClick}>
                       <p onClick={() => clearCart()} className="flex items-center gap-2">
                         <LogOutIcon />
                         Sair
                       </p>
                     </Button>
                   )}
-                  <Button className="font-bold bg-[#283040] hover:bg-[#8C3A60]" onClick={handleRouterExploreClick}>
+                  <Button className="font-bold buttonMobile" onClick={handleRouterClick("/pages/explore")}>
                     Explorar
                   </Button>
                 </nav>
@@ -99,13 +91,13 @@ export default function Header() {
       ) : (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold text-[#8c3a60]">
           <NavbarBrand>
-            <p className="text-2xl cursor-pointer animate__animated animate__fadeInUp" onClick={handleRouterBackClick}>
+            <p className="text-2xl cursor-pointer animate__animated animate__fadeInUp" onClick={handleRouterClick("/")}>
               Next Store
             </p>
           </NavbarBrand>
           <NavbarContent className="hidden sm:flex gap-4 pl-7 py-4" justify="center">
             <ul className="flex items-center gap-6 p-2">
-              <li className="cursor-pointer" onClick={handleRouterExploreClick}>
+              <li className="cursor-pointer" onClick={handleRouterClick("/pages/explore")}>
                 Explorar
               </li>
               {isAuthenticated ? (
@@ -116,7 +108,7 @@ export default function Header() {
                   </li>
                 </button>
               ) : (
-                <li className="cursor-pointer" onClick={handleRouterLoginClick}>
+                <li className="cursor-pointer" onClick={handleRouterClick("/pages/login")}>
                   Entrar
                 </li>
               )}

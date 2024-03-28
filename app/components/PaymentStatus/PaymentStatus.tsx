@@ -22,7 +22,7 @@ export default function PaymentStatus({ children }: any) {
         </div>
         {children}
       </div>
-      <p className="font-bold mt-1 text-center ">Redirecionando à tela principal em instantes...</p>
+      <p className="font-bold mt-1 text-center">Redirecionando à tela principal em instantes...</p>
     </div>
   );
 }

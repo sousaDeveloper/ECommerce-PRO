@@ -26,18 +26,14 @@ interface ICartItemProps {
 export default function CartItem({ product }: ICartItemProps) {
   const { addProductToCart, removeProductInCart, decreaseProductQuantity } = useContext(CartContext);
 
-  const addProcuctToCartClick = () => {
-    return addProductToCart(product);
-  };
+  const addProcuctToCartClick = () => addProductToCart(product);
 
   const removeProductInCartClick = () => {
     toast.success("Item removido do carrinho.");
     return removeProductInCart(product.id);
   };
 
-  const decreaseProductQuantityClick = () => {
-    return decreaseProductQuantity(product.id);
-  };
+  const decreaseProductQuantityClick = () => decreaseProductQuantity(product.id);
 
   return (
     <div className="flex justify-between gap-3 mt-2 border border-solid border-[#283040] rounded p-1 animate__animated animate__fadeInUp">

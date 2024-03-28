@@ -26,6 +26,10 @@ export default function CategoryOverview({ category }: ICategoryProps) {
     };
   }, []);
 
+  const renderProductItems = () => {
+    return category.products.slice(0, 4).map((product) => <ProductItem product={product} key={product.id} />);
+  };
+
   return (
     <section>
       <h1 className="font-bold text-3xl mb-2 mt-9 px-10 animate__animated animate__fadeInLeft text-[#8C3A60] text-start">
@@ -34,20 +38,12 @@ export default function CategoryOverview({ category }: ICategoryProps) {
       <div className="flex justify-center gap-2 p-1 animate__animated animate__fadeInUp">
         {windowWidth <= 874 ? (
           <ScrollArea className="rounded-md">
-            <div className="flex w-max space-x-4 p-4">
-              {category.products.slice(0, 4).map((product) => (
-                <ProductItem product={product} key={product.id} />
-              ))}
-            </div>
+            <div className="flex w-max space-x-4 p-4">{renderProductItems()}</div>
 
             <ScrollBar orientation="horizontal" />
           </ScrollArea>
         ) : (
-          <div className="flex flex-wrap p-4 gap-6">
-            {category.products.slice(0, 4).map((product) => (
-              <ProductItem product={product} key={product.id} />
-            ))}
-          </div>
+          <div className="flex flex-wrap p-4 gap-6">{renderProductItems()}</div>
         )}
       </div>
     </section>

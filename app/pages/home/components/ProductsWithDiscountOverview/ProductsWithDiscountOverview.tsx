@@ -1,5 +1,5 @@
-import ProductsWithDiscount from "@componentsProductsWithDiscount/ProductsWithDiscount";
-import { CategoriesContext } from "@contextscategories.context";
+import ProductsWithDiscount from "@components/ProductsWithDiscount/ProductsWithDiscount";
+import { CategoriesContext } from "@contexts/categories.context";
 import { useContext, useEffect } from "react";
 
 export default function ProductsWithDiscountOverview() {

@@ -19,11 +19,12 @@ interface ICategoryDetailsProps {
 }
 
 export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
-  const router = useRouter();
-  const [skeletonLoading, setSkeletonLoading] = useState(true);
-  const handleRouterHomeClick = () => router.push("/");
   const [category, setCategory] = useState<Category | null>(null);
+  const [skeletonLoading, setSkeletonLoading] = useState(true);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const router = useRouter();
+  const handleRouterHomeClick = () => router.push("/");
 
   useEffect(() => {
     const handleResize = () => {
@@ -54,6 +55,10 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
     }, 1500);
   }, []);
 
+  const renderProductItems = () => {
+    return category?.products.map((product) => <ProductItem product={product} key={product.id} />);
+  };
+
   return (
     <>
       <main className="px-5">
@@ -81,20 +86,12 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
           <div className="flex flex-wrap justify-center gap-2 p-1">
             {windowWidth <= 874 ? (
               <ScrollArea className="rounded-md">
-                <div className="flex w-max space-x-4 p-4 pl-0">
-                  {category?.products.map((product) => (
-                    <ProductItem product={product} key={product.id} />
-                  ))}
-                </div>
+                <div className="flex w-max space-x-4 p-4 pl-0">{renderProductItems()}</div>
 
                 <ScrollBar orientation="horizontal" />
               </ScrollArea>
             ) : (
-              <div className="grid grid-cols-3 p-4 gap-8">
-                {category?.products.map((product) => (
-                  <ProductItem product={product} key={product.id} />
-                ))}
-              </div>
+              <div className="grid grid-cols-3 p-4 gap-8">{renderProductItems()}</div>
             )}
           </div>
         )}

@@ -12,9 +12,9 @@ import Footer from "@components/Footer/Footer";
 import PaymentStatus from "@components/PaymentStatus/PaymentStatus";
 
 export default function PaymentConfirmation() {
-  const router = useRouter();
   const { clearCart } = useContext(CartContext);
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   const status = searchParams.get("success");
   const isCanceled = searchParams.get("canceled") === "true";
@@ -62,7 +62,6 @@ export default function PaymentConfirmation() {
           </PaymentStatus>
         )}
       </div>
-
       <Footer />
     </>
   );

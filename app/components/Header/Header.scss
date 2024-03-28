@@ -1,17 +1,22 @@
 header {
   backdrop-filter: blur(0.3rem);
   -webkit-backdrop-filter: blur(0.3rem);
-  background-color: #f6d4c295;
+  background-color: #283040;
 
   li {
     transition: 0.3s;
 
     &:hover {
-      color: #283040;
+      color: #fcd4be;
     }
   }
 }
-
+.buttonMobile {
+  background-color: #283040;
+  &:hover {
+    background-color: #8c3a60;
+  }
+}
 .content {
   backdrop-filter: blur(0.8rem);
   -webkit-backdrop-filter: blur(0.8rem);
