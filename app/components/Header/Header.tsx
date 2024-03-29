@@ -61,9 +61,7 @@ export default function Header() {
       {windowWidth <= 785 ? (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold text-[#8c3a60]">
           <NavbarBrand>
-            <p className="text-2xl cursor-pointer animate__animated animate__fadeInUp" onClick={handleRouterClick("/")}>
-              Next Store
-            </p>
+            <p className="text-2xl animate__animated animate__fadeInUp">Next Store</p>
           </NavbarBrand>
           <NavbarContent className="sm:flex gap-4 pl-5 py-5 animate__animated animate__fadeInUp" justify="center">
             <Cart />
@@ -80,7 +78,7 @@ export default function Header() {
                     {!isAuthenticated ? (
                       <>
                         <Button className=" font-bold buttonMobile" onClick={handleRouterClick("/pages/login")}>
-                          <p className="flex gap-2" onClick={handleShowSidebarClick}>
+                          <p className="flex items-center gap-2" onClick={handleShowSidebarClick}>
                             <LogInIcon />
                             Entrar
                           </p>
@@ -106,9 +104,7 @@ export default function Header() {
       ) : (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold text-[#8c3a60]">
           <NavbarBrand>
-            <p className="text-2xl cursor-pointer animate__animated animate__fadeInUp" onClick={handleRouterClick("/")}>
-              Next Store
-            </p>
+            <p className="text-2xl animate__animated animate__fadeInUp">Next Store</p>
           </NavbarBrand>
           <NavbarContent className="hidden sm:flex gap-4 pl-7 py-4" justify="center">
             <ul className="flex items-center gap-6 p-2 animate__animated animate__fadeInUp">

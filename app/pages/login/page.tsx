@@ -7,6 +7,8 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { ChevronLeftIcon } from "lucide-react";
 
 // Components
 import Header from "@components/Header/Header";
@@ -101,8 +103,17 @@ export default function LoginPage() {
   return (
     <>
       <Header />
+
       {isLoading && <Loading />}
-      <div className="grid place-content-center place-items-center p-5 min-h-[79vh]">
+      <div className="mt-7 pl-5">
+        <button className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300 animate__fadeInRight">
+          <ChevronLeftIcon size={25} />
+          <Link href="/">
+            <h1 className="font-bold text-xl animate__animated">Voltar</h1>
+          </Link>
+        </button>
+      </div>
+      <div className="grid place-content-center place-items-center p-5 min-h-[79vh] animate__animated animate__fadeInDown">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
           className="max-w-[30rem] rounded overflow-hidden p-8 space-y-8 bg-[#283040]"

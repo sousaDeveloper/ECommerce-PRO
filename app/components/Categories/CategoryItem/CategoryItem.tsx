@@ -1,11 +1,9 @@
 import { useRouter } from "next/navigation";
+import { Loader } from "lucide-react";
+import { useState } from "react";
 
 // Utilities
 import Category from "@typescategory.types";
-import { useState } from "react";
-
-// Components
-import { Loader2 } from "lucide-react";
 
 interface CategoryItemsProps {
   category: Category;
@@ -43,8 +41,8 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
       >
         <button onClick={handleRouterCategoryClick}>
           {submitIsLoading ? (
-            <button className="bg-[#8C3A60] rounded px-12 py-6">
-              <Loader2 size={50} className="mr-2 h-4 animate-spin text-white w-10" />
+            <button className="bg-[#8C3A60] rounded px-10 py-6">
+              <Loader size={50} className="mr-2 h-4 animate-spin text-white w-10" />
             </button>
           ) : (
             <div
