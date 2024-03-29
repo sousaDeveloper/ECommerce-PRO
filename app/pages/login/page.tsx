@@ -124,7 +124,7 @@ export default function LoginPage() {
           <p className="font-bold text-xl">Voltar</p>
         </button>
       </div>
-      <div className="grid place-content-center place-items-center p-5 pt-3 min-h-[79vh]" data-aos="fade-down">
+      <div className="grid place-content-center place-items-center p-5 pt-0 min-h-[79vh]" data-aos="fade-down">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
           className="max-w-[30rem] rounded overflow-hidden p-8 space-y-8 bg-[#283040]"
