@@ -9,7 +9,7 @@ export default function SlideContent() {
   return (
     <>
       {isLargeScreen ? (
-        <h1 className="bg-[#283040] p-2 text-2xl text-[#8C3A60] font-bold mt-2">
+        <h1 className="bg-[#283040] p-2 text-2xl text-[#fcd4be] font-bold mt-2">
           <span>
             <span>Seja bem-vindo à Next Store</span>
             <span>Entrega grátis acima de R$500,00</span>
@@ -20,7 +20,7 @@ export default function SlideContent() {
           </span>
         </h1>
       ) : (
-        <div className="brands-list bg-[#283040] text-[#8C3A60]">
+        <div className="brands-list bg-[#283040] text-[#fcd4be]">
           <div className="wrapper">
             <h1 className="font-bold text-2xl min-w-full">Seja bem-vindo à Next Store</h1>
             <h1 className="font-bold text-2xl min-w-full">Entrega grátis acima de R$500,00</h1>

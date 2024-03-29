@@ -33,7 +33,7 @@ export default function ProductsWithDiscount({ categories }: IProductsWithDiscou
 
   return (
     <>
-      <h1 className="font-bold text-3xl mt-20 mb-4" data-aos="fade-right">
+      <h1 className="font-bold text-3xl mt-20 mb-4 text-[#283040]" data-aos="fade-right">
         Semana 20% OFF
       </h1>
       {windowWidth <= 785 ? (

@@ -35,7 +35,7 @@ export default function CategoryOverview({ category }: ICategoryProps) {
 
   return (
     <section>
-      <h1 className="font-bold text-3xl mb-2 mt-9 px-10 text-[#8C3A60] text-start" data-aos="fade-right">
+      <h1 className="font-bold text-3xl mb-2 mt-9 px-10 text-[#283040] text-start" data-aos="fade-right">
         {category.displayName}
       </h1>
       <div className="flex justify-center gap-2 p-1" data-aos="fade-up">

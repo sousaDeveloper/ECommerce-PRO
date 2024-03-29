@@ -56,7 +56,7 @@ export default function ProductItem({ product }: IProductProps) {
         <h5 className="mb-2 text-xl font-bold overflow-hidden text-ellipsis whitespace-nowrap">{product.name}</h5>
       </div>
       <div className="flex justify-between items-center p-6 pt-0">
-        <span className="font-bold">R${product.price}</span>
+        <span className="font-bold text-lg">R${product.price}</span>
         <button
           className="bg-[#8C3A60] hover:bg-[#f2b6c1] hover:text-[#283040] transition duration-300 text-white rounded p-2 font-bold"
           onClick={addProductToCartClick}

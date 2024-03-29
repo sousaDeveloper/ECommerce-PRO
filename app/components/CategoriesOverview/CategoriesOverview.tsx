@@ -35,7 +35,7 @@ export default function CategoriesOverview() {
       {submitIsLoading && <Loading />}
       <div className="mt-7 pl-5">
         <button
-          className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300"
+          className="flex gap-1 items-center text-[#8c3a60] hover:text-[#283040] transition duration-300"
           data-aos="fade-right"
           onClick={handleSubmitIsLoading}
         >
