@@ -26,6 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
         <link rel="shortcut icon" href="/favicon_ns_by_nuhamaulana_da5acc2-300w.png" type="image/x-icon" />
         <meta httpEquiv="Cross-Origin-Opener-Policy" content="same-origin" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -34,6 +35,7 @@ export default function RootLayout({
           href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,300;1,300&display=swap"
           rel="stylesheet"
         />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
       </head>
       <body className={inter.className}>
         <UserContextProvider>

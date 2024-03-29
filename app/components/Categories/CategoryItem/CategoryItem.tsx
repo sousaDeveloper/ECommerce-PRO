@@ -1,6 +1,7 @@
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
 import { useState } from "react";
+import Aos from "aos";
 
 // Utilities
 import Category from "@typescategory.types";
@@ -10,6 +11,7 @@ interface CategoryItemsProps {
 }
 
 export default function CategoryItem({ category }: CategoryItemsProps) {
+  Aos.init();
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
 
   const router = useRouter();
@@ -26,7 +28,8 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
   return (
     <>
       <div
-        className="flex gap-4 w-full h-full rounded justify-center items-center animate__animated animate__fadeInUp"
+        className="flex gap-4 w-full h-full rounded justify-center items-center"
+        data-aos="fade-up"
         style={{
           backgroundImage: `url('${category.imageUrl}')`,
           backgroundRepeat: "no-repeat",

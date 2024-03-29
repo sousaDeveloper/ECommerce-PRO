@@ -1,4 +1,4 @@
-import "animate.css";
+import Aos from "aos";
 import { ShoppingCartIcon } from "lucide-react";
 import { useContext, useMemo, useState } from "react";
 import axios from "axios";
@@ -13,6 +13,8 @@ import { UserContext } from "@contexts/user.context";
 // Components
 import CartItem from "../CartItem/CartItem";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
+
+Aos.init();
 
 export default function Cart() {
   const { products, formattedPrice, clearCart } = useContext(CartContext);
@@ -49,7 +51,7 @@ export default function Cart() {
     <Sheet>
       <SheetTrigger>
         {" "}
-        <li className="cursor-pointer relative flex items-center hover:text-[#fcd4be]">
+        <li className="cursor-pointer relative flex items-center hover:text-[#8C3A60]">
           <ShoppingCartIcon />
           <span className="absolute -top-1 -right-1 bg-[#304060] text-[#fcd4be] rounded-full px-1 text-xs">
             {totalItemsInCart}
@@ -58,7 +60,11 @@ export default function Cart() {
       </SheetTrigger>
       <SheetContent className="p-0 text-white" style={{ overflowY: "auto" }}>
         <SheetHeader className="border-b border-slate-800 p-5">
-          <SheetTitle className="font-bold text-2xl mt-1 text-start text-white animate__animated animate__fadeInRight">
+          <SheetTitle
+            className="font-bold text-2xl mt-1 text-start text-white"
+            data-aos="fade-left"
+            data-aos-duration="1000"
+          >
             Seu Carrinho
           </SheetTitle>
         </SheetHeader>
@@ -66,18 +72,15 @@ export default function Cart() {
         {products.length === 0 ? (
           <h1 className="p-5 font-bold text-xl text-start">Carrinho vazio.</h1>
         ) : (
-          <div className="p-4 text-start">
+          <div className="p-4 text-start" data-aos="fade-up" data-aos-duration="1000">
             {products.map((product) => (
               <CartItem product={product} key={product.id} />
             ))}
-            <button
-              onClick={handleClearCartClick}
-              className="font-bold hover:text-[#8C3A60] transition duration-300 animate__animated animate__fadeInRight"
-            >
+            <button onClick={handleClearCartClick} className="font-bold hover:text-[#8C3A60] transition duration-300">
               Limpar Carrinho
             </button>
 
-            <div className="pt-5 font-bold animate__animated animate__fadeInRight">
+            <div className="pt-5 font-bold">
               <h1 className="text-start">Total: {formattedPrice}</h1>
               <button
                 className="flex gap-2 items-center justify-center w-full rounded bg-[#8C3A60] hover:bg-[#283040] hover:text-[#f2b6c1] transition duration-300 p-2"

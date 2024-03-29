@@ -7,6 +7,7 @@ import { addDoc, collection } from "firebase/firestore";
 import { redirect, useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
+import Aos from "aos";
 
 // Utilities
 import { UserContext } from "@contexts/user.context";
@@ -18,6 +19,7 @@ import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
 import Footer from "@components/Footer/Footer";
 import Loading from "@components/Loading/Loading";
+import { ChevronLeftIcon } from "lucide-react";
 
 interface SignUpform {
   firstName: string;
@@ -26,6 +28,8 @@ interface SignUpform {
   password: string;
   confirmPassword: string;
 }
+
+Aos.init();
 
 export default function SignUpPage() {
   const { isAuthenticated } = useContext(UserContext);
@@ -38,6 +42,7 @@ export default function SignUpPage() {
       return router.push("/pages/login");
     }, 1000);
   };
+  const handleRouterBackClick = () => router.back();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -53,7 +58,6 @@ export default function SignUpPage() {
     watch,
     setError,
   } = useForm<SignUpform>();
-
 
   const handleSubmitPress = async (data: SignUpform) => {
     try {
@@ -83,8 +87,18 @@ export default function SignUpPage() {
   return (
     <>
       <Header />
+      <div className="mt-7 pl-4">
+        <button
+          className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300"
+          data-aos="fade-right"
+          onClick={handleRouterBackClick}
+        >
+          <ChevronLeftIcon size={25} />
+          <h1 className="font-bold text-xl">Voltar</h1>
+        </button>
+      </div>
       {isLoading && <Loading />}
-      <div className="grid place-content-center place-items-center mt-9 p-5">
+      <div className="grid place-content-center place-items-center p-5 pt-3" data-aos="fade-down">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
           className=" max-w-[30rem] rounded overflow-hidden p-8 space-y-8 bg-[#283040]"

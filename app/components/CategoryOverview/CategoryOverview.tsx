@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Aos from "aos";
 
 // Components
 import ProductItem from "./ProductItem/ProductItem";
@@ -10,6 +11,8 @@ import Category from "@typescategory.types";
 interface ICategoryProps {
   category: Category;
 }
+
+Aos.init();
 
 export default function CategoryOverview({ category }: ICategoryProps) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -32,10 +35,10 @@ export default function CategoryOverview({ category }: ICategoryProps) {
 
   return (
     <section>
-      <h1 className="font-bold text-3xl mb-2 mt-9 px-10 animate__animated animate__fadeInLeft text-[#8C3A60] text-start">
+      <h1 className="font-bold text-3xl mb-2 mt-9 px-10 text-[#8C3A60] text-start" data-aos="fade-right">
         {category.displayName}
       </h1>
-      <div className="flex justify-center gap-2 p-1 animate__animated animate__fadeInUp">
+      <div className="flex justify-center gap-2 p-1" data-aos="fade-up">
         {windowWidth <= 874 ? (
           <ScrollArea className="rounded-md">
             <div className="flex w-max space-x-4 p-4">{renderProductItems()}</div>

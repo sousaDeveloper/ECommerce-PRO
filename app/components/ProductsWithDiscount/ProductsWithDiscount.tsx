@@ -2,10 +2,13 @@ import Category from "@typescategory.types";
 import ProductWithDiscount from "./ProductWithDiscount/ProductWithDiscount";
 import { useEffect, useState } from "react";
 import { ScrollArea, ScrollBar } from "@componentsui/scroll-area";
+import Aos from "aos";
 
 interface IProductsWithDiscountProps {
   categories: Category[];
 }
+
+Aos.init();
 
 export default function ProductsWithDiscount({ categories }: IProductsWithDiscountProps) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -30,7 +33,9 @@ export default function ProductsWithDiscount({ categories }: IProductsWithDiscou
 
   return (
     <>
-      <h1 className="font-bold text-3xl mt-20 mb-4 animate__animated animate__fadeInLeft">Semana 20% OFF</h1>
+      <h1 className="font-bold text-3xl mt-20 mb-4" data-aos="fade-right">
+        Semana 20% OFF
+      </h1>
       {windowWidth <= 785 ? (
         <ScrollArea className="rounded-md">
           <div className="flex w-max space-x-4 p-4">{renderProductItems()}</div>

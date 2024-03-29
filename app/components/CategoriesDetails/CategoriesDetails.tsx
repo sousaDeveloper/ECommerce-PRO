@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { ChevronLeftIcon } from "lucide-react";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useRouter } from "next/navigation";
+import Aos from "aos";
 
 // Utilities
 import { db } from "../../config/firebase.config";
@@ -18,6 +19,8 @@ import Loading from "@components/Loading/Loading";
 interface ICategoryDetailsProps {
   categoryId: string;
 }
+
+Aos.init();
 
 export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
   const [category, setCategory] = useState<Category | null>(null);
@@ -72,11 +75,12 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
       <main className="px-5">
         <div className="mb-5 mt-7">
           <button
-            className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300 animate__fadeInRight"
+            className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300"
+            data-aos="fade-right"
             onClick={handleRouterHomeClick}
           >
             <ChevronLeftIcon size={25} />
-            <h1 className="font-bold text-xl animate__animated">Voltar</h1>
+            <h1 className="font-bold text-xl">Voltar</h1>
           </button>
         </div>
         {skeletonLoading ? (

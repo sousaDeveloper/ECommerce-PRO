@@ -36,7 +36,7 @@ export default function CartItem({ product }: ICartItemProps) {
   const decreaseProductQuantityClick = () => decreaseProductQuantity(product.id);
 
   return (
-    <div className="flex justify-between gap-3 mt-2 border border-solid border-[#283040] rounded p-1 animate__animated animate__fadeInUp">
+    <div className="flex justify-between gap-3 mt-2 border border-solid border-[#283040] rounded p-1">
       <div className="flex gap-2">
         <Image
           src={product.imageUrl}

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
+import Aos from "aos";
 
 // Utilities
 import { CategoriesContext } from "@contexts/categories.context";
@@ -10,6 +11,8 @@ import CategoryOverview from "../CategoryOverview/CategoryOverview";
 import Footer from "@componentsFooter/Footer";
 import { useRouter } from "next/navigation";
 import Loading from "@components/Loading/Loading";
+
+Aos.init();
 
 export default function CategoriesOverview() {
   const { categories, fetchCategories } = useContext(CategoriesContext);
@@ -32,12 +35,15 @@ export default function CategoriesOverview() {
       {submitIsLoading && <Loading />}
       <div className="mt-7 pl-5">
         <button
-          className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300 animate__fadeInRight"
+          className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300"
+          data-aos="fade-right"
           onClick={handleSubmitIsLoading}
         >
           <ChevronLeftIcon size={25} />
           <Link href="/">
-            <h1 className="font-bold text-xl animate__animated animate__fadeInRight">Voltar</h1>
+            <h1 className="font-bold text-xl" data-aos="fade-right">
+              Voltar
+            </h1>
           </Link>
         </button>
       </div>

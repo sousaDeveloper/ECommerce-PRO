@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
+import Aos from "aos";
 
 // Utilities
 import Product from "@typesproduct.types";
@@ -11,6 +12,7 @@ interface IProductWithDiscountProp {
 }
 
 export default function ProductWithDiscount({ product }: IProductWithDiscountProp) {
+  Aos.init();
   const { addProductToCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
@@ -41,7 +43,8 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
 
   return (
     <div
-      className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white animate__animated animate__fadeInUp"
+      data-aos="fade-up"
+      className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white"
       style={{
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       }}

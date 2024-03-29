@@ -7,8 +7,8 @@ import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 import { ChevronLeftIcon } from "lucide-react";
+import Aos from "aos";
 
 // Components
 import Header from "@components/Header/Header";
@@ -26,14 +26,23 @@ interface LoginForm {
   password: string;
 }
 
+Aos.init();
+
 export default function LoginPage() {
   const { isAuthenticated } = useContext(UserContext);
+
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const handleRouterSignUpClick = () => {
     setIsLoading(true);
     setTimeout(() => {
       return router.push("/pages/signUp");
+    }, 1000);
+  };
+  const handleRouterBackClick = () => {
+    setIsLoading(true);
+    setTimeout(() => {
+      return router.push("/");
     }, 1000);
   };
 
@@ -105,15 +114,17 @@ export default function LoginPage() {
       <Header />
 
       {isLoading && <Loading />}
-      <div className="mt-7 pl-5">
-        <button className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300 animate__fadeInRight">
+      <div className="mt-7 pl-4">
+        <button
+          className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300"
+          data-aos="fade-right"
+          onClick={handleRouterBackClick}
+        >
           <ChevronLeftIcon size={25} />
-          <Link href="/">
-            <h1 className="font-bold text-xl animate__animated">Voltar</h1>
-          </Link>
+          <p className="font-bold text-xl">Voltar</p>
         </button>
       </div>
-      <div className="grid place-content-center place-items-center p-5 min-h-[79vh] animate__animated animate__fadeInDown">
+      <div className="grid place-content-center place-items-center p-5 pt-3 min-h-[79vh]" data-aos="fade-down">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
           className="max-w-[30rem] rounded overflow-hidden p-8 space-y-8 bg-[#283040]"
