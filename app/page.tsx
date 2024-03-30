@@ -3,15 +3,16 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { NextUIProvider } from "@nextui-org/react";
 
 // Utilities
 import { auth, db } from "./config/firebase.config";
 import { userConverter } from "@converters/firestore.converters";
-import { NextUIProvider } from "@nextui-org/react";
+import { loginUser, logoutUser } from "@components/store/reducers/user/user.actions";
 
 // Components
 import HomePage from "./pages/home/page";
-import { useEffect } from "react";
 
 export default function Page() {
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ export default function Page() {
     onAuthStateChanged(auth, async (user) => {
       const isSigningOut = isAuthenticated && !user;
       if (isSigningOut) {
-        return dispatch({ type: "LOGOUT_USER" });
+        return dispatch(logoutUser());
       }
 
       const inSigningIn = !isAuthenticated && user;
@@ -33,7 +34,7 @@ export default function Page() {
 
         const userFromFirestore = querySnapshot.docs[0]?.data();
 
-        return dispatch({ type: "LOGIN_USER", payload: userFromFirestore });
+        return dispatch(loginUser(userFromFirestore));
       }
     });
   }, [dispatch]);
