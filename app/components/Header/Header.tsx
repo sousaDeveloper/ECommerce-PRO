@@ -1,16 +1,17 @@
 "use client";
 
-import { signOut } from "firebase/auth";
 import { useContext, useEffect, useState } from "react";
-import { LogInIcon, LogOutIcon, MenuIcon } from "lucide-react";
+import { LogOutIcon, MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Aos from "aos";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { signOut } from "firebase/auth";
 
 // Utilities
-import { auth } from "../../config/firebase.config";
-import { UserContext } from "@contexts/user.context";
 import { CartContext } from "@contexts/cart.context";
+import { auth } from "config/firebase.config";
 
 // Components
 import Cart from "../cart/Cart";
@@ -33,12 +34,12 @@ import "./Header.scss";
 Aos.init();
 
 export default function Header() {
-  const { isAuthenticated, currentUser } = useContext(UserContext);
+  const { isAuthenticated, currentUser } = useSelector((rootReducer: any) => rootReducer.userReducer);
   const { clearCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoading, setIsLoading] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(true);
 
+  const [isMenuOpen, setIsMenuOpen] = useState(true);
   const handleShowSidebarClick = () => setIsMenuOpen(!true);
 
   const router = useRouter();
@@ -49,8 +50,11 @@ export default function Header() {
     }, 1000);
   };
 
+  const dispatch = useDispatch();
+
   const handleLogoutClick = () => {
     toast.success("Você deslogou da sua conta com sucesso.");
+    dispatch({ type: "LOGOUT_USER" });
     return signOut(auth);
   };
 

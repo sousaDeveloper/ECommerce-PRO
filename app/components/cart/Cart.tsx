@@ -5,10 +5,10 @@ import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 // Utilities
 import { CartContext } from "@contexts/cart.context";
-import { UserContext } from "@contexts/user.context";
 
 // Components
 import CartItem from "../CartItem/CartItem";
@@ -18,7 +18,7 @@ Aos.init();
 
 export default function Cart() {
   const { products, formattedPrice, clearCart } = useContext(CartContext);
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer);
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
   const router = useRouter();
 

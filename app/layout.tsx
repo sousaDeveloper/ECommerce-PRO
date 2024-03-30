@@ -1,22 +1,20 @@
-import type { Metadata } from "next";
+"use client";
+
 import { Inter } from "next/font/google";
 
 // Styles
 import "./globals.css";
 
 // Contexts
-import UserContextProvider from "./contexts/user.context";
 import CategoriesContextProvider from "./contexts/categories.context";
 import CardContextProvider from "./contexts/cart.context";
 
 // Components
 import { Toaster } from "./components/ui/sonner";
+import { Provider } from "react-redux";
+import store from "@componentsstore/store";
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const metadata: Metadata = {
-  title: "Next Store",
-};
 
 export default function RootLayout({
   children,
@@ -36,13 +34,15 @@ export default function RootLayout({
           rel="stylesheet"
         />
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <title>Next Store</title>
       </head>
       <body className={inter.className}>
-        <UserContextProvider>
+        <Provider store={store}>
           <CategoriesContextProvider>
             <CardContextProvider>{children}</CardContextProvider>
           </CategoriesContextProvider>
-        </UserContextProvider>
+        </Provider>
+
         <Toaster />
       </body>
     </html>

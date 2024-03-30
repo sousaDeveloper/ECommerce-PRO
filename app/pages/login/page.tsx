@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form";
 import validator from "validator";
 import { AuthError, AuthErrorCodes, signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "lucide-react";
 import Aos from "aos";
+import { useSelector } from "react-redux";
 
 // Components
 import Header from "@components/Header/Header";
@@ -19,7 +20,6 @@ import Loading from "@components/Loading/Loading";
 
 // Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
-import { UserContext } from "@contexts/user.context";
 
 interface LoginForm {
   email: string;
@@ -29,7 +29,7 @@ interface LoginForm {
 Aos.init();
 
 export default function LoginPage() {
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer);
 
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -111,9 +111,9 @@ export default function LoginPage() {
 
   return (
     <>
+      {isLoading && <Loading />}
       <Header />
 
-      {isLoading && <Loading />}
       <div className="mt-7 pl-4">
         <button
           className="flex gap-1 items-center text-[#283040] hover:text-[#8c3a60] transition duration-300"

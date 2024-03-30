@@ -5,12 +5,13 @@ import { useForm } from "react-hook-form";
 import { AuthError, createUserWithEmailAndPassword, AuthErrorCodes } from "firebase/auth";
 import { addDoc, collection } from "firebase/firestore";
 import { redirect, useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Aos from "aos";
+import { ChevronLeftIcon } from "lucide-react";
+import { useSelector } from "react-redux";
 
 // Utilities
-import { UserContext } from "@contexts/user.context";
 import { auth, db } from "../../config/firebase.config";
 
 // Components
@@ -19,7 +20,6 @@ import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
 import Footer from "@components/Footer/Footer";
 import Loading from "@components/Loading/Loading";
-import { ChevronLeftIcon } from "lucide-react";
 
 interface SignUpform {
   firstName: string;
@@ -32,7 +32,7 @@ interface SignUpform {
 Aos.init();
 
 export default function SignUpPage() {
-  const { isAuthenticated } = useContext(UserContext);
+  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer);
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -86,6 +86,7 @@ export default function SignUpPage() {
 
   return (
     <>
+      {isLoading && <Loading />}
       <Header />
       <div className="mt-7 pl-4">
         <button
@@ -97,7 +98,6 @@ export default function SignUpPage() {
           <h1 className="font-bold text-xl">Voltar</h1>
         </button>
       </div>
-      {isLoading && <Loading />}
       <div className="grid place-content-center place-items-center p-5 pt-3" data-aos="fade-down">
         <div
           style={{ animation: "slideInFromLeft 1s ease-out", boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px" }}
