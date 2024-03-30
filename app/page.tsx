@@ -3,6 +3,7 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { useContext } from "react";
+import { Provider } from "react-redux";
 
 // Utilities
 import { auth, db } from "./config/firebase.config";
@@ -10,8 +11,9 @@ import { UserContext } from "@contexts/user.context";
 import { userConverter } from "@converters/firestore.converters";
 import { NextUIProvider } from "@nextui-org/react";
 
-// HomePage
+// Components
 import HomePage from "./pages/home/page";
+import store from "@components/store/store";
 
 export default function Page() {
   const { isAuthenticated, loginUser, logoutUser } = useContext(UserContext);
@@ -36,9 +38,11 @@ export default function Page() {
 
   return (
     <>
-      <NextUIProvider>
-        <HomePage />
-      </NextUIProvider>
+      <Provider store={store}>
+        <NextUIProvider>
+          <HomePage />
+        </NextUIProvider>
+      </Provider>
     </>
   );
 }
