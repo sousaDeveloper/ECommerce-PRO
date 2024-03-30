@@ -10,8 +10,9 @@ interface CategoryItemsProps {
   category: Category;
 }
 
+Aos.init();
+
 export default function CategoryItem({ category }: CategoryItemsProps) {
-  Aos.init();
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
 
   const router = useRouter();
@@ -44,9 +45,9 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
       >
         <button onClick={handleRouterCategoryClick}>
           {submitIsLoading ? (
-            <button className="bg-[#8C3A60] rounded px-10 py-6">
-              <Loader size={50} className="mr-2 h-4 animate-spin text-white w-10" />
-            </button>
+            <div className="bg-[#8C3A60] rounded px-10 py-6">
+              <Loader size={50} className="mr-2 h-4 animate-spin text-[#fcd4be] w-10" />
+            </div>
           ) : (
             <div
               className="category-name cursor-pointer bg-[#8C3A60] text-white rounded px-6 py-2 text-center transition duration-300 hover:text-[#203040]"
