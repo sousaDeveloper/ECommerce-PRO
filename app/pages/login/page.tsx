@@ -9,7 +9,6 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "lucide-react";
 import Aos from "aos";
-import { useSelector } from "react-redux";
 
 // Components
 import Header from "@components/Header/Header";
@@ -20,6 +19,7 @@ import Loading from "@components/Loading/Loading";
 
 // Utilities
 import { auth, db, googleProvider } from "../../config/firebase.config";
+import { useAppSelector } from "hooks/redux.hooks";
 
 interface LoginForm {
   email: string;
@@ -29,7 +29,7 @@ interface LoginForm {
 Aos.init();
 
 export default function LoginPage() {
-  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer);
+  const { isAuthenticated } = useAppSelector((rootReducer) => rootReducer.userReducer);
 
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();

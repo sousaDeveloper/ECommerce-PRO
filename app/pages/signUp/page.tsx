@@ -9,10 +9,10 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Aos from "aos";
 import { ChevronLeftIcon } from "lucide-react";
-import { useSelector } from "react-redux";
 
 // Utilities
 import { auth, db } from "../../config/firebase.config";
+import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
 import Header from "@components/Header/Header";
@@ -32,7 +32,7 @@ interface SignUpform {
 Aos.init();
 
 export default function SignUpPage() {
-  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer);
+  const { isAuthenticated } = useAppSelector((rootReducer: any) => rootReducer.userReducer);
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();

@@ -5,13 +5,13 @@ import { LogOutIcon, MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Aos from "aos";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 
 // Utilities
 import { CartContext } from "@contexts/cart.context";
 import { auth } from "config/firebase.config";
-import { logoutUser } from "store/reducers/users/user.actions";
+import { UserActions, logoutUser } from "store/reducers/users/user.actions";
 
 // Components
 import Cart from "../cart/Cart";
@@ -30,11 +30,13 @@ import Loading from "@components/Loading/Loading";
 
 // Styles
 import "./Header.scss";
+import { Dispatch } from "redux";
+import { useAppSelector } from "hooks/redux.hooks";
 
 Aos.init();
 
 export default function Header() {
-  const { isAuthenticated, currentUser } = useSelector((rootReducer: any) => rootReducer.userReducer);
+  const { isAuthenticated, currentUser } = useAppSelector((rootReducer) => rootReducer.userReducer);
   const { clearCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoading, setIsLoading] = useState(false);
@@ -49,7 +51,7 @@ export default function Header() {
     }, 1000);
   };
 
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<UserActions> = useDispatch();
 
   const handleLogoutClick = () => {
     toast.success("Você deslogou da sua conta com sucesso.");
@@ -121,7 +123,7 @@ export default function Header() {
                             Sair
                           </p>
                         </Button>
-                        <p>Olá, {currentUser.firstName}!</p>
+                        <p>Olá, {currentUser?.firstName}!</p>
                       </>
                     )}
                   </nav>

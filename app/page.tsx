@@ -2,22 +2,24 @@
 
 import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { NextUIProvider } from "@nextui-org/react";
 
 // Utilities
 import { auth, db } from "./config/firebase.config";
 import { userConverter } from "@converters/firestore.converters";
-import { loginUser, logoutUser } from "store/reducers/users/user.actions";
+import { UserActions, loginUser, logoutUser } from "store/reducers/users/user.actions";
+import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
 import HomePage from "./pages/home/page";
+import { Dispatch } from "redux";
 
 export default function Page() {
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<UserActions> = useDispatch();
 
-  const { isAuthenticated } = useSelector((rootReducer: any) => rootReducer.userReducer);
+  const { isAuthenticated } = useAppSelector((rootReducer) => rootReducer.userReducer);
 
   useEffect(() => {
     onAuthStateChanged(auth, async (user) => {
