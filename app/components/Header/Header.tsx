@@ -11,6 +11,7 @@ import { signOut } from "firebase/auth";
 // Utilities
 import { CartContext } from "@contexts/cart.context";
 import { auth } from "config/firebase.config";
+import { logoutUser } from "store/reducers/users/user.actions";
 
 // Components
 import Cart from "../cart/Cart";
@@ -52,7 +53,7 @@ export default function Header() {
 
   const handleLogoutClick = () => {
     toast.success("Você deslogou da sua conta com sucesso.");
-    dispatch({ type: "LOGOUT_USER" });
+    dispatch(logoutUser());
     return signOut(auth);
   };
 

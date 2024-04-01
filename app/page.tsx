@@ -9,6 +9,7 @@ import { NextUIProvider } from "@nextui-org/react";
 // Utilities
 import { auth, db } from "./config/firebase.config";
 import { userConverter } from "@converters/firestore.converters";
+import { loginUser, logoutUser } from "store/reducers/users/user.actions";
 
 // Components
 import HomePage from "./pages/home/page";
@@ -22,7 +23,7 @@ export default function Page() {
     onAuthStateChanged(auth, async (user) => {
       const isSigningOut = isAuthenticated && !user;
       if (isSigningOut) {
-        return dispatch({ type: "LOGOUT_USER" });
+        return dispatch(logoutUser());
       }
 
       const inSigningIn = !isAuthenticated && user;
@@ -33,7 +34,7 @@ export default function Page() {
 
         const userFromFirestore = querySnapshot.docs[0]?.data();
 
-        return dispatch({ type: "LOGIN_USER", payload: userFromFirestore });
+        return dispatch(loginUser(userFromFirestore));
       }
     });
   }, [dispatch]);
