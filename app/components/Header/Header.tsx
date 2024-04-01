@@ -5,14 +5,12 @@ import { LogOutIcon, MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import Aos from "aos";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
 
 // Utilities
 import { CartContext } from "@contexts/cart.context";
 import { auth } from "config/firebase.config";
-import { logoutUser } from "@components/store/reducers/user/user.actions";
 
 // Components
 import Cart from "../cart/Cart";
@@ -39,7 +37,6 @@ export default function Header() {
   const { clearCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoading, setIsLoading] = useState(false);
-
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const handleShowSidebarClick = () => setIsMenuOpen(!true);
 
@@ -55,7 +52,7 @@ export default function Header() {
 
   const handleLogoutClick = () => {
     toast.success("Você deslogou da sua conta com sucesso.");
-    dispatch(logoutUser());
+    dispatch({ type: "LOGOUT_USER" });
     return signOut(auth);
   };
 
@@ -123,7 +120,7 @@ export default function Header() {
                             Sair
                           </p>
                         </Button>
-                        <p>Olá, {currentUser?.firstName}!</p>
+                        <p>Olá, {currentUser.firstName}!</p>
                       </>
                     )}
                   </nav>
