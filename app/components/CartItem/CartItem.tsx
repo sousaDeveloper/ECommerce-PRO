@@ -1,10 +1,12 @@
 import Image from "next/image";
 import { useContext } from "react";
 import { toast } from "sonner";
+import { useDispatch } from "react-redux";
 
 // Utilities
 import CartProduct from "@typescart.types";
 import { CartContext } from "@contexts/cart.context";
+import { addProductToCart } from "store/reducers/cart/cart.actions";
 
 // Components
 import {
@@ -24,9 +26,13 @@ interface ICartItemProps {
 }
 
 export default function CartItem({ product }: ICartItemProps) {
-  const { addProductToCart, removeProductInCart, decreaseProductQuantity } = useContext(CartContext);
+  const { removeProductInCart, decreaseProductQuantity } = useContext(CartContext);
 
-  const addProcuctToCartClick = () => addProductToCart(product);
+  const dispatch = useDispatch();
+
+  const addProcuctToCartClick = () => {
+    dispatch(addProductToCart(product));
+  };
 
   const removeProductInCartClick = () => {
     toast.success("Item removido do carrinho.");

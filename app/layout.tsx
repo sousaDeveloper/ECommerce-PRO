@@ -9,7 +9,7 @@ import "./globals.css";
 import store from "./store/store";
 
 import CategoriesContextProvider from "./contexts/categories.context";
-import CardContextProvider from "./contexts/cart.context";
+import CartContextProvider from "./contexts/cart.context";
 
 // Components
 import { Toaster } from "./components/ui/sonner";
@@ -38,7 +38,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <Provider store={store}>
           <CategoriesContextProvider>
-            <CardContextProvider>{children}</CardContextProvider>
+            <CartContextProvider>{children}</CartContextProvider>
           </CategoriesContextProvider>
         </Provider>
         <Toaster />

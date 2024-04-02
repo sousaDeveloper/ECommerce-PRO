@@ -5,21 +5,23 @@ import Aos from "aos";
 
 // Utilities
 import Product from "@typesproduct.types";
-import { CartContext } from "@contexts/cart.context";
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "store/reducers/cart/cart.actions";
 
 interface IProductWithDiscountProp {
   product: Product;
 }
 
+Aos.init();
+
 export default function ProductWithDiscount({ product }: IProductWithDiscountProp) {
-  Aos.init();
-  const { addProductToCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const dispatch = useDispatch();
 
   const addProductToCartClick = () => {
     toast.success("Item adicionado ao carrinho.");
     const productWithDiscount = { ...product, price: discountPrice };
-    return addProductToCart(productWithDiscount);
+    return dispatch(addProductToCart(productWithDiscount));
   };
 
   useEffect(() => {

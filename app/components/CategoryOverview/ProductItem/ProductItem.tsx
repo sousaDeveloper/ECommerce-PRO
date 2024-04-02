@@ -4,19 +4,20 @@ import Image from "next/image";
 
 // Utilities
 import Product from "@typesproduct.types";
-import { CartContext } from "@contexts/cart.context";
+import { useDispatch } from "react-redux";
+import { addProductToCart } from "store/reducers/cart/cart.actions";
 
 interface IProductProps {
   product: Product;
 }
 
 export default function ProductItem({ product }: IProductProps) {
-  const { addProductToCart } = useContext(CartContext);
+  const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const addProductToCartClick = () => {
     toast.success("Item adicionado ao carrinho.");
-    return addProductToCart(product);
+    return dispatch(addProductToCart(product));
   };
 
   useEffect(() => {
