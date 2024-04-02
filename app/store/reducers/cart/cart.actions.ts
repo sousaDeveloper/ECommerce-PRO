@@ -19,4 +19,24 @@ export const clearCart = (): ClearCartAction => ({
   type: CartActionTypes.clearCart,
 });
 
-export type CartActions = ClearCartAction | AddProductAction;
+interface RemoveProductAction {
+  type: typeof CartActionTypes.removeProductInCart;
+  payload: string;
+}
+
+export const removeProductInCart = (payload: string): RemoveProductAction => ({
+  type: CartActionTypes.removeProductInCart,
+  payload,
+});
+
+interface DecreaseProductQuantityAction {
+  type: typeof CartActionTypes.decreaseProductQuantity;
+  payload: string;
+}
+
+export const decreaseProductQuantity = (payload: string): DecreaseProductQuantityAction => ({
+  type: CartActionTypes.decreaseProductQuantity,
+  payload,
+});
+
+export type CartActions = ClearCartAction | AddProductAction | RemoveProductAction | DecreaseProductQuantityAction;

@@ -1,22 +1,20 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
-import Aos from "aos";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 
 // Utilities
 import Product from "@typesproduct.types";
-import { useDispatch } from "react-redux";
-import { addProductToCart } from "store/reducers/cart/cart.actions";
+import { CartActions, addProductToCart } from "store/reducers/cart/cart.actions";
 
 interface IProductWithDiscountProp {
   product: Product;
 }
 
-Aos.init();
-
 export default function ProductWithDiscount({ product }: IProductWithDiscountProp) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<CartActions> = useDispatch();
 
   const addProductToCartClick = () => {
     toast.success("Item adicionado ao carrinho.");
@@ -45,7 +43,6 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
 
   return (
     <div
-      data-aos="fade-up"
       className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white"
       style={{
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",

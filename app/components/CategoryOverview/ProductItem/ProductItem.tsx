@@ -1,18 +1,19 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 
 // Utilities
 import Product from "@typesproduct.types";
-import { useDispatch } from "react-redux";
-import { addProductToCart } from "store/reducers/cart/cart.actions";
+import { CartActions, addProductToCart } from "store/reducers/cart/cart.actions";
 
 interface IProductProps {
   product: Product;
 }
 
 export default function ProductItem({ product }: IProductProps) {
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<CartActions> = useDispatch();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const addProductToCartClick = () => {

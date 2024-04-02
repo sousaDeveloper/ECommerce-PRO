@@ -37,9 +37,7 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Provider store={store}>
-          <CategoriesContextProvider>
-            <CartContextProvider>{children}</CartContextProvider>
-          </CategoriesContextProvider>
+          <CategoriesContextProvider>{children}</CategoriesContextProvider>
         </Provider>
         <Toaster />
       </body>

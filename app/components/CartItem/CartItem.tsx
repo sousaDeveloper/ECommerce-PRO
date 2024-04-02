@@ -1,12 +1,15 @@
 import Image from "next/image";
-import { useContext } from "react";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 
 // Utilities
 import CartProduct from "@typescart.types";
-import { CartContext } from "@contexts/cart.context";
-import { addProductToCart } from "store/reducers/cart/cart.actions";
+import {
+  CartActions,
+  addProductToCart,
+  decreaseProductQuantity,
+  removeProductInCart,
+} from "store/reducers/cart/cart.actions";
 
 // Components
 import {
@@ -20,15 +23,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
+import { Dispatch } from "redux";
 
 interface ICartItemProps {
   product: CartProduct;
 }
 
 export default function CartItem({ product }: ICartItemProps) {
-  const { removeProductInCart, decreaseProductQuantity } = useContext(CartContext);
-
-  const dispatch = useDispatch();
+  const dispatch: Dispatch<CartActions> = useDispatch();
 
   const addProcuctToCartClick = () => {
     dispatch(addProductToCart(product));
@@ -36,10 +38,12 @@ export default function CartItem({ product }: ICartItemProps) {
 
   const removeProductInCartClick = () => {
     toast.success("Item removido do carrinho.");
-    return removeProductInCart(product.id);
+    return dispatch(removeProductInCart(product.id));
   };
 
-  const decreaseProductQuantityClick = () => decreaseProductQuantity(product.id);
+  const decreaseProductQuantityClick = () => {
+    return dispatch(decreaseProductQuantity(product.id));
+  };
 
   return (
     <div className="flex justify-between gap-3 mt-2 border border-solid border-[#283040] rounded p-1">
