@@ -3,12 +3,10 @@ import CartActionTypes from "./cart.actions-types";
 
 interface InitialState {
   products: CartProduct[];
-  formattedPrice: string;
 }
 
 const initialState: InitialState = {
   products: [],
-  formattedPrice: "",
 };
 
 export default function cartReducer(state = initialState, action: any) {
@@ -23,9 +21,11 @@ export default function cartReducer(state = initialState, action: any) {
           products: state.products.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item)),
         };
       }
-      
+
       return { ...state, products: [...state.products, { ...product, quantity: 1 }] };
     }
+    case CartActionTypes.clearCart:
+      return { ...state, products: [] };
     default:
       return { ...state };
   }

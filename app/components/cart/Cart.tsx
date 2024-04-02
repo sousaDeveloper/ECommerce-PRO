@@ -1,28 +1,33 @@
 import Aos from "aos";
 import { ShoppingCartIcon } from "lucide-react";
-import { useContext, useMemo, useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 
 // Utilities
-import { CartContext } from "@contexts/cart.context";
+import { useAppSelector } from "hooks/redux.hooks";
+import { selectProductsTotalCart, selectProductsTotalPrice } from "store/reducers/cart/cart.selectors";
+import { CartActions, clearCart } from "store/reducers/cart/cart.actions";
 
 // Components
 import CartItem from "../CartItem/CartItem";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
-import { useAppSelector } from "hooks/redux.hooks";
 
 Aos.init();
 
 export default function Cart() {
-  const { products, formattedPrice, clearCart } = useContext(CartContext);
+  const { products } = useAppSelector((rootState) => rootState.cartReducer);
+  const dispatch: Dispatch<CartActions> = useDispatch();
+  const producsTotalPrice = useAppSelector(selectProductsTotalPrice);
+  const productsCount = useAppSelector(selectProductsTotalCart);
+
   const { isAuthenticated } = useAppSelector((rootReducer) => rootReducer.userReducer);
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
   const router = useRouter();
-
-  const totalItemsInCart = useMemo(() => products.reduce((accum, num) => accum + num.quantity, 0), [products]);
 
   const handleFinishPurchaseClick = async () => {
     try {
@@ -40,7 +45,7 @@ export default function Cart() {
 
   const handleClearCartClick = () => {
     toast.success("Carrinho limpo com sucesso.");
-    return clearCart();
+    return dispatch(clearCart());
   };
 
   const handlePaymentSubmit = () => {
@@ -54,7 +59,7 @@ export default function Cart() {
         <li className="cursor-pointer relative flex items-center hover:text-[#8C3A60]">
           <ShoppingCartIcon />
           <span className="absolute -top-1 -right-1 bg-[#304060] text-[#fcd4be] rounded-full px-1 text-xs">
-            {totalItemsInCart}
+            {productsCount}
           </span>
         </li>
       </SheetTrigger>
@@ -81,7 +86,7 @@ export default function Cart() {
             </button>
 
             <div className="pt-5 font-bold">
-              <h1 className="text-start">Total: {formattedPrice}</h1>
+              <h1 className="text-start">Total: {producsTotalPrice}</h1>
               <button
                 className="flex gap-2 items-center justify-center w-full rounded bg-[#8C3A60] hover:bg-[#283040] hover:text-[#f2b6c1] transition duration-300 p-2"
                 onClick={handleFinishPurchaseClick}

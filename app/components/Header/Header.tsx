@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { LogOutIcon, MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
@@ -10,10 +10,10 @@ import { Dispatch } from "redux";
 import Aos from "aos";
 
 // Utilities
-import { CartContext } from "@contexts/cart.context";
 import { auth } from "config/firebase.config";
 import { UserActions, logoutUser } from "store/reducers/users/user.actions";
 import { useAppSelector } from "hooks/redux.hooks";
+import { CartActions, clearCart } from "store/reducers/cart/cart.actions";
 
 // Components
 import Cart from "../cart/Cart";
@@ -36,12 +36,12 @@ import "./Header.scss";
 Aos.init();
 
 export default function Header() {
-  const { isAuthenticated, currentUser } = useAppSelector((rootReducer) => rootReducer.userReducer);
-  const { clearCart } = useContext(CartContext);
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoading, setIsLoading] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const handleShowSidebarClick = () => setIsMenuOpen(!true);
+  const { isAuthenticated, currentUser } = useAppSelector((rootReducer) => rootReducer.userReducer);
+  const dispatch: Dispatch<UserActions | CartActions> = useDispatch();
 
   const router = useRouter();
   const handleRouterClick = (path: string) => () => {
@@ -51,10 +51,9 @@ export default function Header() {
     }, 1000);
   };
 
-  const dispatch: Dispatch<UserActions> = useDispatch();
-
   const handleLogoutClick = () => {
     toast.success("Você deslogou da sua conta com sucesso.");
+    dispatch(clearCart());
     dispatch(logoutUser());
     return signOut(auth);
   };
@@ -116,7 +115,7 @@ export default function Header() {
                     ) : (
                       <>
                         <Button className="buttonMobile" onClick={handleLogoutClick}>
-                          <p onClick={() => clearCart()} className="flex items-center gap-2">
+                          <p className="flex items-center gap-2">
                             <LogOutIcon />
                             Sair
                           </p>
@@ -157,9 +156,7 @@ export default function Header() {
                       description="Sair da conta."
                       onClick={handleLogoutClick}
                     >
-                      <p onClick={() => clearCart()} className="font-bold">
-                        Sair
-                      </p>
+                      <p className="font-bold">Sair</p>
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>

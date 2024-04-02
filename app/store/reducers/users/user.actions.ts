@@ -19,4 +19,4 @@ export const logoutUser = (): LogoutUserAction => ({
   type: UserActionTypes.LOGOUT,
 });
 
-export type UserActions = LoginUserAction | LogoutUserAction
+export type UserActions = LoginUserAction | LogoutUserAction;

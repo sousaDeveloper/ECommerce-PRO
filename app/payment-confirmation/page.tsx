@@ -1,10 +1,12 @@
 "use client";
 
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { Dispatch } from "redux";
 
 // Utilities
-import { CartContext } from "@contexts/cart.context";
+import { CartActions, clearCart } from "store/reducers/cart/cart.actions";
 
 // Components
 import Header from "@components/Header/Header";
@@ -12,7 +14,7 @@ import Footer from "@components/Footer/Footer";
 import PaymentStatus from "@components/PaymentStatus/PaymentStatus";
 
 export default function PaymentConfirmation() {
-  const { clearCart } = useContext(CartContext);
+  const dispatch: Dispatch<CartActions> = useDispatch();
   const searchParams = useSearchParams();
   const router = useRouter();
 
@@ -23,7 +25,7 @@ export default function PaymentConfirmation() {
     if (status === "true" || status === "false") {
       setTimeout(() => {
         router.push("/");
-        return clearCart();
+        return dispatch(clearCart());
       }, 4000);
     }
     if (isCanceled) {
