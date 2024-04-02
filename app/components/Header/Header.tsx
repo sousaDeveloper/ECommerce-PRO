@@ -4,14 +4,16 @@ import { useContext, useEffect, useState } from "react";
 import { LogOutIcon, MenuIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
-import Aos from "aos";
 import { useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
+import { Dispatch } from "redux";
+import Aos from "aos";
 
 // Utilities
 import { CartContext } from "@contexts/cart.context";
 import { auth } from "config/firebase.config";
 import { UserActions, logoutUser } from "store/reducers/users/user.actions";
+import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
 import Cart from "../cart/Cart";
@@ -30,8 +32,6 @@ import Loading from "@components/Loading/Loading";
 
 // Styles
 import "./Header.scss";
-import { Dispatch } from "redux";
-import { useAppSelector } from "hooks/redux.hooks";
 
 Aos.init();
 
@@ -77,11 +77,9 @@ export default function Header() {
       {windowWidth <= 785 ? (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold text-[#fcd4be]">
           <NavbarBrand>
-            <p className="text-2xl" data-aos="fade-up">
-              Next Store
-            </p>
+            <p className="text-2xl">Next Store</p>
           </NavbarBrand>
-          <NavbarContent className="sm:flex gap-4 pl-5 py-5" data-aos="fade-up" justify="center">
+          <NavbarContent className="sm:flex gap-4 pl-5 py-5" justify="center">
             <Cart />
             <Sheet>
               <SheetTrigger asChild>
@@ -135,12 +133,10 @@ export default function Header() {
       ) : (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold">
           <NavbarBrand>
-            <p className="text-2xl" data-aos="fade-up">
-              Next Store
-            </p>
+            <p className="text-2xl">Next Store</p>
           </NavbarBrand>
           <NavbarContent className="hidden sm:flex gap-4 pl-7 py-4" justify="center">
-            <ul className="flex items-center gap-6 p-2" data-aos="fade-up">
+            <ul className="flex items-center gap-6 p-2">
               <li className="cursor-pointer" onClick={handleRouterClick("/pages/explore")}>
                 Explorar
               </li>

@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
 import { useState } from "react";
-import Aos from "aos";
+import ScrollReveal from "scrollreveal";
 
 // Utilities
 import Category from "@typescategory.types";
@@ -9,8 +9,6 @@ import Category from "@typescategory.types";
 interface CategoryItemsProps {
   category: Category;
 }
-
-Aos.init();
 
 export default function CategoryItem({ category }: CategoryItemsProps) {
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
@@ -26,11 +24,13 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
     return setSubmitIsLoading(true);
   };
 
+  ScrollReveal().reveal(".headline", { delay: 100 });
+  ScrollReveal({ reset: true });
+
   return (
     <>
       <div
-        className="flex gap-4 w-full h-full rounded justify-center items-center"
-        data-aos="fade-up"
+        className="flex gap-4 w-full h-full rounded justify-center items-center headline"
         style={{
           backgroundImage: `url('${category.imageUrl}')`,
           backgroundRepeat: "no-repeat",

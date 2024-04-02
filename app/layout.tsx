@@ -32,6 +32,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="https://unpkg.com/scrollreveal"></script>
         <title>Next Store</title>
       </head>
       <body className={inter.className}>
