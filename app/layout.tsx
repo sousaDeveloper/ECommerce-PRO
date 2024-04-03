@@ -6,10 +6,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 
 // Utilities
-import store from "./store/store";
-
+import { store, persistedStore } from "./store/store";
+// @ts-ignore
+import { PersistGate } from "redux-persist/integration/react";
 import CategoriesContextProvider from "./contexts/categories.context";
-import CartContextProvider from "./contexts/cart.context";
 
 // Components
 import { Toaster } from "./components/ui/sonner";
@@ -37,7 +37,9 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <Provider store={store}>
-          <CategoriesContextProvider>{children}</CategoriesContextProvider>
+          <PersistGate persistor={persistedStore}>
+            <CategoriesContextProvider>{children}</CategoriesContextProvider>
+          </PersistGate>
         </Provider>
         <Toaster />
       </body>

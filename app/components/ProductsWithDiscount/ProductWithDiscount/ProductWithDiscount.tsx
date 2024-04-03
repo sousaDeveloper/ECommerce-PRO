@@ -50,7 +50,7 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
       key={product.id}
     >
       <h1 className="relative flex items-center">
-        <span className="absolute font-bold -top-3 -right-1 bg-red-500 text-white rounded-full px-1 pb-5 pt-2 text-xs">
+        <span className="absolute font-bold -top-3 -right-1 bg-red-500 text-white rounded-full px-1 pb-5 pt-1 text-xs">
           -20%
         </span>
       </h1>

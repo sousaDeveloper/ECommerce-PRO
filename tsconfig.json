@@ -36,7 +36,8 @@
     "app/pages/category/[id]/page.jsx",
     "app/pages/home/components/Carousel/Carousel.jsx",
     "app/components/SearchInput/SearchInput.tsx",
-    "app/pages/home/components/SlideContent/SlideContent.tsx"
+    "app/pages/home/components/SlideContent/SlideContent.tsx",
+    "app/store/store.ts"
   ],
   "exclude": ["node_modules"]
 }
