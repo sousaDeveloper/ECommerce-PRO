@@ -1,13 +1,20 @@
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+
+//Utilities
+import { fetchCategories } from "store/reducers/categories/categories.actions";
+import { useAppSelector } from "hooks/redux.hooks";
+
+// Components
 import ProductsWithDiscount from "@components/ProductsWithDiscount/ProductsWithDiscount";
-import { CategoriesContext } from "@contexts/categories.context";
-import { useContext, useEffect } from "react";
 
 export default function ProductsWithDiscountOverview() {
-  const { categories, fetchCategories } = useContext(CategoriesContext);
+  const { categories } = useAppSelector((rootReducer) => rootReducer.categoryReducer);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (categories.length === 0) {
-      fetchCategories();
+      dispatch(fetchCategories() as any);
     }
   }, []);
 

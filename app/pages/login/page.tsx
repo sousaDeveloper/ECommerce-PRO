@@ -10,16 +10,16 @@ import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "lucide-react";
 import Aos from "aos";
 
+// Utilities
+import { auth, db, googleProvider } from "../../config/firebase.config";
+import { useAppSelector } from "hooks/redux.hooks";
+
 // Components
 import Header from "@components/Header/Header";
 import InputErrorMessage from "@components/InputErrorMessage/InputErrorMessage";
 import CustomInputContainer from "@components/CustomInputContainer/CustomInputContainer";
 import Footer from "@components/Footer/Footer";
 import Loading from "@components/Loading/Loading";
-
-// Utilities
-import { auth, db, googleProvider } from "../../config/firebase.config";
-import { useAppSelector } from "hooks/redux.hooks";
 
 interface LoginForm {
   email: string;

@@ -1,21 +1,25 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useRouter } from "next/navigation";
 import { ChevronLeftIcon } from "lucide-react";
 import Link from "next/link";
 import Aos from "aos";
 
 // Utilities
-import { CategoriesContext } from "@contexts/categories.context";
+import { fetchCategories } from "store/reducers/categories/categories.actions";
+import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
 import CategoryOverview from "../CategoryOverview/CategoryOverview";
 import Footer from "@componentsFooter/Footer";
-import { useRouter } from "next/navigation";
 import Loading from "@components/Loading/Loading";
+import Category from "@typescategory.types";
 
 Aos.init();
 
 export default function CategoriesOverview() {
-  const { categories, fetchCategories } = useContext(CategoriesContext);
+  const dispatch = useDispatch();
+  const { categories } = useAppSelector((rootReducer) => rootReducer.categoryReducer) as { categories: Category[] };
   const router = useRouter();
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
 
@@ -26,7 +30,7 @@ export default function CategoriesOverview() {
 
   useEffect(() => {
     if (categories.length === 0) {
-      fetchCategories();
+      dispatch(fetchCategories() as any);
     }
   }, []);
 

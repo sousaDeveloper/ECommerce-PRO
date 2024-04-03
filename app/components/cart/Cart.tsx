@@ -20,12 +20,12 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../u
 Aos.init();
 
 export default function Cart() {
-  const { products } = useAppSelector((rootState) => rootState.cartReducer);
+  const { products } = useAppSelector((rootReducer) => rootReducer.cartReducer);
+  const { isAuthenticated } = useAppSelector((rootReducer) => rootReducer.userReducer);
   const dispatch: Dispatch<CartActions> = useDispatch();
-  const producsTotalPrice = useAppSelector(selectProductsTotalPrice);
+  const productsTotalPrice = useAppSelector(selectProductsTotalPrice);
   const productsCount = useAppSelector(selectProductsTotalCart);
 
-  const { isAuthenticated } = useAppSelector((rootReducer) => rootReducer.userReducer);
   const [submitIsLoading, setSubmitIsLoading] = useState(false);
   const router = useRouter();
 
@@ -86,7 +86,7 @@ export default function Cart() {
             </button>
 
             <div className="pt-5 font-bold">
-              <h1 className="text-start">Total: {producsTotalPrice}</h1>
+              <h1 className="text-start">Total: {productsTotalPrice}</h1>
               <button
                 className="flex gap-2 items-center justify-center w-full rounded bg-[#8C3A60] hover:bg-[#283040] hover:text-[#f2b6c1] transition duration-300 p-2"
                 onClick={handleFinishPurchaseClick}

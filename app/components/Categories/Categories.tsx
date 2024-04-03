@@ -1,7 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 // Utilities
-import { CategoriesContext } from "@contexts/categories.context";
+import { fetchCategories } from "store/reducers/categories/categories.actions";
+import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
 import CategoryItem from "./CategoryItem/CategoryItem";
@@ -10,10 +12,12 @@ import CategoryItem from "./CategoryItem/CategoryItem";
 import "./Categories.scss";
 
 export default function Categories() {
-  const { categories, fetchCategories } = useContext(CategoriesContext);
+  const { categories } = useAppSelector((rootReducer) => rootReducer.categoryReducer);
+  
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchCategories();
+    dispatch(fetchCategories() as any);
   }, []);
 
   return (
