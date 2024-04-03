@@ -13,7 +13,7 @@ import "./Categories.scss";
 
 export default function Categories() {
   const { categories } = useAppSelector((rootReducer) => rootReducer.categoryReducer);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {

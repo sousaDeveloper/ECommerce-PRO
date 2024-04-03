@@ -10,14 +10,14 @@ import { Dispatch } from "redux";
 // Utilities
 import { auth, db } from "./config/firebase.config";
 import { userConverter } from "@converters/firestore.converters";
-import { UserActions, loginUser, logoutUser } from "store/reducers/users/user.actions";
+import { loginUser, logoutUser } from "store/toolkit/user/user.slice";
 import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
 import HomePage from "./pages/home/page";
 
 export default function Page() {
-  const dispatch: Dispatch<UserActions> = useDispatch();
+  const dispatch = useDispatch();
 
   const { isAuthenticated } = useAppSelector((rootReducer) => rootReducer.userReducer);
 

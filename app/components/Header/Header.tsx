@@ -11,7 +11,7 @@ import Aos from "aos";
 
 // Utilities
 import { auth } from "config/firebase.config";
-import { UserActions, logoutUser } from "store/reducers/users/user.actions";
+import { logoutUser } from "store/toolkit/user/user.slice";
 import { useAppSelector } from "hooks/redux.hooks";
 import { CartActions, clearCart } from "store/reducers/cart/cart.actions";
 
@@ -41,7 +41,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(true);
   const handleShowSidebarClick = () => setIsMenuOpen(!true);
   const { isAuthenticated, currentUser } = useAppSelector((rootReducer) => rootReducer.userReducer);
-  const dispatch: Dispatch<UserActions | CartActions> = useDispatch();
+  const dispatch = useDispatch();
 
   const router = useRouter();
   const handleRouterClick = (path: string) => () => {
