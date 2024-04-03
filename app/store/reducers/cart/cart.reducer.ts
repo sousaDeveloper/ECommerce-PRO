@@ -10,7 +10,7 @@ const initialState: InitialState = {
   products: [],
 };
 
-export default function cartReducer(state = initialState, action: CartActions) {
+export default function cartReducer(state = initialState, action: CartActions): InitialState {
   switch (action.type) {
     case CartActionTypes.addProductToCart: {
       const product = action.payload;
