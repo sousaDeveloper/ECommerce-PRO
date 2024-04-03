@@ -6,12 +6,10 @@ import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
 
 // Utilities
 import { useAppSelector } from "hooks/redux.hooks";
-import { selectProductsTotalCart, selectProductsTotalPrice } from "store/reducers/cart/cart.selectors";
-import { CartActions, clearCart } from "store/reducers/cart/cart.actions";
+import { selectProductsTotalCart, selectProductsTotalPrice, clearCart } from "store/toolkit/cart/cart.slice";
 
 // Components
 import CartItem from "../CartItem/CartItem";
@@ -22,7 +20,7 @@ Aos.init();
 export default function Cart() {
   const { products } = useAppSelector((rootReducer) => rootReducer.cartReducer);
   const { isAuthenticated } = useAppSelector((rootReducer) => rootReducer.userReducer);
-  const dispatch: Dispatch<CartActions> = useDispatch();
+  const dispatch = useDispatch();
   const productsTotalPrice = useAppSelector(selectProductsTotalPrice);
   const productsCount = useAppSelector(selectProductsTotalCart);
 

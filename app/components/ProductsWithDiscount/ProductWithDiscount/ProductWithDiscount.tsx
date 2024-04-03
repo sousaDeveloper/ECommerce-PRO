@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
 
 // Utilities
 import Product from "@typesproduct.types";
-import { CartActions, addProductToCart } from "store/reducers/cart/cart.actions";
+import { addProduct } from "store/toolkit/cart/cart.slice";
 
 interface IProductWithDiscountProp {
   product: Product;
@@ -14,12 +13,12 @@ interface IProductWithDiscountProp {
 
 export default function ProductWithDiscount({ product }: IProductWithDiscountProp) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const dispatch: Dispatch<CartActions> = useDispatch();
+  const dispatch = useDispatch();
 
   const addProductToCartClick = () => {
     toast.success("Item adicionado ao carrinho.");
     const productWithDiscount = { ...product, price: discountPrice };
-    return dispatch(addProductToCart(productWithDiscount));
+    return dispatch(addProduct(productWithDiscount));
   };
 
   useEffect(() => {

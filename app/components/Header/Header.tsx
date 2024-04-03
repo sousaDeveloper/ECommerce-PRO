@@ -13,7 +13,7 @@ import Aos from "aos";
 import { auth } from "config/firebase.config";
 import { logoutUser } from "store/toolkit/user/user.slice";
 import { useAppSelector } from "hooks/redux.hooks";
-import { CartActions, clearCart } from "store/reducers/cart/cart.actions";
+import { clearCart } from "store/toolkit/cart/cart.slice";
 
 // Components
 import Cart from "../cart/Cart";

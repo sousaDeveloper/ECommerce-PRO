@@ -4,12 +4,7 @@ import { useDispatch } from "react-redux";
 
 // Utilities
 import CartProduct from "@typescart.types";
-import {
-  CartActions,
-  addProductToCart,
-  decreaseProductQuantity,
-  removeProductInCart,
-} from "store/reducers/cart/cart.actions";
+import { addProduct, decreaseProductQuantity, removeProduct } from "store/toolkit/cart/cart.slice";
 
 // Components
 import {
@@ -23,22 +18,21 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "../ui/alert-dialog";
-import { Dispatch } from "redux";
 
 interface ICartItemProps {
   product: CartProduct;
 }
 
 export default function CartItem({ product }: ICartItemProps) {
-  const dispatch: Dispatch<CartActions> = useDispatch();
+  const dispatch = useDispatch();
 
   const addProcuctToCartClick = () => {
-    dispatch(addProductToCart(product));
+    dispatch(addProduct(product));
   };
 
   const removeProductInCartClick = () => {
     toast.success("Item removido do carrinho.");
-    return dispatch(removeProductInCart(product.id));
+    return dispatch(removeProduct(product.id));
   };
 
   const decreaseProductQuantityClick = () => {

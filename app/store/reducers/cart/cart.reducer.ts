@@ -1,6 +1,7 @@
 import CartProduct from "@typescart.types";
 import CartActionTypes from "./cart.actions-types";
 import { CartActions } from "./cart.actions";
+import { RootState } from "store/store";
 
 interface InitialState {
   products: CartProduct[];

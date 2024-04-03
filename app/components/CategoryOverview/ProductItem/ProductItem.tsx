@@ -2,23 +2,22 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import Image from "next/image";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
 
 // Utilities
 import Product from "@typesproduct.types";
-import { CartActions, addProductToCart } from "store/reducers/cart/cart.actions";
+import { addProduct } from "store/toolkit/cart/cart.slice";
 
 interface IProductProps {
   product: Product;
 }
 
 export default function ProductItem({ product }: IProductProps) {
-  const dispatch: Dispatch<CartActions> = useDispatch();
+  const dispatch = useDispatch();
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
 
   const addProductToCartClick = () => {
     toast.success("Item adicionado ao carrinho.");
-    return dispatch(addProductToCart(product));
+    return dispatch(addProduct(product));
   };
 
   useEffect(() => {
