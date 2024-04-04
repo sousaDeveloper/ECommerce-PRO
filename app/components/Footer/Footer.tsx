@@ -3,7 +3,7 @@ import "./Footer.scss";
 export default function Footer() {
   return (
     <footer className="py-6 px-4 bg-[#283040] mt-12">
-      <h1 className="font-bold text-2xl">Next Store</h1>
+      <h1 className="font-bold text-2xl">Inova Store</h1>
       <div className="flex gap-2">
         <h1 className="font-bold">
           Desenvolvido por{" "}

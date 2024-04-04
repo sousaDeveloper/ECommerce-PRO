@@ -76,7 +76,7 @@ export default function Header() {
       {windowWidth <= 785 ? (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold text-[#fcd4be]">
           <NavbarBrand>
-            <p className="text-2xl">Next Store</p>
+            <p className="text-2xl">Inova Store</p>
           </NavbarBrand>
           <NavbarContent className="sm:flex gap-4 pl-5 py-5" justify="center">
             <Cart />
@@ -132,7 +132,7 @@ export default function Header() {
       ) : (
         <Navbar shouldHideOnScroll className="z-50 sticky font-bold">
           <NavbarBrand>
-            <p className="text-2xl">Next Store</p>
+            <p className="text-2xl">Inova Store</p>
           </NavbarBrand>
           <NavbarContent className="hidden sm:flex gap-4 pl-7 py-4" justify="center">
             <ul className="flex items-center gap-6 p-2">
