@@ -1,24 +1,12 @@
-.brands-list {
-  overflow: hidden;
-}
-
-.wrapper {
-  display: grid;
-  grid-auto-flow: column;
-  align-items: center;
-  grid-auto-columns: 28rem;
-  justify-items: stretch;
-  animation: scroll 15s linear infinite;
-}
-
-@keyframes scroll {
-  to {
-    translate: calc(-4 * 15rem);
-  }
+.card {
+  display: flex;
+  justify-content: space-around;
+  gap: 1rem;
 }
 
 h1 {
   text-align: center;
+  letter-spacing: 1px;
 }
 
 h1 span {
@@ -39,16 +27,32 @@ h1 span span {
   100% {
     transform: translateY(0%);
   }
-  20% {
+  24% {
     transform: translateY(-100%);
   }
-  40% {
+  50% {
     transform: translateY(-200%);
   }
-  60% {
+  75% {
     transform: translateY(-300%);
   }
-  80% {
-    transform: translateY(-400%);
+}
+
+@media screen and (max-width: 1000px) {
+  .card {
+    width: 100%;
+    margin: 1rem 0;
+    border-radius: 0;
+
+    .mainTitle {
+      font-size: 0.9rem;
+    }
+    .mainDescription {
+      font-size: 0.6rem;
+    }
+
+    .svgIcon {
+      width: 1.3rem;
+    }
   }
 }
