@@ -3,10 +3,9 @@
 import { useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useDispatch } from "react-redux";
-import { Dispatch } from "redux";
 
 // Utilities
-import { CartActions, clearCart } from "store/reducers/cart/cart.actions";
+import { clearCart } from "store/toolkit/cart/cart.slice";
 
 // Components
 import Header from "@components/Header/Header";
@@ -14,7 +13,7 @@ import Footer from "@components/Footer/Footer";
 import PaymentStatus from "@components/PaymentStatus/PaymentStatus";
 
 export default function PaymentConfirmation() {
-  const dispatch: Dispatch<CartActions> = useDispatch();
+  const dispatch = useDispatch();
   const searchParams = useSearchParams();
   const router = useRouter();
 
