@@ -6,14 +6,14 @@ import Link from "next/link";
 import Aos from "aos";
 
 // Utilities
-import { fetchCategories } from "store/reducers/categories/categories.actions";
+import Category from "@typescategory.types";
+import { fetchCategories } from "store/toolkit/categories/categories.slice";
 import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
 import CategoryOverview from "../CategoryOverview/CategoryOverview";
 import Footer from "@componentsFooter/Footer";
 import Loading from "@components/Loading/Loading";
-import Category from "@typescategory.types";
 
 Aos.init();
 
