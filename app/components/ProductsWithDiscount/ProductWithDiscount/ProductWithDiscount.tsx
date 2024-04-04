@@ -42,7 +42,7 @@ export default function ProductWithDiscount({ product }: IProductWithDiscountPro
 
   return (
     <div
-      className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white"
+      className="max-w-[20rem] rounded bg-[#283040] bg-clip-border text-white mb-4"
       style={{
         boxShadow: "rgba(0, 0, 0, 0.35) 0px 5px 15px",
       }}

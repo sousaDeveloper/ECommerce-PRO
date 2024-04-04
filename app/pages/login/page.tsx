@@ -157,7 +157,10 @@ export default function LoginPage() {
           </CustomInputContainer>
           <div className="flex items-center justify-between">
             <label className="flex items-center text-sm text-gray-200">
-              <input className="form-checkbox h-4 w-4 text-purple-600 bg-gray-800 border-gray-300 rounded" type="checkbox" />
+              <input
+                className="form-checkbox h-4 w-4 text-purple-600 bg-gray-800 border-gray-300 rounded accent-slate-900"
+                type="checkbox"
+              />
               <span className="ml-2">Lembrar de mim</span>
             </label>
           </div>
