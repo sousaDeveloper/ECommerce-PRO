@@ -41,6 +41,7 @@
     "validator": "^13.11.0"
   },
   "devDependencies": {
+    "@next/eslint-plugin-next": "^14.1.4",
     "@types/aos": "^3.0.7",
     "@types/node": "^20",
     "@types/react": "^18",
