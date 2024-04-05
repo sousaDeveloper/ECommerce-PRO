@@ -1,6 +1,8 @@
+/* eslint-disable @next/next/no-sync-scripts */
+/* eslint-disable @next/next/no-page-custom-font */
 "use client";
 
-import { Inter } from "next/font/google";
+import React from "react";
 
 // Styles
 import "./globals.css";
@@ -14,8 +16,6 @@ import { PersistGate } from "redux-persist/integration/react";
 import { Toaster } from "./components/ui/sonner";
 import { Provider } from "react-redux";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -28,12 +28,13 @@ export default function RootLayout({
         <meta httpEquiv="Cross-Origin-Opener-Policy" content="same-origin" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
+
         <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <title>Inova Store</title>
       </head>
-      <body className={inter.className}>
+      <body>
         <Provider store={store}>
           <PersistGate loading={null} persistor={persistor}>
             {children}

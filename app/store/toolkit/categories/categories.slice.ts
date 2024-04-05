@@ -1,5 +1,5 @@
 import { categoryConverter } from "@convertersfirestore.converters";
-import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import Category from "@typescategory.types";
 import { db } from "config/firebase.config";
 import { collection, getDocs } from "firebase/firestore";
