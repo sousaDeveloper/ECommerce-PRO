@@ -19,7 +19,7 @@ export default function SlideContent() {
           </span>
         </h1>
       ) : (
-        <div className="bg-[#283040] text-[#fcd4be] mx-20 my-14 p-5 rounded card">
+        <div className="bg-[#283040] text-[#fcd4be] mx-20 my-14 p-5 rounded card min-w-[91%]">
           <div className="flex items-center gap-4">
             <svg className="w-8 svgIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
               <path

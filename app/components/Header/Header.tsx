@@ -139,7 +139,7 @@ export default function Header() {
                 Explorar
               </li>
               {isAuthenticated ? (
-                <Dropdown>
+                <Dropdown className="p-0">
                   <DropdownTrigger>
                     <li className="cursor-pointer">Olá, {currentUser?.firstName}!</li>
                   </DropdownTrigger>
@@ -148,14 +148,14 @@ export default function Header() {
                       description="Veja seus pedidos."
                       className="px-3 mb-1 border-b outline-none rounded hover:outline-none hover:bg-[#8c3a60] transition-all duration-300"
                     >
-                      <p className="font-bold">Meu Pedidos</p>
+                      <p className="font-bold text-lg">Meu Pedidos</p>
                     </DropdownItem>
                     <DropdownItem
                       className="px-3 outline-none rounded hover:outline-none hover:bg-[#8c3a60] transition-all duration-300"
                       description="Sair da conta."
                       onClick={handleLogoutClick}
                     >
-                      <p className="font-bold">Sair</p>
+                      <p className="font-bold text-lg">Sair</p>
                     </DropdownItem>
                   </DropdownMenu>
                 </Dropdown>
