@@ -1,5 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import Image from "next/image";
 
 // Import Swiper styles
 import "swiper/css";
@@ -26,19 +27,19 @@ export default function Carousel() {
         }}
       >
         <SwiperSlide>
-          <img src="imageFour.png" alt="thirdImage" className="imageCarousel" />
+          <Image src="/imageFour.png" alt="imageOne" width={0} height={0} className="imageCarousel" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="firstImage.png" alt="firstImage" className="imageCarousel" />
+          <Image src="/firstImage.png" alt="imageOne" width={0} height={0} className="imageCarousel" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="secondImage.png" alt="secondImage" className="imageCarousel" />
+          <Image src="/imageFive.png" alt="imageOne" width={0} height={0} className="imageCarousel" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="thirdImage.png" alt="thirdImage" className="imageCarousel" />
+          <Image src="/secondImage.png" alt="imageOne" width={0} height={0} className="imageCarousel" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="imageFive.png" alt="thirdImage" className="imageCarousel" />
+          <Image src="/thirdImage.png" alt="imageOne" width={0} height={0} className="imageCarousel" />
         </SwiperSlide>
       </Swiper>
     </>
