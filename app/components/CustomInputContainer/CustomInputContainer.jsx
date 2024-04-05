@@ -1,5 +1,7 @@
+
 import "./CustomInputContainer.scss";
 
+// eslint-disable-next-line react/prop-types
 const CustomInputContainer = ({ children, label, type, func }) => {
   return (
     <div className="input-group">
