@@ -20,7 +20,9 @@ const cartSlice = createSlice({
       const productIsAlreadyInCart = state.products.some((item) => item.id === product.id);
 
       if (productIsAlreadyInCart) {
-        state.products.map((item) => (item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item));
+        state.products = state.products.map((item) =>
+          item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+        );
 
         return;
       }
