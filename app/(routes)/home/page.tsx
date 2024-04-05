@@ -1,8 +1,8 @@
 import Header from "@components/Header/Header";
-import Carousel from "./components/Carousel/Carousel";
-import SlideContent from "./components/SlideContent/SlideContent";
+import Carousel from "../../(routes)/home/_components/Carousel/Carousel";
+import SlideContent from "../../(routes)/home/_components/SlideContent/SlideContent";
 import Categories from "@components/Categories/Categories";
-import ProductsWithDiscountOverview from "./components/ProductsWithDiscountOverview/ProductsWithDiscountOverview";
+import ProductsWithDiscountOverview from "../../(routes)/home/_components/ProductsWithDiscountOverview/ProductsWithDiscountOverview";
 import Footer from "@components/Footer/Footer";
 
 export default function HomePage() {

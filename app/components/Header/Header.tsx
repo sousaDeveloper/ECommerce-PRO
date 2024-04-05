@@ -6,7 +6,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { useDispatch } from "react-redux";
 import { signOut } from "firebase/auth";
-import { Dispatch } from "redux";
 import Aos from "aos";
 
 // Utilities
@@ -96,14 +95,14 @@ export default function Header() {
                     </SheetTitle>
                   </SheetHeader>
                   <nav className="p-5 flex flex-col gap-3" data-aos="fade-up" data-aos-duration="1000">
-                    <Button className="buttonMobile" onClick={handleRouterClick("/pages/explore")}>
+                    <Button className="buttonMobile" onClick={handleRouterClick("/explore")}>
                       <p onClick={handleShowSidebarClick}>Explorar</p>
                     </Button>
                     {!isAuthenticated ? (
                       <>
                         <Button
                           className="buttonMobile"
-                          onClick={handleRouterClick("/pages/login")}
+                          onClick={handleRouterClick("/login")}
                           data-aos="fade-up"
                           data-aos-duration="1000"
                         >
@@ -136,7 +135,7 @@ export default function Header() {
           </NavbarBrand>
           <NavbarContent className="hidden sm:flex gap-4 pl-7 py-4" justify="center">
             <ul className="flex items-center gap-6 p-2">
-              <li className="cursor-pointer" onClick={handleRouterClick("/pages/explore")}>
+              <li className="cursor-pointer" onClick={handleRouterClick("/explore")}>
                 Explorar
               </li>
               {isAuthenticated ? (
@@ -161,7 +160,7 @@ export default function Header() {
                   </DropdownMenu>
                 </Dropdown>
               ) : (
-                <li className="cursor-pointer" onClick={handleRouterClick("/pages/login")}>
+                <li className="cursor-pointer" onClick={handleRouterClick("/login")}>
                   Entrar
                 </li>
               )}

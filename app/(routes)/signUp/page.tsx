@@ -39,7 +39,7 @@ export default function SignUpPage() {
   const handleRouterLoginClick = () => {
     setIsLoading(true);
     setTimeout(() => {
-      return router.push("/pages/login");
+      return router.push("/login");
     }, 1000);
   };
   const handleRouterBackClick = () => router.back();

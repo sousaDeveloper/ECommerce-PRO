@@ -36,7 +36,7 @@ export default function LoginPage() {
   const handleRouterSignUpClick = () => {
     setIsLoading(true);
     setTimeout(() => {
-      return router.push("/pages/signUp");
+      return router.push("/signUp");
     }, 1000);
   };
   const handleRouterBackClick = () => {

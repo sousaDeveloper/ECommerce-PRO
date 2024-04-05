@@ -5,7 +5,6 @@ import { collection, getDocs, query, where } from "firebase/firestore";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { NextUIProvider } from "@nextui-org/react";
-import { Dispatch } from "redux";
 
 // Utilities
 import { auth, db } from "./config/firebase.config";
@@ -14,7 +13,7 @@ import { loginUser, logoutUser } from "store/toolkit/user/user.slice";
 import { useAppSelector } from "hooks/redux.hooks";
 
 // Components
-import HomePage from "./pages/home/page";
+import HomePage from "./(routes)/home/page";
 
 export default function Page() {
   const dispatch = useDispatch();

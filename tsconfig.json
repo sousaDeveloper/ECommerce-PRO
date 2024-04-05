@@ -33,10 +33,10 @@
     ".next/types/**/*.ts",
     "app/components/InputErrorMessage/InputErrorMessage.tsx",
     "app/components/CustomInputContainer/CustomInputContainer.jsx",
-    "app/pages/category/[id]/page.jsx",
-    "app/pages/home/components/Carousel/Carousel.jsx",
+    "app/category/[id]/page.jsx",
+    "app/home/_components/Carousel/Carousel.tsx",
     "app/components/SearchInput/SearchInput.tsx",
-    "app/pages/home/components/SlideContent/SlideContent.tsx",
+    "app/home/_components/SlideContent/SlideContent.tsx",
     "app/store/store.ts"
   ],
   "exclude": ["node_modules"]

@@ -1,3 +1,5 @@
+"use client"
+
 import Aos from "aos";
 import { ShoppingCartIcon } from "lucide-react";
 import { useState } from "react";
@@ -32,7 +34,7 @@ export default function Cart() {
       const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_KEY}/create-checkout-session`, { products });
       if (!isAuthenticated) {
         toast.info("Primeiro realize seu login.");
-        return router.push("/pages/login");
+        return router.push("/login");
       } else {
         return (window.location.href = data.url);
       }

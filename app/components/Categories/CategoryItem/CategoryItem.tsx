@@ -1,3 +1,5 @@
+"use client"
+
 import { useRouter } from "next/navigation";
 import { Loader } from "lucide-react";
 import { useState } from "react";
@@ -16,7 +18,7 @@ export default function CategoryItem({ category }: CategoryItemsProps) {
   const router = useRouter();
   const handleRouterCategoryClick = () => {
     setTimeout(() => {
-      return router.push(`/pages/category/${category.id}`);
+      return router.push(`/category/${category.id}`);
     }, 1000);
   };
 
