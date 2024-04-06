@@ -1,10 +1,17 @@
+"use client";
+
 import Aos from "aos";
 
 import "./SkeletonLoading.scss";
-
-Aos.init();
+import { useEffect } from "react";
 
 export default function SkeletonLoading() {
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Aos.init();
+    }
+  }, []);
+
   return (
     <div className="card h-[33rem] rounded" data-aos="fade-up">
       <div className="card__skeleton card__description -mt-10"> </div>

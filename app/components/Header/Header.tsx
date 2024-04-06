@@ -32,8 +32,6 @@ import Loading from "@components/Loading/Loading";
 // Styles
 import "./Header.scss";
 
-Aos.init();
-
 export default function Header() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [isLoading, setIsLoading] = useState(false);
@@ -67,6 +65,12 @@ export default function Header() {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Aos.init();
+    }
   }, []);
 
   return (

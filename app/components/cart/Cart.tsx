@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
 import Aos from "aos";
 import { ShoppingCartIcon } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { Loader2 } from "lucide-react";
 import { toast } from "sonner";
@@ -16,8 +16,6 @@ import { selectProductsTotalCart, selectProductsTotalPrice, clearCart } from "st
 // Components
 import CartItem from "../CartItem/CartItem";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "../ui/sheet";
-
-Aos.init();
 
 export default function Cart() {
   const { products } = useAppSelector((rootReducer) => rootReducer.cartReducer);
@@ -42,6 +40,12 @@ export default function Cart() {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Aos.init();
+    }
+  }, []);
 
   const handleClearCartClick = () => {
     toast.success("Carrinho limpo com sucesso.");

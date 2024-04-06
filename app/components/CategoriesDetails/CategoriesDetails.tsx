@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useEffect, useState } from "react";
 import { ChevronLeftIcon } from "lucide-react";
@@ -21,8 +21,6 @@ import Loading from "@components/Loading/Loading";
 interface ICategoryDetailsProps {
   categoryId: string;
 }
-
-Aos.init();
 
 export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
   const [category, setCategory] = useState<Category | null>(null);
@@ -65,6 +63,12 @@ export default function CategoryDetails({ categoryId }: ICategoryDetailsProps) {
     setTimeout(() => {
       fetchCategories();
     }, 1500);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Aos.init();
+    }
   }, []);
 
   const renderProductItems = () => {

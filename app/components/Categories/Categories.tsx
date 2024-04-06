@@ -14,8 +14,6 @@ import CategoryItem from "./CategoryItem/CategoryItem";
 // Styles
 import "./Categories.scss";
 
-Aos.init();
-
 export default function Categories() {
   const { categories } = useAppSelector((rootReducer) => rootReducer.categoryReducer);
 
@@ -23,6 +21,12 @@ export default function Categories() {
 
   useEffect(() => {
     dispatch(fetchCategories() as any);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      Aos.init();
+    }
   }, []);
 
   return (
