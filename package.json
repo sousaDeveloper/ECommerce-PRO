@@ -20,6 +20,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "embla-carousel-react": "^8.0.1",
+    "eslint-import-resolver-typescript": "^3.6.1",
     "firebase": "^10.6.0",
     "framer-motion": "^11.0.25",
     "lucide-react": "^0.365.0",
