@@ -4,6 +4,7 @@ import SlideContent from "../../(routes)/home/_components/SlideContent/SlideCont
 import Categories from "@components/Categories/Categories";
 import ProductsWithDiscountOverview from "../../(routes)/home/_components/ProductsWithDiscountOverview/ProductsWithDiscountOverview";
 import Footer from "@components/Footer/Footer";
+import SinceInova from "./_components/SinceInova/SinceInova";
 
 export default function HomePage() {
   return (
@@ -12,6 +13,7 @@ export default function HomePage() {
       <Carousel />
       <SlideContent />
       <Categories />
+      <SinceInova />
       <ProductsWithDiscountOverview />
       <Footer />
     </main>

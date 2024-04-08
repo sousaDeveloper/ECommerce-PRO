@@ -1,0 +1,69 @@
+.titleOfSince {
+  background: linear-gradient(to right, #be4f83, #6c0d3bbe, #512137);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.mainContent {
+  position: relative;
+  margin: 13rem 5rem;
+}
+
+@media screen and (max-width: 1170px) {
+  .mainContent {
+    margin: 13rem 1rem;
+  }
+
+  .contentSince {
+    flex-direction: column;
+    width: 100%;
+
+    .textContent {
+      margin-top: 2rem;
+      min-width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 531px) {
+  .mainContent {
+    .imageContent {
+      width: 15rem;
+    }
+  }
+}
+
+@media screen and (max-width: 472px) {
+  .mainContent {
+    .imageContent {
+      width: 13rem;
+    }
+  }
+}
+
+@media screen and (max-width: 438px) {
+  .mainContent {
+    margin: 8rem 0.8rem 2rem 0.8rem;
+    .imageContent {
+      width: 13rem;
+    }
+    .imageTwo {
+      bottom: 5rem;
+      left: 8rem;
+    }
+  }
+}
+
+@media screen and (max-width: 411px) {
+  .mainContent {
+    margin: 6rem 0.6rem 1rem 0.6rem;
+    .imageContent {
+      width: 12rem;
+    }
+    .imageTwo {
+      bottom: 3rem;
+      left: 6rem;
+    }
+  }
+}
