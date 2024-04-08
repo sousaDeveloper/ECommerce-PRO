@@ -28,7 +28,7 @@ export default function SinceInova() {
   }, []);
 
   return (
-    <section className="relative py-6 px-6 rounded mainContent">
+    <section className="relative py-6 pb-0 px-6 rounded mainContent">
       <div
         className="inset-0 absolute w-[33%]"
         style={{
@@ -65,7 +65,7 @@ export default function SinceInova() {
         >
           <h1 className="font-bold text-2xl flex gap-1 titleOfSince">Descubra o Novo Padrão de Estilo com a Inova Store</h1>
           <h1 className="font-bold text-[#283040]">Inovando na Moda desde 1995</h1>
-          <p className="text-xl text-center min-w-[85%] mt-4 text-[#283040] ">
+          <p className="text-xl text-center min-w-[85%] mt-4 text-[#283040]" data-aos="fade-right" data-aos-duration="1000">
             Na Inova Store, acreditamos que a moda é mais do que apenas roupas - é uma expressão de individualidade e
             criatividade. Desde 1995, temos nos dedicado a trazer para você as últimas tendências, combinando estilo
             contemporâneo com uma abordagem única. Nossa coleção exclusiva é cuidadosamente selecionada para refletir a

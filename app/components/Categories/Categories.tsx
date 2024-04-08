@@ -31,7 +31,12 @@ export default function Categories() {
 
   return (
     <>
-      <h1 className="font-bold text-2xl text-center text-[#283040]" data-aos="fade-right" data-aos-duration="1000">
+      <h1
+        className="font-bold text-2xl text-left pl-20 text-[#283040]"
+        data-aos="fade-right"
+        data-aos-duration="1000"
+        id="variety"
+      >
         Nossas variedades
       </h1>
       <div className="categories-container flex justify-center w-full h-full mt-1 px-20">
