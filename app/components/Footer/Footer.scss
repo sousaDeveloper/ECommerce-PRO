@@ -4,12 +4,23 @@ footer {
   flex-wrap: wrap;
   justify-content: space-between;
   color: #fcd4be;
+
+  .footerContent {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    column-gap: 33rem;
+  }
 }
 
-@media screen and (max-width: 525px) {
+@media screen and (max-width: 880px) {
   footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    .footerContent {
+      display: flex;
+      justify-content: left;
+      row-gap: 2rem;
+      padding-left: 1rem;
+      padding-bottom: 1rem;
+    }
   }
 }

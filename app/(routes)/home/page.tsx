@@ -12,8 +12,8 @@ export default function HomePage() {
       <Header />
       <Carousel />
       <SlideContent />
-      <Categories />
       <SinceInova />
+      <Categories />
       <ProductsWithDiscountOverview />
       <Footer />
     </main>
