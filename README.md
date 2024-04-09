@@ -1,9 +1,9 @@
 # E-commerce (Inova Store)
 
-Este é o README para o E-commerce (Nome do Projeto), um projeto de comércio eletrônico construído com tecnologias como XML, SCSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, Git, Redux, React Hook Form, Firebase, Firebase Authentication, Stripe API para pagamentos online, Axios, Next UI e Shadcn-UI para animações.
+Este é o README para a Inova Store, um projeto de comércio eletrônico construído com tecnologias como XML, SCSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, Git, Redux, React Hook Form, Firebase, Firebase Authentication, Stripe API para pagamentos online, Axios, Next UI e Shadcn-UI para animações.
 
 ## Visão Geral
-O E-commerce (Nome do Projeto) é uma plataforma de comércio eletrônico que oferece aos usuários a capacidade de navegar por uma variedade de produtos, adicioná-los ao carrinho de compras e efetuar pagamentos online de forma segura.
+A Inoova Store é uma plataforma de comércio eletrônico que oferece aos usuários a capacidade de navegar por uma variedade de produtos, adicioná-los ao carrinho de compras e efetuar pagamentos online de forma segura.
 
 ## Tecnologias Utilizadas
 - XML
