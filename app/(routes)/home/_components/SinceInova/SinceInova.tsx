@@ -77,7 +77,7 @@ export default function SinceInova() {
               className="inset-0 absolute w-[100%]"
               style={{
                 backgroundColor: "#8c3a60",
-                filter: "blur(200px)",
+                filter: "blur(300px)",
                 opacity: "1",
               }}
             />
