@@ -14,7 +14,7 @@ import { categoryConverter } from "@converters/firestore.converters";
 // Components
 import ProductItem from "../CategoryOverview/ProductItem/ProductItem";
 import { ScrollArea, ScrollBar } from "../ui/scroll-area";
-import SkeletonLoading from "@componentsSkeletonLoading/SkeletonLoading";
+import SkeletonLoading from "@components/SkeletonLoading/SkeletonLoading";
 import Footer from "@components/Footer/Footer";
 import Loading from "@components/Loading/Loading";
 

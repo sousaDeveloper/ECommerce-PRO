@@ -2,14 +2,13 @@ footer {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  justify-content: space-between;
   color: #fcd4be;
 
   .footerContent {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    column-gap: 33rem;
+    column-gap: 30rem;
   }
 }
 
