@@ -3,7 +3,7 @@
 Este é o README para a Inova Store, um projeto de comércio eletrônico construído com tecnologias como XML, SCSS, JavaScript, TypeScript, React, Next.js, Tailwind CSS, Git, Redux, React Hook Form, Firebase, Firebase Authentication, Stripe API para pagamentos online, Axios, Next UI e Shadcn-UI para animações.
 
 ## Visão Geral
-A Inoova Store é uma plataforma de comércio eletrônico que oferece aos usuários a capacidade de navegar por uma variedade de produtos, adicioná-los ao carrinho de compras e efetuar pagamentos online de forma segura.
+A Inova Store é uma plataforma de comércio eletrônico que oferece aos usuários a capacidade de navegar por uma variedade de produtos, adicioná-los ao carrinho de compras e efetuar pagamentos online de forma segura.
 
 ## Tecnologias Utilizadas
 - XML
@@ -30,7 +30,7 @@ A Inoova Store é uma plataforma de comércio eletrônico que oferece aos usuár
 
 Clonando o repositório:
 
-`git clone https://github.com/seu-usuario/nome-do-projeto.git`
+`git clone https://github.com/seu-usuario/nome-do-projeto.git](https://github.com/sousaDeveloper/ECommerce-PRO.git`
 
 ## Instalando as dependências:
 
